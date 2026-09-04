@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Freelancer Payment Fee Comparison: Wise vs PayPal vs Payoneer | SoloDesk</title>
+<meta name="description" content="Compare what you actually receive on a cross-border freelance payment across Wise, PayPal, Payoneer and more. Edit the fees to match your account. Free, and it runs in your browser.">
+<link rel="canonical" href="https://solodesk.pages.dev/tools/payment-fee-comparison.html">
+<link rel="alternate" hreflang="en" href="https://solodesk.pages.dev/tools/payment-fee-comparison.html">
+<link rel="alternate" hreflang="id" href="https://solodesk.pages.dev/id/perbandingan-biaya-transfer-luar-negeri.html">
+<link rel="alternate" hreflang="x-default" href="https://solodesk.pages.dev/tools/payment-fee-comparison.html">
+<meta property="og:title" content="Freelancer Payment Fee Comparison">
+<meta property="og:description" content="See what actually lands in your account after fees and FX markup on an international payment.">
+<meta property="og:url" content="https://solodesk.pages.dev/tools/payment-fee-comparison.html">
+<meta name="theme-color" content="#1f4fd1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f4fd1'/%3E%3Cpath d='M9 11h14M9 16h9M9 21h14' stroke='white' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/style.css">
+<script src="/assets/site.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SoloDesk Payment Fee Comparison","applicationCategory":"FinanceApplication","operatingSystem":"Any (web)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<style>
+.prov{display:grid;grid-template-columns:1.1fr 1fr 1fr 1fr;gap:8px;align-items:center;margin:6px 0}
+.prov input{padding:8px 9px}
+.prov .name{font-weight:600}
+.prov-head{display:grid;grid-template-columns:1.1fr 1fr 1fr 1fr;gap:8px;font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-top:8px}
+.winner{color:var(--good);font-weight:700}
+@media (max-width:640px){.prov,.prov-head{grid-template-columns:1fr 1fr 1fr 1fr;font-size:.8rem}}
+</style>
+</head>
+<body>
+<header class="site-header"><div class="container"><nav class="nav" aria-label="Primary">
+  <a class="brand" href="/"><svg class="logo" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M9 11h14M9 16h9M9 21h14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>SoloDesk</a>
+  <span class="spacer"></span>
+  <a class="navlink" href="/#tools">Tools</a>
+  <a class="navlink" href="/guides/how-to-set-your-freelance-rate.html">Guides</a>
+</nav></div></header>
+
+<main><div class="container">
+  <p class="crumb"><a href="/">Home</a> › Payment Fee Comparison</p>
+  <h1>Cross-Border Payment Fee Comparison</h1>
+  <p style="color:var(--muted);max-width:680px">If a client abroad is paying you, the headline "fee" is only part of what you lose. The exchange-rate markup is much harder to spot and takes the rest. Enter the payment and see what actually lands in your account with each service.</p>
+
+  <div class="note"><strong>Fees are editable estimates, not live rates.</strong> Providers change their pricing, and it varies by country, currency, and account type. The defaults are rough starting points. Replace them with the real numbers from your own account for an accurate comparison.</div>
+
+  <div class="adslot" data-ad="top" aria-hidden="true"></div>
+
+  <div class="tool" style="margin-top:0">
+    <div class="row c2">
+      <div class="field"><label>Payment amount</label><input type="text" inputmode="decimal" spellcheck="false" id="amount" value="2000" min="0" step="50"></div>
+      <div class="field"><label>Currency</label>
+        <select id="currency">
+          <option value="USD">USD $</option><option value="EUR">EUR €</option><option value="GBP">GBP £</option>
+          <option value="CAD">CAD $</option><option value="AUD">AUD $</option><option value="SGD">SGD $</option>
+          <option value="INR">INR ₹</option><option value="IDR">IDR Rp</option><option value="PHP">PHP ₱</option><option value="PKR">PKR ₨</option><option value="BDT">BDT ৳</option><option value="NGN">NGN ₦</option><option value="NZD">NZD $</option>
+        </select></div>
+    </div>
+    <label style="font-weight:600;font-size:.9rem">Adjust the fees to match your account</label>
+    <div class="prov-head"><span>Provider</span><span>% fee</span><span>FX markup %</span><span>Fixed fee</span></div>
+    <div id="providers"></div>
+    <button class="btn ghost small" id="reset" type="button" style="margin-top:8px">Reset defaults</button>
+  </div>
+
+  <div class="result">
+    <div class="lbl">You actually receive</div>
+    <table style="margin-top:6px"><thead><tr><th>Provider</th><th class="r">Total cost</th><th class="r">You receive</th><th class="r">% lost</th></tr></thead>
+      <tbody id="out"></tbody></table>
+    <p id="verdict" style="margin:10px 0 0;color:var(--muted)"></p>
+  </div>
+
+  <div class="adslot" data-ad="mid" aria-hidden="true"></div>
+
+  <section class="prose" style="margin-top:26px">
+    <h2>Why the "low fee" account can still cost you the most</h2>
+    <p>International payment services make money in two places: a visible <strong>fee</strong> and an often-invisible <strong>exchange-rate markup</strong>. A provider can advertise a low percentage fee, then apply an exchange rate a few percent worse than the real mid-market rate. On a $2,000 payment, a 3% hidden markup costs you $60, which is often more than the "fee" you were watching.</p>
+    <h3>Mid-market rate is the number to check</h3>
+    <p>The mid-market (or interbank) rate is the true exchange rate, the one you see on a search engine. Services that convert at mid-market and charge a clear fee are usually the cheapest for freelancers. Services that bake their margin into the exchange rate are the ones that cost more than they appear to. When you compare, ask each provider what rate it converts at and how far that is from mid-market.</p>
+    <h3>Match the tool to the payment</h3>
+    <ul>
+      <li><strong>Multi-currency accounts</strong> let you hold the currency and convert when you choose, so you are never forced to convert at a bad moment. They are a good fit if you invoice in several currencies.</li>
+      <li><strong>Card payouts</strong> are convenient but often carry the highest combined cost. Check the markup before defaulting to them.</li>
+      <li><strong>Local bank transfer</strong> (the provider pays into your local account in your currency) is frequently the cheapest way to receive money.</li>
+    </ul>
+    <h3>Bill in your own currency when you can</h3>
+    <p>If a client agrees to pay in your home currency, the conversion cost shifts to their side. It is not always possible, but it is worth asking, especially for ongoing work. Set that expectation in the <a href="/tools/invoice-generator.html">invoice</a> and the original <a href="/tools/project-quote-builder.html">quote</a>.</p>
+    <div class="rec-box"><div class="tag">Recommended</div>
+      <p style="margin:.3em 0 0">A dedicated multi-currency account usually beats a general payment processor on cross-border fees. <a href="#" rel="sponsored nofollow" data-aff="fx">See our recommended cross-border payment tools →</a></p>
+    </div>
+    <h2>Frequently asked questions</h2>
+    <details><summary>Are these the real current fees?</summary><p>No. They are editable estimates that show how the comparison works. Providers change their pricing often, and it depends on your country and account. Put in the real numbers from your account for an accurate result.</p></details>
+    <details><summary>What's an FX markup?</summary><p>The gap between the exchange rate a provider gives you and the true mid-market rate. It is a hidden cost on top of any stated fee, and it is often the bigger of the two.</p></details>
+    <details><summary>Which is cheapest overall?</summary><p>It depends on the corridor (which currencies) and amount. Run your real numbers here. As a rule, providers that convert at mid-market with a transparent fee beat those that hide margin in the rate.</p></details>
+  </section>
+</div></main>
+
+<footer class="site-footer"><div class="container">
+  <p><a href="/">← All SoloDesk tools</a></p>
+  <p class="disc">© <span data-year>2026</span> SoloDesk. Estimates only, not financial advice. Verify current fees with each provider.</p>
+</div></footer>
+
+<script>
+(function(){
+  "use strict";
+  var el=function(id){return document.getElementById(id);};
+  // Editable rough defaults (percent fee, fx markup %, fixed fee). Clearly labelled as estimates.
+  var DEF=[
+    {key:"wise",name:"Wise",fee:0.6,fx:0,fixed:1},
+    {key:"payoneer",name:"Payoneer",fee:1.0,fx:0.5,fixed:0},
+    {key:"paypal",name:"PayPal",fee:3.49,fx:3.5,fixed:0.5},
+    {key:"bank",name:"Bank wire",fee:0,fx:2.5,fixed:15}
+  ];
+  var rows=JSON.parse(JSON.stringify(DEF));
+  function renderRows(){
+    var box=el("providers"); box.innerHTML="";
+    rows.forEach(function(r,i){
+      var d=document.createElement("div"); d.className="prov";
+      d.innerHTML='<span class="name">'+r.name+'</span>'+
+        '<input type="text" inputmode="decimal" spellcheck="false" step="0.01" min="0" aria-label="'+r.name+' fee %">'+
+        '<input type="text" inputmode="decimal" spellcheck="false" step="0.01" min="0" aria-label="'+r.name+' fx markup %">'+
+        '<input type="text" inputmode="decimal" spellcheck="false" step="0.01" min="0" aria-label="'+r.name+' fixed fee">';
+      var ins=d.querySelectorAll("input");
+      ins[0].value=r.fee; ins[1].value=r.fx; ins[2].value=r.fixed;
+      ins[0].addEventListener("input",function(){r.fee=SD.parse(this.value);calc();});
+      ins[1].addEventListener("input",function(){r.fx=SD.parse(this.value);calc();});
+      ins[2].addEventListener("input",function(){r.fixed=SD.parse(this.value);calc();});
+      box.appendChild(d);
+    });
+  }
+  function calc(){
+    var cur=el("currency").value, f=function(n){return SD.fmt(n,cur);};
+    var amt=SD.val("amount");
+    var results=rows.map(function(r){
+      var cost=amt*(r.fee/100)+amt*(r.fx/100)+r.fixed;
+      return {name:r.name, cost:cost, net:amt-cost, pct:amt>0?cost/amt*100:0};
+    });
+    var best=results.reduce(function(a,b){return b.net>a.net?b:a;},results[0]);
+    var body="";
+    results.slice().sort(function(a,b){return b.net-a.net;}).forEach(function(r){
+      var win=r.name===best.name;
+      body+="<tr><td>"+(win?'<span class="winner">'+r.name+' ✓</span>':r.name)+"</td><td class='r'>"+f(r.cost)+
+            "</td><td class='r'>"+f(r.net)+"</td><td class='r'>"+SD.num(r.pct,2)+"%</td></tr>";
+    });
+    el("out").innerHTML=body;
+    var worst=results.reduce(function(a,b){return b.net<a.net?b:a;},results[0]);
+    el("verdict").textContent="On these numbers, "+best.name+" nets you "+f(best.net-worst.net)+" more than "+worst.name+". Always confirm the live rates for your currencies.";
+  }
+  el("reset").addEventListener("click",function(){rows=JSON.parse(JSON.stringify(DEF));renderRows();calc();});
+  ["amount","currency"].forEach(function(id){el(id).addEventListener("input",calc);el(id).addEventListener("change",calc);});
+  renderRows(); calc();
+})();
+</script>
+</body>
+</html>

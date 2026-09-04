@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Timezone Meeting Planner: Find Working-Hours Overlap | SoloDesk</title>
+<meta name="description" content="Free timezone meeting planner for freelancers and remote teams. Pick your timezone and your client's to see the working-hours overlap and the best time to meet. No signup. It runs in your browser.">
+<link rel="canonical" href="https://solodesk.pages.dev/tools/timezone-meeting-planner.html">
+<meta property="og:title" content="Timezone Meeting Planner: working-hours overlap">
+<meta property="og:description" content="See when your working hours and a client's overlap, in both local times.">
+<meta property="og:url" content="https://solodesk.pages.dev/tools/timezone-meeting-planner.html">
+<meta name="theme-color" content="#1f4fd1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f4fd1'/%3E%3Cpath d='M9 11h14M9 16h9M9 21h14' stroke='white' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/style.css">
+<script src="/assets/site.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SoloDesk Timezone Meeting Planner","applicationCategory":"BusinessApplication","operatingSystem":"Any (web)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<style>
+.grid-hours{display:grid;grid-template-columns:repeat(24,1fr);gap:2px;margin:10px 0}
+.grid-hours .cell{height:26px;border-radius:4px;background:var(--surface-2);border:1px solid var(--border);
+  font-size:.6rem;display:flex;align-items:center;justify-content:center;color:var(--muted)}
+.grid-hours .cell.work{background:color-mix(in srgb,var(--brand) 22%,var(--surface))}
+.grid-hours .cell.overlap{background:var(--good);color:#fff;border-color:var(--good);font-weight:700}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.82rem;color:var(--muted);margin-top:6px}
+.legend .sw{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:5px;border:1px solid var(--border)}
+.rowlabel{font-size:.8rem;color:var(--muted);margin:6px 0 2px;font-weight:600}
+</style>
+</head>
+<body>
+<header class="site-header"><div class="container"><nav class="nav" aria-label="Primary">
+  <a class="brand" href="/"><svg class="logo" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M9 11h14M9 16h9M9 21h14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>SoloDesk</a>
+  <span class="spacer"></span>
+  <a class="navlink" href="/#tools">Tools</a>
+  <a class="navlink" href="/guides/how-to-set-your-freelance-rate.html">Guides</a>
+</nav></div></header>
+
+<main><div class="container">
+  <p class="crumb"><a href="/">Home</a> › Timezone Meeting Planner</p>
+  <h1>Timezone Meeting Planner</h1>
+  <p style="color:var(--muted);max-width:680px">If you work with a client in another country, pick both timezones and your working hours to see exactly when your days overlap. The result is shown in both local times, so nobody has to do the mental maths.</p>
+
+  <div class="adslot" data-ad="top" aria-hidden="true"></div>
+
+  <div class="tool" style="margin-top:0">
+    <div class="row c2">
+      <div class="field"><label>Your timezone</label><select id="tzA"></select></div>
+      <div class="field"><label>Client / other timezone</label><select id="tzB"></select></div>
+    </div>
+    <div class="row c2">
+      <div class="field"><label>Your working hours</label>
+        <div class="row c2"><input type="text" inputmode="decimal" spellcheck="false" id="aStart" value="9" min="0" max="23"><input type="text" inputmode="decimal" spellcheck="false" id="aEnd" value="17" min="1" max="24"></div></div>
+      <div class="field"><label>Their working hours</label>
+        <div class="row c2"><input type="text" inputmode="decimal" spellcheck="false" id="bStart" value="9" min="0" max="23"><input type="text" inputmode="decimal" spellcheck="false" id="bEnd" value="17" min="1" max="24"></div></div>
+    </div>
+    <small>Enter hours in 24-hour format (e.g. 9 and 17 for 9am–5pm).</small>
+  </div>
+
+  <div class="result">
+    <div class="lbl">Best overlap</div>
+    <div class="big" id="overlapBig">—</div>
+    <div id="overlapDetail" style="margin-top:8px;color:var(--muted)"></div>
+  </div>
+
+  <div class="rowlabel" id="labA">Your day</div>
+  <div class="grid-hours" id="rowA"></div>
+  <div class="rowlabel" id="labB">Their day</div>
+  <div class="grid-hours" id="rowB"></div>
+  <div class="legend">
+    <span><span class="sw" style="background:color-mix(in srgb,var(--brand) 22%,var(--surface))"></span>Working hours</span>
+    <span><span class="sw" style="background:var(--good)"></span>Overlap: good time to meet</span>
+  </div>
+
+  <div class="adslot" data-ad="mid" aria-hidden="true"></div>
+
+  <section class="prose" style="margin-top:26px">
+    <h2>How to schedule across timezones without the headache</h2>
+    <p>The overlap grid above lines up two working days on the same UTC clock, so all you have to do is look for the green. Both rows show the <em>same real moments</em>, just labelled in each person's local time. The tool uses each timezone's current UTC offset, so daylight saving is handled automatically for today's date.</p>
+    <h3>Tips for remote client work</h3>
+    <ul>
+      <li><strong>Protect the overlap.</strong> If you only share three hours, guard them for calls and collaboration, and do heads-down work outside that window.</li>
+      <li><strong>Quote in both timezones.</strong> When you propose a call, always write both local times ("3pm your time / 9am mine") to avoid the classic off-by-one-day mistake.</li>
+      <li><strong>Watch the edges.</strong> A "9am–5pm both ends" overlap can vanish when one side changes clocks for daylight saving. Re-check near the March and October/November switch dates.</li>
+      <li><strong>Default to async.</strong> With a small overlap, agree on which things need a live call and which can be a recorded update or a written thread.</li>
+    </ul>
+    <p>If you bill that client in another currency, pair this with the <a href="/tools/invoice-generator.html">invoice generator</a> and set your number with the <a href="/tools/freelance-rate-calculator.html">rate calculator</a>.</p>
+    <div class="rec-box"><div class="tag">Recommended</div>
+      <p style="margin:.3em 0 0">If you get paid across borders, a multi-currency account helps you avoid steep conversion fees on international invoices. <a href="#" rel="sponsored nofollow" data-aff="fx">See our recommended cross-border payment tools →</a></p>
+    </div>
+    <h2>Frequently asked questions</h2>
+    <details><summary>Does this handle daylight saving time?</summary><p>Yes, for today's date. It reads each timezone's current UTC offset, which already reflects whether daylight saving is in effect right now. If your meeting falls near a clock-change date, re-check closer to the day itself.</p></details>
+    <details><summary>What if there's no overlap?</summary><p>The tool tells you when standard hours don't meet. From there you can shift one side's hours slightly, agree on one "early" or "late" call per week, or work asynchronously.</p></details>
+  </section>
+</div></main>
+
+<footer class="site-footer"><div class="container">
+  <p><a href="/">← All SoloDesk tools</a></p>
+  <p class="disc">© <span data-year>2026</span> SoloDesk. Information only, not professional advice.</p>
+</div></footer>
+
+<script>
+(function(){
+  "use strict";
+  var el=function(id){return document.getElementById(id);};
+  // Curated IANA timezones (label + id). Offsets computed live for DST correctness.
+  var ZONES=[
+    ["Pacific/Honolulu","Honolulu (HST)"],["America/Anchorage","Anchorage"],
+    ["America/Los_Angeles","Los Angeles / SF (PT)"],["America/Denver","Denver (MT)"],
+    ["America/Chicago","Chicago (CT)"],["America/New_York","New York (ET)"],
+    ["America/Sao_Paulo","São Paulo"],["America/Mexico_City","Mexico City"],
+    ["Atlantic/Reykjavik","Reykjavik (UTC)"],["Europe/London","London"],
+    ["Europe/Lisbon","Lisbon"],["Europe/Paris","Paris / Berlin / Madrid"],
+    ["Europe/Athens","Athens / Helsinki"],["Africa/Lagos","Lagos"],
+    ["Africa/Johannesburg","Johannesburg"],["Europe/Istanbul","Istanbul"],
+    ["Europe/Moscow","Moscow"],["Asia/Dubai","Dubai"],["Asia/Karachi","Karachi"],
+    ["Asia/Kolkata","India (IST)"],["Asia/Kathmandu","Kathmandu"],
+    ["Asia/Dhaka","Dhaka"],["Asia/Bangkok","Bangkok / Jakarta"],
+    ["Asia/Singapore","Singapore / Kuala Lumpur"],["Asia/Shanghai","Beijing / Shanghai"],
+    ["Asia/Hong_Kong","Hong Kong"],["Asia/Tokyo","Tokyo"],["Asia/Seoul","Seoul"],
+    ["Australia/Perth","Perth"],["Australia/Sydney","Sydney"],
+    ["Pacific/Auckland","Auckland"]
+  ];
+  function offMin(tz){
+    try{
+      var now=new Date();
+      var dtf=new Intl.DateTimeFormat("en-US",{timeZone:tz,hour12:false,
+        year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",second:"2-digit"});
+      var p={}; dtf.formatToParts(now).forEach(function(x){p[x.type]=x.value;});
+      var asUTC=Date.UTC(+p.year,+p.month-1,+p.day,+p.hour,+p.minute,+p.second);
+      return Math.round((asUTC-now.getTime())/60000);
+    }catch(e){return 0;}
+  }
+  function fill(sel,def){
+    ZONES.forEach(function(z){
+      var o=document.createElement("option"); o.value=z[0];
+      var m=offMin(z[0]); var sign=m<0?"-":"+"; var am=Math.abs(m);
+      var hh=Math.floor(am/60), mm=am%60;
+      o.textContent=z[1]+"  (UTC"+sign+hh+(mm?(":"+String(mm).padStart(2,"0")):"")+")";
+      if(z[0]===def)o.selected=true; sel.appendChild(o);
+    });
+  }
+  function fmtHM(mins){
+    mins=((mins%1440)+1440)%1440;
+    var h=Math.floor(mins/60), m=Math.round(mins%60);
+    return String(h).padStart(2,"0")+":"+String(m).padStart(2,"0");
+  }
+  function calc(){
+    var tzA=el("tzA").value, tzB=el("tzB").value;
+    var offA=offMin(tzA), offB=offMin(tzB);
+    var aS=SD.val("aStart")*60, aE=SD.val("aEnd")*60, bS=SD.val("bStart")*60, bE=SD.val("bEnd")*60;
+    if(aE<=aS) aE=aS+60; if(bE<=bS) bE=bS+60;
+    // UTC intervals (minutes since UTC midnight of reference day; A anchored, B tested at day offsets)
+    var aU=[aS-offA,aE-offA];
+    var best=null;
+    for(var k=-1;k<=1;k++){
+      var bU=[bS-offB+k*1440,bE-offB+k*1440];
+      var lo=Math.max(aU[0],bU[0]), hi=Math.min(aU[1],bU[1]);
+      if(hi-lo>0 && (!best||hi-lo>best.len)) best={lo:lo,hi:hi,len:hi-lo};
+    }
+    if(best){
+      var aWinS=fmtHM(best.lo+offA), aWinE=fmtHM(best.hi+offA);
+      var bWinS=fmtHM(best.lo+offB), bWinE=fmtHM(best.hi+offB);
+      var hrs=best.len/60;
+      var midLocalA=fmtHM((best.lo+best.hi)/2+offA), midLocalB=fmtHM((best.lo+best.hi)/2+offB);
+      el("overlapBig").textContent=SD.num(hrs,hrs%1?1:0)+" hour"+(hrs===1?"":"s")+" of overlap";
+      el("overlapDetail").innerHTML="You: <strong>"+aWinS+"–"+aWinE+"</strong> · Them: <strong>"+bWinS+"–"+bWinE+
+        "</strong><br>Suggested meeting: <strong>"+midLocalA+"</strong> your time = <strong>"+midLocalB+"</strong> theirs.";
+    } else {
+      el("overlapBig").textContent="No overlap in standard hours";
+      el("overlapDetail").textContent="Your working hours and theirs don't meet on a normal day. Try shifting one side, or plan one early/late call.";
+    }
+    drawRow("rowA","labA",offA,aS/60,aE/60,best,offA,tzA);
+    drawRow("rowB","labB",offB,bS/60,bE/60,best,offB,tzB);
+  }
+  function drawRow(rowId,labId,off,ws,we,best,offSelf,tz){
+    var row=el(rowId); row.innerHTML="";
+    var nowLocal=fmtHM(( (Date.now()/60000) %1440) + off + new Date().getTimezoneOffset());
+    el(labId).textContent=(rowId==="rowA"?"Your day — ":"Their day — ")+tz.split("/").pop().replace(/_/g," ")+"  (local now "+nowLocal+")";
+    for(var h=0;h<24;h++){
+      var c=document.createElement("div"); c.className="cell"; c.textContent=h;
+      var work=(h>=ws && h<we);
+      if(work) c.classList.add("work");
+      if(best){
+        // this local hour h -> UTC minutes = h*60 - off ; check inside best [lo,hi)
+        var uStart=h*60-off, uEnd=(h+1)*60-off;
+        // account for day wrap by testing k offsets
+        var inOv=false;
+        for(var k=-1;k<=1;k++){
+          if(uEnd+k*1440>best.lo && uStart+k*1440<best.hi){inOv=true;break;}
+        }
+        if(inOv && work) c.classList.add("overlap");
+      }
+      row.appendChild(c);
+    }
+  }
+  fill(el("tzA"),(Intl.DateTimeFormat().resolvedOptions().timeZone)||"America/New_York");
+  fill(el("tzB"),"America/New_York");
+  ["tzA","tzB","aStart","aEnd","bStart","bEnd"].forEach(function(id){el(id).addEventListener("input",calc);el(id).addEventListener("change",calc);});
+  calc();
+})();
+</script>
+</body>
+</html>

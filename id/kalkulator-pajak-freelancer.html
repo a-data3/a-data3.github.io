@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kalkulator Sisihkan Pajak untuk Freelancer | SoloDesk</title>
+<meta name="description" content="Kalkulator gratis untuk menghitung berapa pajak yang perlu disisihkan freelancer per pembayaran, pakai mode PPh Final 0,5% Indonesia atau mode sederhana.">
+<link rel="canonical" href="https://solodesk.pages.dev/id/kalkulator-pajak-freelancer.html">
+<link rel="alternate" hreflang="id" href="https://solodesk.pages.dev/id/kalkulator-pajak-freelancer.html">
+<link rel="alternate" hreflang="en" href="https://solodesk.pages.dev/tools/tax-set-aside-calculator.html">
+<link rel="alternate" hreflang="x-default" href="https://solodesk.pages.dev/tools/tax-set-aside-calculator.html">
+<meta property="og:title" content="Kalkulator Sisihkan Pajak untuk Freelancer">
+<meta property="og:description" content="Hitung berapa dari setiap pembayaran yang perlu disisihkan freelancer untuk pajak, supaya tidak kaget saat SPT Tahunan tiba.">
+<meta property="og:url" content="https://solodesk.pages.dev/id/kalkulator-pajak-freelancer.html">
+<meta name="theme-color" content="#1f4fd1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f4fd1'/%3E%3Cpath d='M9 11h14M9 16h9M9 21h14' stroke='white' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/style.css">
+<script src="/assets/site.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Kalkulator Sisihkan Pajak Freelancer SoloDesk","applicationCategory":"FinanceApplication","operatingSystem":"Any (web)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+</head>
+<body>
+<header class="site-header"><div class="container"><nav class="nav" aria-label="Primary">
+  <a class="brand" href="/"><svg class="logo" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M9 11h14M9 16h9M9 21h14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>SoloDesk</a>
+  <span class="spacer"></span>
+  <a class="navlink" href="/#tools">Alat</a>
+  <a class="navlink" href="/guides/freelancer-tax-basics.html">Panduan</a>
+</nav></div></header>
+
+<main><div class="container">
+  <p class="crumb"><a href="/">Beranda</a> › Kalkulator Sisihkan Pajak</p>
+  <h1>Berapa Pajak yang Harus Disisihkan Freelancer Setiap Bulan?</h1>
+  <p style="color:var(--muted);max-width:680px">Sebagian uang yang mengendap di rekening Anda sebenarnya bukan milik Anda, itu jatah kantor pajak. Kalkulator ini membantu Anda menghitung berapa dari setiap pembayaran yang perlu dipindahkan ke tabungan terpisah, supaya tagihan pajak tidak pernah datang sebagai kejutan.</p>
+
+  <div class="note"><strong>Hanya perkiraan.</strong> Besaran pajak bergantung pada total penghasilan, status usaha, dan aturan yang berlaku untuk Anda. Kalkulator ini memberi angka perencanaan untuk disisihkan, bukan pengganti SPT Tahunan yang sebenarnya. Sebelum mengandalkan angka ini, cek aturan terbaru di <a href="https://www.pajak.go.id" target="_blank" rel="noopener">pajak.go.id</a> atau tanya konsultan pajak. Ini bukan nasihat pajak. Lihat juga <a href="/guides/freelancer-tax-basics.html">dasar-dasar pajak freelancer</a> kami.</div>
+
+  <div class="adslot" data-ad="top" aria-hidden="true"></div>
+
+  <div class="row c2" style="gap:22px;align-items:start">
+    <div class="tool" style="margin-top:0">
+      <div class="field"><label>Mode</label>
+        <select id="mode">
+          <option value="us">Amerika Serikat (tidak berlaku untuk Indonesia)</option>
+          <option value="simple" selected>Sederhana (satu tarif, cocok untuk PPh Final Indonesia)</option>
+        </select></div>
+      <div class="field"><label>Mata uang</label>
+        <select id="currency">
+          <option value="USD">USD $</option><option value="EUR">EUR €</option><option value="GBP">GBP £</option>
+          <option value="CAD">CAD $</option><option value="AUD">AUD $</option><option value="SGD">SGD $</option>
+          <option value="INR">INR ₹</option><option value="IDR" selected>IDR Rp</option><option value="PHP">PHP ₱</option><option value="PKR">PKR ₨</option><option value="BDT">BDT ৳</option><option value="NGN">NGN ₦</option><option value="NZD">NZD $</option>
+        </select></div>
+      <div class="field"><label>Jumlah pembayaran / invoice <span class="hint">dasar pengenaan pajaknya, omzet bruto untuk PPh Final atau laba bersih kalau pakai tarif progresif</span></label>
+        <input type="text" inputmode="decimal" spellcheck="false" id="amount" value="15000000" min="0" step="100"></div>
+
+      <div id="us-fields" style="display:none">
+        <div class="row c2">
+          <div class="field"><label>Pajak federal (%) <span class="hint">tarif marginal Anda, misalnya 12 / 22 / 24</span></label>
+            <input type="text" inputmode="decimal" spellcheck="false" id="fed" value="22" min="0" max="60" step="1"></div>
+          <div class="field"><label>Pajak negara bagian (%) <span class="hint">0 kalau tidak ada</span></label>
+            <input type="text" inputmode="decimal" spellcheck="false" id="state" value="5" min="0" max="20" step="0.5"></div>
+        </div>
+        <div class="note" style="border-left-color:var(--brand)">Pajak wirausaha mandiri (self-employment tax) sebesar <strong>15,3%</strong> (Social Security + Medicare) dihitung otomatis dari 92,35% laba. Ini metode standar di Amerika Serikat dan tidak berlaku di Indonesia.</div>
+      </div>
+
+      <div id="simple-fields">
+        <div class="field"><label>Tarif pajak gabungan Anda (%) <span class="hint">misalnya 0,5% untuk PPh Final, atau tarif progresif kalau pekerjaan Anda dikecualikan</span></label>
+          <input type="text" inputmode="decimal" spellcheck="false" id="simple" value="25" min="0" max="70" step="1"></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="result">
+        <div class="lbl">Sisihkan dari pembayaran ini</div>
+        <div class="big" id="setaside">—</div>
+        <div style="margin-top:10px">
+          <div class="kv"><span>Tarif pajak efektif</span><span class="v" id="eff">—</span></div>
+          <div class="kv"><span>Sisa untuk Anda (kira-kira)</span><span class="v" id="keep">—</span></div>
+          <div class="kv" id="se-row"><span>· Pajak wirausaha mandiri</span><span class="v" id="se">—</span></div>
+          <div class="kv" id="inc-row"><span>· Pajak pendapatan (federal + negara bagian)</span><span class="v" id="inc">—</span></div>
+        </div>
+      </div>
+      <div class="note" id="tip"></div>
+    </div>
+  </div>
+
+  <div class="adslot" data-ad="mid" aria-hidden="true"></div>
+
+  <section class="prose" style="margin-top:26px">
+    <h2>Berapa pajak yang harus disisihkan freelancer di Indonesia?</h2>
+    <p>Aturan kasar yang sering dipakai adalah menyisihkan <strong>20–30%</strong> dari setiap pembayaran. Angka yang tepat tergantung status pajak Anda, apakah pakai PPh Final, tarif progresif, atau justru pekerjaan Anda termasuk yang dikecualikan dari skema final. Kalkulator ini memakai tarif yang Anda masukkan sendiri, jadi hasilnya lebih pas daripada sekadar tebakan.</p>
+    <h3>Kalau Anda pakai PPh Final 0,5%</h3>
+    <p>Freelancer dan pelaku UMKM orang pribadi dengan omzet di bawah <strong>Rp4,8 miliar</strong> setahun umumnya bisa memilih tarif final PPh sebesar <strong>0,5%</strong> dari omzet bruto, sesuai PP 55/2022. Enaknya, <strong>Rp500 juta pertama</strong> dari omzet dalam satu tahun pajak tidak dikenakan PPh Final ini sama sekali. Jadi kalau omzet tahunan Anda belum melewati Rp500 juta, secara aturan Anda belum wajib membayar PPh Final atas omzet itu, meski kewajiban lapor tetap ada.</p>
+    <h3>Kalau pekerjaan Anda termasuk "pekerjaan bebas"</h3>
+    <p>Tidak semua profesi bisa menikmati tarif final 0,5%. Pekerjaan bebas tertentu seperti pengacara, akuntan, konsultan, arsitek, dokter, dan notaris dikecualikan dari skema ini. Kalau pekerjaan Anda masuk kategori itu, penghasilan dihitung dengan tarif progresif Pasal 17 (5% sampai 35%) dari penghasilan neto, bukan tarif final dari omzet. Kalau ini situasi Anda, pilih mode Sederhana di kalkulator dan isi dengan tarif efektif Anda sendiri, bukan 0,5%.</p>
+    <h3>Kalau klien memotong pajak duluan (PPh 21/PPh 23)</h3>
+    <p>Kalau klien Anda berbentuk badan usaha seperti PT atau CV, mereka kadang wajib memotong pajak sebelum membayar Anda: PPh 21 untuk imbalan jasa perorangan, atau PPh 23 (umumnya 2% dari nilai bruto bagi yang sudah punya NPWP) untuk jenis jasa tertentu. Klien akan memberi bukti potong, dan bukti itu bisa dikreditkan saat Anda lapor SPT Tahunan. Kalau Anda sudah memakai PPh Final 0,5%, pemotongan ini biasanya tidak berlaku lagi asalkan Anda punya surat keterangan dari kantor pajak yang menunjukkan status tersebut. Aturan bisa berubah, jadi cek langsung di <a href="https://www.pajak.go.id" target="_blank" rel="noopener">pajak.go.id</a>.</p>
+    <h3>Kalau omzet Anda tembus Rp4,8 miliar (wajib PKP dan PPN)</h3>
+    <p>Begitu omzet Anda dalam satu tahun melewati <strong>Rp4,8 miliar</strong>, Anda wajib dikukuhkan sebagai Pengusaha Kena Pajak (PKP) dan mulai memungut PPN dari klien, lalu menyetor dan melaporkannya. Pembukuan Anda juga jadi lebih rumit sejak titik ini, jadi banyak freelancer yang sudah mendekati ambang tersebut mulai berkonsultasi dengan akuntan lebih awal.</p>
+    <h3>SPT Tahunan, jangan sampai lewat 31 Maret</h3>
+    <p>Sebagai orang pribadi, Anda wajib melaporkan SPT Tahunan paling lambat <strong>31 Maret</strong> setiap tahun, biasanya lewat e-Filing di DJP Online. Siapkan bukti potong, rekap omzet, dan e-meterai untuk dokumen yang perlu tanda tangan basah. Menyisihkan pajak dari setiap pembayaran sepanjang tahun membuat masa lapor jauh lebih tenang, karena uangnya sudah tersedia saat dibutuhkan.</p>
+    <h3>Kenapa ada mode "Amerika Serikat" di kalkulator ini?</h3>
+    <p>Mode Amerika Serikat memakai konsep pajak AS: pajak federal, pajak negara bagian, dan self-employment tax 15,3%. <strong>Mode ini tidak berlaku untuk sistem pajak Indonesia</strong>, jadi abaikan saja kalau Anda berdomisili di Indonesia. Pilih mode Sederhana dan isi dengan tarif efektif Anda sendiri, baik itu 0,5% untuk PPh Final maupun tarif progresif kalau pekerjaan Anda dikecualikan dari skema final.</p>
+    <h3>Simpan di rekening terpisah</h3>
+    <p>Kebiasaan yang paling ampuh adalah memindahkan uang yang disisihkan ke rekening <em>terpisah</em> begitu klien membayar, lalu anggap uang itu sudah bukan milik Anda lagi. Uang yang tidak terlihat lebih sulit terpakai tanpa sadar, dan saat waktunya bayar pajak, uangnya sudah menunggu di sana.</p>
+    <div class="rec-box"><div class="tag">Rekomendasi</div>
+      <p style="margin:.3em 0 0">Rekening bisnis atau "kas pajak" terpisah dengan transfer instan bikin kebiasaan ini gampang dijalankan. <a href="#" rel="sponsored nofollow" data-aff="banking">Lihat rekomendasi rekening bank untuk freelancer →</a></p>
+    </div>
+    <h2>Pertanyaan yang sering ditanyakan</h2>
+    <details><summary>Sisihkan pajak dari nilai invoice penuh atau dari laba?</summary><p>Tergantung mode yang Anda pakai. Kalau pakai PPh Final 0,5%, dasarnya omzet bruto, jadi dihitung dari nilai invoice penuh (dengan Rp500 juta pertama setahun bebas pajak). Kalau kena tarif progresif karena pekerjaan bebas, dasarnya penghasilan neto setelah dikurangi biaya usaha.</p></details>
+    <details><summary>Apakah 20–30% cukup untuk disisihkan?</summary><p>Untuk yang memakai PPh Final 0,5%, angka riilnya jauh lebih kecil, sering di bawah 5% dari omzet. Untuk yang kena tarif progresif atau punya penghasilan besar, 30% bisa jadi kurang. Pakai tarif Anda sendiri di kalkulator ini, jangan berpatokan pada angka umum saja.</p></details>
+    <details><summary>Bagaimana dengan PPN?</summary><p>Kalkulator ini hanya menghitung PPh (pajak penghasilan). PPN itu urusan lain, dan baru wajib dipungut setelah Anda dikukuhkan sebagai PKP, yaitu ketika omzet tahunan melewati Rp4,8 miliar. Kalau Anda sudah PKP, sisihkan juga bagian PPN-nya secara terpisah. Baca <a href="/guides/freelancer-tax-basics.html">panduan dasar pajak freelancer</a> kami untuk penjelasan lebih lengkap, atau cek <a href="https://www.pajak.go.id" target="_blank" rel="noopener">pajak.go.id</a>.</p></details>
+  </section>
+</div></main>
+
+<footer class="site-footer"><div class="container">
+  <p><a href="/">← Semua alat SoloDesk</a></p>
+  <p class="disc">© <span data-year>2026</span> SoloDesk. Hanya perkiraan, bukan nasihat pajak. Cek aturan yang berlaku atau tanya konsultan pajak.</p>
+</div></footer>
+
+<script>
+(function(){
+  "use strict";
+  var el=function(id){return document.getElementById(id);};
+  function calc(){
+    var cur=el("currency").value, f=function(n){return SD.fmt(n,cur);};
+    var amt=SD.val("amount"), mode=el("mode").value;
+    var seTax=0, incTax=0, total=0;
+    if(mode==="us"){
+      el("us-fields").style.display=""; el("simple-fields").style.display="none";
+      el("se-row").style.display="flex"; el("inc-row").style.display="flex";
+      var fed=SD.val("fed"), state=SD.val("state");
+      seTax=amt*0.9235*0.153;
+      // income tax applies to profit; SE-tax deduction (half) is a simplification we note in the guide
+      incTax=amt*(fed+state)/100;
+      total=seTax+incTax;
+      SD.setText("se",f(seTax)); SD.setText("inc",f(incTax));
+    } else {
+      el("us-fields").style.display="none"; el("simple-fields").style.display="";
+      el("se-row").style.display="none"; el("inc-row").style.display="none";
+      var r=SD.val("simple"); total=amt*r/100;
+    }
+    var eff=amt>0?(total/amt*100):0;
+    SD.setText("setaside",f(total));
+    SD.setText("eff",SD.num(eff,1)+"%");
+    SD.setText("keep",f(amt-total));
+    var tip="";
+    if(eff>0) tip="Move "+f(total)+" ("+SD.num(eff,1)+"%) into a separate tax account the moment this payment lands. Treat the rest as your real income.";
+    el("tip").textContent=tip;
+  }
+  ["mode","currency","amount","fed","state","simple"].forEach(function(id){
+    el(id).addEventListener("input",calc); el(id).addEventListener("change",calc);
+  });
+  calc();
+})();
+</script>
+</body>
+</html>

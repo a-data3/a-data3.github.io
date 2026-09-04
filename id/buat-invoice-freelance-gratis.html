@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Buat Invoice Freelance Gratis (Langsung PDF) | SoloDesk</title>
+<meta name="description" content="Buat invoice profesional dan unduh sebagai PDF gratis, tanpa daftar, tanpa watermark, tanpa email. Mata uang default Rupiah, jalan langsung di browsermu.">
+<link rel="canonical" href="https://solodesk.pages.dev/id/buat-invoice-freelance-gratis.html">
+<link rel="alternate" hreflang="id" href="https://solodesk.pages.dev/id/buat-invoice-freelance-gratis.html">
+<link rel="alternate" hreflang="en" href="https://solodesk.pages.dev/tools/invoice-generator.html">
+<link rel="alternate" hreflang="x-default" href="https://solodesk.pages.dev/tools/invoice-generator.html">
+<meta property="og:title" content="Generator Invoice Gratis untuk Freelancer (PDF, tanpa daftar)">
+<meta property="og:description" content="Buat invoice yang rapi dan simpan sebagai PDF. Gratis, privat, dan tanpa akun.">
+<meta property="og:url" content="https://solodesk.pages.dev/id/buat-invoice-freelance-gratis.html">
+<meta name="theme-color" content="#1f4fd1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f4fd1'/%3E%3Cpath d='M9 11h14M9 16h9M9 21h14' stroke='white' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/style.css">
+<script src="/assets/site.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Generator Invoice SoloDesk","applicationCategory":"BusinessApplication","operatingSystem":"Any (web)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Generator invoice gratis berbasis browser untuk freelancer, dengan unduhan PDF dan tanpa perlu daftar."}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Apakah invoice generator ini benar-benar gratis?","acceptedAnswer":{"@type":"Answer","text":"Ya. Semua alat di SoloDesk gratis, tanpa daftar, tanpa watermark, dan tanpa email."}},
+{"@type":"Question","name":"Di mana data invoice saya disimpan?","acceptedAnswer":{"@type":"Answer","text":"Hanya di browser kamu sendiri. Alat ini berjalan secara lokal dan angka-angkamu tidak pernah diunggah. Kalau kamu mau, detail bisnismu sendiri bisa disimpan di perangkatmu saja, tidak di tempat lain."}},
+{"@type":"Question","name":"Bagaimana cara mengunduh invoice sebagai PDF?","acceptedAnswer":{"@type":"Answer","text":"Klik Unduh PDF, lalu pilih Save as PDF sebagai tujuan di kotak dialog cetak browsermu. Kontrol di layar otomatis tersembunyi jadi yang tercetak cuma invoice-nya."}}]}
+</script>
+<style>
+/* Invoice preview + print */
+.invoice-wrap{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+@media (max-width:860px){.invoice-wrap{grid-template-columns:1fr}}
+#preview{background:#fff;color:#111827;border:1px solid var(--border);border-radius:8px;padding:30px;box-shadow:var(--shadow)}
+#preview .inv-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+#preview h2.inv-title{margin:0;font-size:1.8rem;letter-spacing:.02em;color:#111827}
+#preview .biz{font-weight:700;font-size:1.05rem}
+#preview .muted{color:#6b7280;font-size:.86rem;white-space:pre-line}
+#preview table{margin-top:18px}
+#preview th{color:#6b7280}
+#preview th,#preview td{border-bottom:1px solid #e5e7eb;font-size:.9rem}
+#preview td.r,#preview th.r{text-align:right;font-variant-numeric:tabular-nums}
+#preview .totals{margin-left:auto;margin-top:14px;width:min(280px,100%)}
+#preview .totals .kv{border-bottom:1px dashed #e5e7eb;color:#374151}
+#preview .totals .grand{border-top:2px solid #111827;border-bottom:0;font-size:1.15rem;font-weight:800;color:#111827;padding-top:8px;margin-top:4px}
+#preview .notes{margin-top:20px;color:#374151;font-size:.85rem;white-space:pre-line}
+.lineitem{display:grid;grid-template-columns:1fr 76px 96px 34px;gap:8px;margin:8px 0;align-items:center}
+.lineitem input{padding:8px 9px}
+.lineitem .x{cursor:pointer;border:1px solid var(--border);background:var(--surface-2);border-radius:8px;
+  height:38px;display:flex;align-items:center;justify-content:center;color:var(--muted)}
+.lineitem .x:hover{color:var(--danger);border-color:var(--danger)}
+.li-head{display:grid;grid-template-columns:1fr 76px 96px 34px;gap:8px;font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-top:6px}
+@media print{
+  body{background:#fff}
+  .site-header,.site-footer,.controls,.crumb,.prose,.no-print,.adslot{display:none !important}
+  main{padding:0}
+  .invoice-wrap{display:block}
+  #preview{border:0;box-shadow:none;border-radius:0;padding:0;margin:0}
+  .container{max-width:none;padding:0}
+}
+</style>
+</head>
+<body>
+<header class="site-header"><div class="container"><nav class="nav" aria-label="Primary">
+  <a class="brand" href="/"><svg class="logo" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M9 11h14M9 16h9M9 21h14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>SoloDesk</a>
+  <span class="spacer"></span>
+  <a class="navlink" href="/#tools">Alat</a>
+  <a class="navlink" href="/guides/how-to-set-your-freelance-rate.html">Panduan</a>
+</nav></div></header>
+
+<main><div class="container">
+  <p class="crumb"><a href="/">Beranda</a> › Generator Invoice</p>
+  <h1>Invoice Generator Gratis untuk Freelancer, Langsung Jadi PDF</h1>
+  <p class="lede" style="color:var(--muted);max-width:680px">Isi detailnya di sebelah kiri dan lihat invoice-nya terbentuk di sebelah kanan. Kalau sudah pas, unduh sebagai PDF. Tidak perlu daftar, tidak ada watermark, dan angka-angkamu tidak pernah keluar dari browser.</p>
+
+  <div class="adslot" data-ad="top" aria-hidden="true"></div>
+
+  <div class="invoice-wrap">
+    <!-- ============ FORM ============ -->
+    <div class="tool no-print" style="margin-top:0">
+      <div class="controls" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px">
+        <button class="btn" id="download">⬇ Unduh PDF</button>
+        <button class="btn ghost small" id="remember" type="button">Ingat Info Saya</button>
+        <button class="btn ghost small" id="reset" type="button">Reset</button>
+      </div>
+
+      <div class="row c2">
+        <div class="field"><label>Mata uang</label>
+          <select id="currency">
+            <option value="USD">USD $</option><option value="EUR">EUR €</option>
+            <option value="GBP">GBP £</option><option value="CAD">CAD $</option>
+            <option value="AUD">AUD $</option><option value="SGD">SGD $</option>
+            <option value="INR">INR ₹</option><option value="IDR" selected>IDR Rp</option><option value="PHP">PHP ₱</option><option value="PKR">PKR ₨</option><option value="BDT">BDT ৳</option><option value="NGN">NGN ₦</option>
+            <option value="JPY">JPY ¥</option><option value="NZD">NZD $</option>
+          </select></div>
+        <div class="field"><label>No. Invoice</label><input type="text" id="invno" value="INV-0001"></div>
+      </div>
+      <div class="row c2">
+        <div class="field"><label>Tanggal invoice</label><input type="date" id="idate"></div>
+        <div class="field"><label>Tanggal jatuh tempo</label><input type="date" id="ddate"></div>
+      </div>
+
+      <h3>Dari (kamu)</h3>
+      <div class="field"><label>Nama / bisnis kamu</label><input type="text" id="fromName" placeholder="Studio Desain Nadia"></div>
+      <div class="field"><label>Detail kamu <span class="hint">alamat, email, NPWP (satu per baris)</span></label><textarea id="fromInfo" placeholder="hello@studionadia.id&#10;Jl. Melati No. 12, Jakarta&#10;NPWP: ..."></textarea></div>
+
+      <h3>Ditagihkan ke (klien)</h3>
+      <div class="field"><label>Nama klien / perusahaan</label><input type="text" id="toName" placeholder="PT Maju Bersama"></div>
+      <div class="field"><label>Detail klien</label><textarea id="toInfo" placeholder="billing@majubersama.co.id&#10;Jl. Sudirman No. 456, Jakarta"></textarea></div>
+
+      <h3>Rincian item</h3>
+      <div class="li-head"><span>Deskripsi</span><span>Jml</span><span>Tarif</span><span></span></div>
+      <div id="items"></div>
+      <button class="btn ghost small" id="additem" type="button" style="margin-top:6px">+ Tambah baris</button>
+
+      <div class="row c2" style="margin-top:14px">
+        <div class="field"><label>Pajak / PPN (%)</label><input type="text" inputmode="decimal" spellcheck="false" id="tax" value="0" min="0" step="0.1"></div>
+        <div class="field"><label>Diskon (%)</label><input type="text" inputmode="decimal" spellcheck="false" id="disc" value="0" min="0" step="0.1"></div>
+      </div>
+      <div class="field"><label>Catatan / syarat pembayaran</label><textarea id="notes" placeholder="Pembayaran jatuh tempo 14 hari lewat transfer bank ke ...&#10;Terima kasih!"></textarea></div>
+    </div>
+
+    <!-- ============ PREVIEW ============ -->
+    <div id="preview" aria-label="Invoice preview">
+      <div class="inv-head">
+        <div><div class="biz" id="p-from">Nama / bisnis kamu</div><div class="muted" id="p-frominfo"></div></div>
+        <div style="text-align:right"><h2 class="inv-title">INVOICE</h2><div class="muted" id="p-meta"></div></div>
+      </div>
+      <div style="margin-top:16px"><div class="muted" style="text-transform:uppercase;font-size:.7rem;letter-spacing:.06em">Ditagihkan ke</div>
+        <div class="biz" id="p-to" style="font-size:.98rem">Klien</div><div class="muted" id="p-toinfo"></div></div>
+      <table><thead><tr><th>Deskripsi</th><th class="r">Jml</th><th class="r">Tarif</th><th class="r">Jumlah</th></tr></thead>
+        <tbody id="p-items"></tbody></table>
+      <div class="totals">
+        <div class="kv"><span>Subtotal</span><span class="v" id="p-sub"></span></div>
+        <div class="kv" id="p-disc-row"><span>Diskon</span><span class="v" id="p-disc"></span></div>
+        <div class="kv" id="p-tax-row"><span>Pajak</span><span class="v" id="p-tax"></span></div>
+        <div class="kv grand"><span>Total</span><span class="v" id="p-total"></span></div>
+      </div>
+      <div class="notes" id="p-notes"></div>
+    </div>
+  </div>
+
+  <div class="adslot" data-ad="mid" aria-hidden="true"></div>
+
+  <!-- ============ GUIDE (info-gain for SEO/E-E-A-T) ============ -->
+  <section class="prose" style="margin-top:30px">
+    <h2>Cara membuat invoice sebagai freelancer (detail yang membuat kamu cepat dibayar)</h2>
+    <p>Invoice itu permintaan pembayaran, tapi juga catatan yang punya kekuatan hukum kecil. Beberapa detail saja yang paling menentukan apakah kamu dibayar tepat waktu dan pembukuanmu tetap rapi. Ini yang wajib ada di setiap invoice freelance, dan alasannya.</p>
+    <h3>Hal wajib di setiap invoice</h3>
+    <ul>
+      <li><strong>Nomor invoice yang unik.</strong> Penomoran berurutan (INV-0001, INV-0002) memudahkan kamu dan tim keuangan klien merujuk ke invoice tertentu, dan ini juga yang diharapkan otoritas pajak.</li>
+      <li><strong>Detail kedua pihak.</strong> Cantumkan nama atau bisnismu dan info kontak, plus nama penagihan dan alamat klien. Kalau kamu dan klien sudah punya NPWP, tuliskan keduanya di invoice.</li>
+      <li><strong>Tanggal invoice dan tanggal jatuh tempo.</strong> Selalu tulis tanggal jatuh tempo yang pasti, jangan cuma "saat diterima". "Net 14" atau tanggal kalender tertentu memberimu batas yang jelas kalau harus menagih pembayaran yang telat.</li>
+      <li><strong>Rincian item yang jelas.</strong> Jelaskan apa yang kamu kerjakan, jumlah atau jam kerja, tarif, dan totalnya. Invoice satu baris yang samar-samar itu yang paling sering ditanya balik klien.</li>
+      <li><strong>Total dengan pajak yang dipisah.</strong> Tampilkan subtotal, diskon kalau ada, PPN/pajak sebagai baris sendiri, dan total akhir.</li>
+      <li><strong>Cara membayar.</strong> Cantumkan detail rekening bank, link pembayaran, atau syarat pembayaranmu. Memudahkan klien membayar adalah cara paling ampuh biar kamu dibayar lebih cepat.</li>
+    </ul>
+    <h3>Yang khas di invoice Indonesia</h3>
+    <p>Di luar unsur-unsur di atas, ada beberapa kebiasaan khusus kalau kamu berinvoice dengan klien di Indonesia.</p>
+    <ul>
+      <li><strong>NPWP, punya kamu dan klien.</strong> Kalau kamu dan klien sudah punya NPWP, cantumkan keduanya di invoice. Klien korporat biasanya minta NPWP kamu untuk keperluan pelaporan pajak mereka, dan NPWP klien berguna kalau kamu nanti perlu melaporkan penghasilan itu di SPT Tahunan.</li>
+      <li><strong>Transfer bank sebagai metode pembayaran utama.</strong> Di Indonesia, transfer bank jauh lebih umum dipakai untuk pembayaran freelance dibanding metode lain. Tulis nama bank, nomor rekening, dan nama pemilik rekening dengan jelas di bagian catatan, supaya klien tidak perlu tanya balik sebelum membayar.</li>
+      <li><strong>e-Meterai Rp10.000 untuk nilai di atas Rp5.000.000.</strong> Dokumen yang menyatakan nilai transaksi di atas Rp5.000.000, termasuk invoice, umumnya perlu dibubuhi e-meterai Rp10.000 supaya sah sebagai alat bukti. Siapkan e-meterai dari penyedia resmi sebelum invoice bernilai besar dikirim.</li>
+      <li><strong>Potongan PPh 21/PPh 23 dari klien korporat.</strong> Kalau klien kamu badan usaha (PT, CV, dan sejenisnya), mereka sering wajib memotong pajak dari pembayaranmu sebelum ditransfer, biasanya PPh 21 untuk pekerja lepas perorangan atau PPh 23 untuk jasa tertentu, lalu memberikan bukti potong ke kamu. Aturan persisnya tergantung status kamu (misalnya sudah PKP atau pakai PPh Final 0,5%) dan jenis jasanya, jadi ini cuma gambaran umum di level struktur, bukan nasihat pajak. Cek aturan yang berlaku di <a href="https://www.pajak.go.id" rel="noopener">pajak.go.id</a> atau tanyakan konsultan pajak untuk situasimu.</li>
+    </ul>
+    <h3>Tetapkan tanggal jatuh tempo dan syarat keterlambatan</h3>
+    <p>Kebanyakan freelancer pakai Net 7, Net 14, atau Net 30, yaitu jumlah hari yang dimiliki klien untuk membayar. Syarat yang lebih pendek bikin kamu dibayar lebih cepat, tapi syarat yang terlalu pendek bisa merepotkan klien besar yang sistem keuangannya lambat. Apa pun yang kamu pilih, tambahkan baris soal keterlambatan di catatanmu (misalnya bunga setelah 30 hari) supaya syaratnya punya "taring". Kamu bisa hitung persis berapa yang harus dibayar klien yang telat dengan <a href="/tools/late-payment-calculator.html">kalkulator bunga keterlambatan pembayaran</a>.</p>
+    <h3>Beri nomor invoice sejak awal</h3>
+    <p>Pilih skema penomoran yang simpel dan jangan pernah pakai ulang nomor yang sama, bahkan untuk invoice yang dibatalkan (terbitkan nota kredit sebagai gantinya). Penomoran yang konsisten membuat tutup buku akhir tahun jauh lebih gampang dan terlihat profesional di mata klien.</p>
+    <h3>Simpan salinannya</h3>
+    <p>Karena alat ini berjalan sepenuhnya di browsermu dan tidak menyimpan apa pun, unduh PDF-nya dan simpan sebagai arsipmu. Kebanyakan aturan mengharuskan invoice disimpan selama beberapa tahun, jadi simpan salinannya begitu kamu mengirim invoice itu.</p>
+    <div class="rec-box"><div class="tag">Rekomendasi</div>
+      <p style="margin:.3em 0 0">Kalau kamu mengirim lebih dari beberapa invoice per bulan, software invoicing khusus bisa mengotomatiskan pengingat, tagihan berulang, dan link pembayaran. <a href="#" rel="sponsored nofollow" data-aff="invoicing">Lihat rekomendasi alat invoicing kami →</a></p>
+    </div>
+
+    <h2>Pertanyaan yang sering diajukan</h2>
+    <details><summary>Apakah invoice generator ini benar-benar gratis?</summary><p>Ya. Semua alat di SoloDesk gratis, tanpa daftar, tanpa watermark, dan tanpa email.</p></details>
+    <details><summary>Di mana data invoice saya disimpan?</summary><p>Hanya di browser kamu sendiri. Alat ini berjalan secara lokal dan angka-angkamu tidak pernah diunggah. Kalau kamu klik "Ingat Info Saya", hanya info bisnismu sendiri (nama, alamat) yang disimpan di perangkatmu lewat local storage. Detail klien dan nominalnya tidak pernah disimpan.</p></details>
+    <details><summary>Bagaimana cara mengunduh invoice sebagai PDF?</summary><p>Klik <strong>Unduh PDF</strong>, lalu pilih <em>Save as PDF</em> sebagai tujuan di kotak dialog cetak. Kontrol formulir otomatis tersembunyi, jadi yang tersimpan cuma invoice yang bersih.</p></details>
+    <details><summary>Bisa tambah logo?</summary><p>Belum di versi ini. Sengaja dibuat teks saja demi kecepatan dan privasi. Nama bisnismu tetap ditampilkan menonjol di bagian atas, dan itu sudah cukup untuk invoice freelance yang profesional.</p></details>
+  </section>
+</div></main>
+
+<footer class="site-footer"><div class="container">
+  <p><a href="/">← Semua alat SoloDesk</a></p>
+  <p class="disc">© <span data-year>2026</span> SoloDesk. Ini informasi umum, bukan nasihat profesional. Alat ini berjalan lokal di browsermu, kami tidak menyimpan inputmu.</p>
+</div></footer>
+
+<script>
+(function(){
+  "use strict";
+  var items=[];
+  var el=function(id){return document.getElementById(id);};
+  function todayISO(d){ d=d||new Date(); return d.toISOString().slice(0,10); }
+  function addItem(desc,qty,rate){
+    items.push({desc:desc||"",qty:qty==null?1:qty,rate:rate==null?0:rate});
+    renderItems();
+  }
+  function renderItems(){
+    var box=el("items"); box.innerHTML="";
+    items.forEach(function(it,i){
+      var row=document.createElement("div"); row.className="lineitem";
+      row.innerHTML='<input type="text" placeholder="Website design — homepage" aria-label="Description">'+
+        '<input type="text" inputmode="decimal" spellcheck="false" min="0" step="0.25" aria-label="Quantity">'+
+        '<input type="text" inputmode="decimal" spellcheck="false" min="0" step="0.01" aria-label="Rate">'+
+        '<div class="x" title="Remove" role="button" tabindex="0">✕</div>';
+      var ins=row.querySelectorAll("input");
+      ins[0].value=it.desc; ins[1].value=it.qty; ins[2].value=it.rate;
+      ins[0].addEventListener("input",function(){it.desc=this.value;render();});
+      ins[1].addEventListener("input",function(){it.qty=SD.parse(this.value);render();});
+      ins[2].addEventListener("input",function(){it.rate=SD.parse(this.value);render();});
+      var rm=row.querySelector(".x");
+      rm.addEventListener("click",function(){items.splice(i,1);renderItems();render();});
+      rm.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){items.splice(i,1);renderItems();render();}});
+      box.appendChild(row);
+    });
+  }
+  function esc(s){return String(s||"").replace(/[&<>]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
+  function render(){
+    var cur=el("currency").value;
+    var f=function(n){return SD.fmt(n,cur);};
+    el("p-from").textContent=el("fromName").value||"Your name / business";
+    el("p-frominfo").textContent=el("fromInfo").value||"";
+    el("p-to").textContent=el("toName").value||"Client";
+    el("p-toinfo").textContent=el("toInfo").value||"";
+    var meta="#"+(el("invno").value||"")+"\n";
+    if(el("idate").value) meta+="Issued: "+el("idate").value+"\n";
+    if(el("ddate").value) meta+="Due: "+el("ddate").value;
+    el("p-meta").textContent=meta;
+    var sub=0, body="";
+    items.forEach(function(it){
+      var amt=(it.qty||0)*(it.rate||0); sub+=amt;
+      body+="<tr><td>"+esc(it.desc||"—")+"</td><td class='r'>"+SD.num(it.qty,2)+
+            "</td><td class='r'>"+f(it.rate)+"</td><td class='r'>"+f(amt)+"</td></tr>";
+    });
+    el("p-items").innerHTML=body||"<tr><td colspan='4' style='color:#9ca3af'>Add a line item…</td></tr>";
+    var discPct=SD.val("disc"), taxPct=SD.val("tax");
+    var discAmt=sub*discPct/100, taxable=sub-discAmt, taxAmt=taxable*taxPct/100, total=taxable+taxAmt;
+    el("p-sub").textContent=f(sub);
+    el("p-disc").textContent="−"+f(discAmt); el("p-disc-row").style.display=discPct?"flex":"none";
+    el("p-tax").textContent=f(taxAmt); el("p-tax-row").style.display=taxPct?"flex":"none";
+    el("p-total").textContent=f(total);
+    el("p-notes").textContent=el("notes").value||"";
+  }
+  // wire inputs
+  ["currency","invno","idate","ddate","fromName","fromInfo","toName","toInfo","tax","disc","notes"]
+    .forEach(function(id){el(id).addEventListener("input",render);});
+  el("additem").addEventListener("click",function(){addItem("",1,0);render();});
+  el("download").addEventListener("click",function(){render();window.print();});
+  el("reset").addEventListener("click",function(){
+    if(!confirm("Clear the invoice and start over?"))return;
+    items=[]; ["invno","fromName","fromInfo","toName","toInfo","notes"].forEach(function(id){el(id).value="";});
+    el("invno").value="INV-0001"; el("tax").value=0; el("disc").value=0;
+    addItem("",1,0); render();
+  });
+  // remember only the freelancer's own details, on-device
+  el("remember").addEventListener("click",function(){
+    try{
+      localStorage.setItem("sd_invoice_from",JSON.stringify({name:el("fromName").value,info:el("fromInfo").value,currency:el("currency").value}));
+      this.textContent="Saved on this device"; var b=this; setTimeout(function(){b.textContent="Remember my details";},1500);
+    }catch(e){alert("Couldn't save — your browser may be blocking local storage.");}
+  });
+  function loadRemembered(){
+    try{var s=JSON.parse(localStorage.getItem("sd_invoice_from")||"null");
+      if(s){el("fromName").value=s.name||"";el("fromInfo").value=s.info||"";if(s.currency)el("currency").value=s.currency;}
+    }catch(e){}
+  }
+  // init
+  var now=new Date(), due=new Date(now.getTime()+14*864e5);
+  el("idate").value=todayISO(now); el("ddate").value=todayISO(due);
+  loadRemembered();
+  addItem("Design work — 10 hours",10,60);
+  render();
+})();
+</script>
+</body>
+</html>

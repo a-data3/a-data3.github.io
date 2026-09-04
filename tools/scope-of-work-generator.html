@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free Scope of Work (SOW) Generator for Freelancers | SoloDesk</title>
+<meta name="description" content="Free scope of work generator for freelancers. Fill in your deliverables, timeline, revisions, exclusions and payment terms to get a clean SOW you can copy or print. No signup needed.">
+<link rel="canonical" href="https://solodesk.pages.dev/tools/scope-of-work-generator.html">
+<meta property="og:title" content="Free Scope of Work Generator">
+<meta property="og:description" content="Write a clear scope of work that protects you from scope creep. Copy or print it, no signup needed.">
+<meta property="og:url" content="https://solodesk.pages.dev/tools/scope-of-work-generator.html">
+<meta name="theme-color" content="#1f4fd1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f4fd1'/%3E%3Cpath d='M9 11h14M9 16h9M9 21h14' stroke='white' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/style.css">
+<script src="/assets/site.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SoloDesk Scope of Work Generator","applicationCategory":"BusinessApplication","operatingSystem":"Any (web)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<style>
+.sow-wrap{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+@media (max-width:860px){.sow-wrap{grid-template-columns:1fr}}
+#doc{background:#fff;color:#111827;border:1px solid var(--border);border-radius:8px;padding:30px;box-shadow:var(--shadow);white-space:pre-wrap;font-size:.9rem;line-height:1.6;min-height:300px}
+@media print{body{background:#fff}.site-header,.site-footer,.controls,.crumb,.prose,.no-print,.adslot,.form-col{display:none!important}
+main{padding:0}.sow-wrap{display:block}#doc{border:0;box-shadow:none;padding:0}.container{max-width:none;padding:0}}
+</style>
+</head>
+<body>
+<header class="site-header"><div class="container"><nav class="nav" aria-label="Primary">
+  <a class="brand" href="/"><svg class="logo" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M9 11h14M9 16h9M9 21h14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>SoloDesk</a>
+  <span class="spacer"></span>
+  <a class="navlink" href="/#tools">Tools</a>
+  <a class="navlink" href="/guides/how-to-set-your-freelance-rate.html">Guides</a>
+</nav></div></header>
+
+<main><div class="container">
+  <p class="crumb"><a href="/">Home</a> › Scope of Work Generator</p>
+  <h1>Scope of Work Generator</h1>
+  <p style="color:var(--muted);max-width:680px">A clear scope of work is your best defence against scope creep and "just one more thing." Fill in the details below and you get a clean SOW to copy, print, or attach to your quote. It includes the exclusions and revision limits that actually protect you.</p>
+
+  <div class="note">This produces a plain-English working document. It is not legal advice. For high-value contracts, have a lawyer review the terms. You can pair it with clauses from the <a href="/tools/contract-clause-library.html">contract clause library</a>.</div>
+
+  <div class="adslot" data-ad="top" aria-hidden="true"></div>
+
+  <div class="sow-wrap">
+    <div class="tool form-col" style="margin-top:0">
+      <div class="controls" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px">
+        <button class="btn ghost small copybtn" id="copy" type="button">Copy</button>
+        <button class="btn ghost small" id="print" type="button">Print / PDF</button>
+      </div>
+      <div class="row c2">
+        <div class="field"><label>Your name / business</label><input type="text" id="from" placeholder="Jane Doe Design"></div>
+        <div class="field"><label>Client</label><input type="text" id="client" placeholder="Acme Inc."></div>
+      </div>
+      <div class="field"><label>Project title</label><input type="text" id="title" placeholder="Marketing website design & build"></div>
+      <div class="field"><label>Overview <span class="hint">one or two sentences on the goal</span></label><textarea id="overview" placeholder="Design and build a 5-page marketing website to launch the new product and capture leads."></textarea></div>
+      <div class="field"><label>Deliverables <span class="hint">one per line</span></label><textarea id="deliverables" placeholder="Homepage design&#10;4 inner page designs&#10;Responsive build in Webflow&#10;Contact form integration"></textarea></div>
+      <div class="row c2">
+        <div class="field"><label>Timeline / duration</label><input type="text" id="timeline" placeholder="4 weeks from kickoff"></div>
+        <div class="field"><label>Revisions included</label><input type="text" id="revisions" placeholder="2 rounds per deliverable"></div>
+      </div>
+      <div class="field"><label>Out of scope <span class="hint">one per line. This is the important bit</span></label><textarea id="exclusions" placeholder="Copywriting (client provides)&#10;Photography&#10;Ongoing maintenance&#10;SEO campaign"></textarea></div>
+      <div class="row c2">
+        <div class="field"><label>Total fee</label><input type="text" id="fee" placeholder="$6,000"></div>
+        <div class="field"><label>Payment terms</label><input type="text" id="terms" placeholder="50% deposit, 50% on completion"></div>
+      </div>
+      <div class="field"><label>Change requests <span class="hint">how out-of-scope work is handled</span></label><input type="text" id="changes" placeholder="Billed at $85/hour by written agreement"></div>
+    </div>
+
+    <div id="doc" aria-label="Scope of work preview"></div>
+  </div>
+
+  <div class="adslot" data-ad="mid" aria-hidden="true"></div>
+
+  <section class="prose" style="margin-top:26px">
+    <h2>What a scope of work should always include</h2>
+    <p>A scope of work (SOW) is the document that says exactly what you will deliver, by when, and for how much. Just as importantly, it says what you will <em>not</em> do. It's the reference you point to when a project starts drifting. A strong freelance SOW has six parts:</p>
+    <ol>
+      <li><strong>Overview</strong>: the goal in a sentence or two, so both sides agree on the point of the work.</li>
+      <li><strong>Deliverables</strong>: a specific, itemised list. "A website" is vague enough to cause a dispute later. "Homepage + 4 inner pages, responsive build, contact form" leaves much less room for argument.</li>
+      <li><strong>Timeline</strong>: the duration or milestones, and what you need from the client to hit them.</li>
+      <li><strong>Revisions</strong>: how many rounds are included. Leaving revisions unlimited is how fixed-price projects end up losing money.</li>
+      <li><strong>Exclusions</strong>: what is explicitly out of scope. This section on its own prevents most scope creep, because "just one more thing" now has a written answer.</li>
+      <li><strong>Fee and payment terms</strong>: the total, the payment schedule (ask for a deposit), and how change requests are charged.</li>
+    </ol>
+    <h3>Exclusions are the most valuable lines</h3>
+    <p>Freelancers instinctively list what they'll do and forget to say what they won't. The exclusions section is where you protect yourself. If copywriting, photography, maintenance, or extra revisions are named as out of scope, adding them later becomes a paid change order instead of an awkward argument. When a client asks for something on the exclusions list, you can reply "Happy to, that would be a change request." Over a year of projects, that one reply keeps a lot of work paid that would otherwise have been done for free.</p>
+    <h3>Attach it to the quote</h3>
+    <p>Send the SOW alongside your <a href="/tools/project-quote-builder.html">project quote</a> so the price and the scope arrive together. Take a deposit before you start, and invoice each milestone with the <a href="/tools/invoice-generator.html">invoice generator</a>.</p>
+    <div class="rec-box"><div class="tag">Recommended</div>
+      <p style="margin:.3em 0 0">If you want signed proposals with e-signatures and a built-in SOW, proposal software speeds this up. <a href="#" rel="sponsored nofollow" data-aff="proposals">See our recommended proposal tools →</a></p>
+    </div>
+    <h2>Frequently asked questions</h2>
+    <details><summary>Is a scope of work legally binding?</summary><p>An SOW becomes binding when it's incorporated into a signed contract or accepted in writing. On its own it is a clear statement of intent. To make it enforceable, attach it to a contract and get written agreement.</p></details>
+    <details><summary>What's the difference between an SOW and a contract?</summary><p>The contract sets the legal terms: liability, IP, termination. The SOW defines the specific work, deliverables, and price. They work together, and the SOW is usually attached to the contract as an exhibit.</p></details>
+    <details><summary>How detailed should deliverables be?</summary><p>Detailed enough that a stranger could read the list and tell whether you delivered each item. Vague deliverables tend to end in disputes, while specific ones make it much easier to get signed off and paid.</p></details>
+  </section>
+</div></main>
+
+<footer class="site-footer"><div class="container">
+  <p><a href="/">← All SoloDesk tools</a></p>
+  <p class="disc">© <span data-year>2026</span> SoloDesk. Working document, not legal advice.</p>
+</div></footer>
+
+<script>
+(function(){
+  "use strict";
+  var el=function(id){return document.getElementById(id);};
+  function bullets(id){
+    var v=(el(id).value||"").split("\n").map(function(s){return s.trim();}).filter(Boolean);
+    return v.length?v.map(function(s){return "  • "+s;}).join("\n"):"  • (to be defined)";
+  }
+  function line(v,fallback){return (el(v).value||fallback);}
+  function build(){
+    var d="SCOPE OF WORK\n";
+    d+="============\n\n";
+    d+="Between: "+line("from","[Your name]")+"\n";
+    d+="And:     "+line("client","[Client]")+"\n";
+    var t=el("title").value; if(t) d+="Project: "+t+"\n";
+    d+="\n1. OVERVIEW\n"+(el("overview").value||"[Project overview]")+"\n";
+    d+="\n2. DELIVERABLES\n"+bullets("deliverables")+"\n";
+    d+="\n3. TIMELINE\n"+(el("timeline").value||"[Timeline]")+"\n";
+    d+="\n4. REVISIONS\n"+(el("revisions").value||"[Revisions included]")+"\n";
+    d+="\n5. OUT OF SCOPE\nThe following are not included and, if required, will be quoted separately:\n"+bullets("exclusions")+"\n";
+    d+="\n6. FEE & PAYMENT\nTotal fee: "+(el("fee").value||"[Total]")+"\nPayment terms: "+(el("terms").value||"[Terms]")+"\n";
+    d+="\n7. CHANGE REQUESTS\nWork outside the scope above will be handled as a change request: "+(el("changes").value||"billed separately by written agreement")+".\n";
+    d+="\n8. ACCEPTANCE\nThis scope of work is agreed by both parties.\n\n";
+    d+="Client signature: ______________________   Date: __________\n\n";
+    d+=line("from","[Your name]")+" signature: ______________________   Date: __________\n";
+    el("doc").textContent=d;
+  }
+  ["from","client","title","overview","deliverables","timeline","revisions","exclusions","fee","terms","changes"]
+    .forEach(function(id){el(id).addEventListener("input",build);});
+  el("copy").addEventListener("click",function(){SD.copy(el("doc").textContent,this);});
+  el("print").addEventListener("click",function(){build();window.print();});
+  build();
+})();
+</script>
+</body>
+</html>

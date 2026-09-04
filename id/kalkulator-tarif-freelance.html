@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kalkulator Tarif Freelance per Jam (Gratis) | SoloDesk</title>
+<meta name="description" content="Kalkulator tarif per jam freelance gratis. Isi target pendapatan, biaya usaha, waktu libur, dan jam tertagih untuk tarif per jam dan per hari yang pantas.">
+<link rel="canonical" href="https://solodesk.pages.dev/id/kalkulator-tarif-freelance.html">
+<link rel="alternate" hreflang="id" href="https://solodesk.pages.dev/id/kalkulator-tarif-freelance.html">
+<link rel="alternate" hreflang="en" href="https://solodesk.pages.dev/tools/freelance-rate-calculator.html">
+<link rel="alternate" hreflang="x-default" href="https://solodesk.pages.dev/tools/freelance-rate-calculator.html">
+<meta property="og:title" content="Kalkulator Tarif Freelance per Jam">
+<meta property="og:description" content="Hitung tarif per jam yang kamu perlukan dari target pendapatan, biaya usaha, dan jam kerja yang bisa ditagih.">
+<meta property="og:url" content="https://solodesk.pages.dev/id/kalkulator-tarif-freelance.html">
+<meta name="theme-color" content="#1f4fd1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f4fd1'/%3E%3Cpath d='M9 11h14M9 16h9M9 21h14' stroke='white' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/style.css">
+<script src="/assets/site.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Kalkulator Tarif Freelance SoloDesk","applicationCategory":"BusinessApplication","operatingSystem":"Any (web)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Berapa jam tertagih yang sebaiknya saya asumsikan?","acceptedAnswer":{"@type":"Answer","text":"Kebanyakan freelancer penuh waktu menagih 20 sampai 30 jam per minggu. Sisa waktunya habis untuk admin, cari klien, dan pekerjaan yang tidak dibayar. Mulai dari 25 jam, lalu sesuaikan setelah kamu mencatat beberapa minggu kerja klien."}},
+{"@type":"Question","name":"Target pendapatan saya sebaiknya sebelum atau sesudah pajak?","acceptedAnswer":{"@type":"Answer","text":"Isi dengan jumlah sebelum pajak penghasilan pribadi. Setelah itu, kamu bisa pakai kolom gross up untuk pajak di kalkulator ini, atau sisihkan pajak per invoice dengan kalkulator sisihkan pajak. Ini bukan nasihat pajak, untuk aturan resminya cek www.pajak.go.id."}}]}
+</script>
+</head>
+<body>
+<header class="site-header"><div class="container"><nav class="nav" aria-label="Primary">
+  <a class="brand" href="/"><svg class="logo" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M9 11h14M9 16h9M9 21h14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>SoloDesk</a>
+  <span class="spacer"></span>
+  <a class="navlink" href="/#tools">Alat</a>
+  <a class="navlink" href="/guides/how-to-set-your-freelance-rate.html">Panduan</a>
+</nav></div></header>
+
+<main><div class="container">
+  <p class="crumb"><a href="/">Beranda</a> › Kalkulator Tarif per Jam</p>
+  <h1>Kalkulator Tarif Freelance: Hitung Tarif per Jam yang Pantas</h1>
+  <p style="color:var(--muted);max-width:680px">Mulai dari berapa yang kamu butuhkan, baru hitung mundur ke tarifnya, bukan asal pasang angka yang rasanya pantas. Tarif ini harus bisa mencapai target pendapatanmu setelah dikurangi biaya, waktu libur, dan jam kerja yang tidak bisa ditagih. Isi kolom-kolomnya dan kalkulator akan menghitung sisanya.</p>
+
+  <div class="adslot" data-ad="top" aria-hidden="true"></div>
+
+  <div class="row c2" style="gap:22px;align-items:start">
+    <div class="tool" style="margin-top:0">
+      <div class="field"><label>Mata uang</label>
+        <select id="currency">
+          <option value="USD">USD $</option><option value="EUR">EUR €</option><option value="GBP">GBP £</option>
+          <option value="CAD">CAD $</option><option value="AUD">AUD $</option><option value="SGD">SGD $</option>
+          <option value="INR">INR ₹</option><option value="IDR" selected>IDR Rp</option><option value="PHP">PHP ₱</option><option value="PKR">PKR ₨</option><option value="BDT">BDT ৳</option><option value="NGN">NGN ₦</option><option value="NZD">NZD $</option>
+        </select></div>
+      <div class="field"><label>Target pendapatan tahunan <span class="hint">jumlah yang ingin kamu hasilkan, sebelum pajak penghasilan pribadi</span></label>
+        <input type="text" inputmode="decimal" spellcheck="false" id="income" value="180000000" min="0" step="1000"></div>
+      <div class="field"><label>Biaya usaha tahunan <span class="hint">software, perangkat, asuransi, biaya admin, langganan</span></label>
+        <input type="text" inputmode="decimal" spellcheck="false" id="expenses" value="12000000" min="0" step="500"></div>
+      <div class="row c2">
+        <div class="field"><label>Jam tertagih / minggu <span class="hint">jam yang bisa kamu tagih ke klien, biasanya jauh di bawah 40</span></label>
+          <input type="text" inputmode="decimal" spellcheck="false" id="hpw" value="28" min="1" max="80" step="1"></div>
+        <div class="field"><label>Minggu libur / tahun <span class="hint">cuti + sakit + urusan admin</span></label>
+          <input type="text" inputmode="decimal" spellcheck="false" id="off" value="4" min="0" max="40" step="1"></div>
+      </div>
+      <div class="row c2">
+        <div class="field"><label>Buffer keuntungan (%) <span class="hint">margin untuk masa kosong antar proyek</span></label>
+          <input type="text" inputmode="decimal" spellcheck="false" id="buffer" value="10" min="0" max="100" step="1"></div>
+        <div class="field"><label>Gross up untuk pajak (%) <span class="hint">opsional, biarkan di 0 kalau tidak dipakai</span></label>
+          <input type="text" inputmode="decimal" spellcheck="false" id="tax" value="0" min="0" max="80" step="1"></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="result">
+        <div class="lbl">Tarif per jam yang kamu targetkan</div>
+        <div class="big" id="rate">—</div>
+        <div style="margin-top:10px">
+          <div class="kv"><span>Tarif harian (× <span id="hpd">8</span>h)</span><span class="v" id="dayrate">—</span></div>
+          <div class="kv"><span>Jam tertagih / tahun</span><span class="v" id="byear">—</span></div>
+          <div class="kv"><span>Pendapatan yang kamu perlukan / tahun</span><span class="v" id="revneed">—</span></div>
+          <div class="kv"><span>Utilisasi efektif</span><span class="v" id="util">—</span></div>
+        </div>
+      </div>
+      <div class="field" style="margin-top:14px"><label>Jam dalam satu hari kerja <span class="hint">untuk tarif harian</span></label>
+        <input type="text" inputmode="decimal" spellcheck="false" id="hpd_in" value="8" min="1" max="24" step="1"></div>
+      <div class="note" id="sanity"></div>
+    </div>
+  </div>
+
+  <div class="adslot" data-ad="mid" aria-hidden="true"></div>
+
+  <section class="prose" style="margin-top:26px">
+    <h2>Cara kerja hitungan tarif freelance</h2>
+    <p>Hitungannya sederhana begitu kamu terima bahwa tidak semua jam kerja bisa ditagih. Kalkulator ini melakukan tiga hal:</p>
+    <ol>
+      <li><strong>Pendapatan yang dibutuhkan</strong> = target pendapatan + biaya usaha, ditambah buffer keuntunganmu. Kalau kamu isi persentase pajak, angka ini di-gross up supaya tarifnya juga menutup pajak. Ini bukan nasihat pajak, untuk aturan PPh yang berlaku cek www.pajak.go.id.</li>
+      <li><strong>Jam tertagih per tahun</strong> = (52 − minggu libur) × jam tertagih per minggu.</li>
+      <li><strong>Tarif per jam</strong> = pendapatan yang dibutuhkan ÷ jam tertagih per tahun.</li>
+    </ol>
+    <p>Kesalahan yang sering terjadi adalah menganggap satu minggu kerja itu 40 jam tertagih. Panggilan klien, admin, invoice, belajar hal baru, dan promosi diri memakan porsi besar dari minggu kerjamu, jadi kebanyakan freelancer penuh waktu hanya menagih sekitar <strong>20 sampai 30 jam</strong>. Kalau kamu memasukkan angka 40, tarifmu akan jadi terlalu rendah dan kamu akan bekerja dengan bayaran lebih kecil dari yang kamu kira.</p>
+    <h3>Kenapa buffer keuntungan itu penting</h3>
+    <p>Pendapatan freelance itu naik turun. Klien menunda proyek, pengerjaan meleset dari jadwal, dan ada invoice yang dibayar telat. Tarif tanpa buffer hanya bisa jalan kalau setahun itu berjalan sempurna. Buffer 10 sampai 20% membuat kamu tetap mencapai target di tahun yang normal, dan memberi kamu bantalan di bulan yang sepi supaya kamu tidak tergoda menurunkan harga karena takut kehilangan klien.</p>
+    <h3>Tarif per jam, tarif harian, atau harga proyek</h3>
+    <p>Alat ini memberi kamu tarif per jam dan per hari yang bisa kamu pertahankan. Banyak freelancer menyimpan angka ini sebagai batas bawah internal dan tetap menawarkan klien <em>harga proyek tetap</em>, supaya klien membayar untuk hasil kerja, bukan untuk jam di lembar waktu. Susun penawaran seperti itu dengan <a href="/tools/project-quote-builder.html">penyusun penawaran proyek</a>, dan sisihkan jumlah pajak yang tepat dengan <a href="/tools/tax-set-aside-calculator.html">kalkulator sisihkan pajak</a>.</p>
+    <div class="rec-box"><div class="tag">Rekomendasi</div>
+      <p style="margin:.3em 0 0">Catat kemana jam kerjamu habis selama beberapa minggu. Kebanyakan orang sadar mereka menagih lebih sedikit jam dari yang mereka kira. <a href="#" rel="sponsored nofollow" data-aff="timetracking">Lihat rekomendasi alat pencatat waktu kami →</a></p>
+    </div>
+    <h2>Pertanyaan yang sering diajukan</h2>
+    <details><summary>Berapa jam tertagih yang sebaiknya saya asumsikan?</summary><p>Kebanyakan freelancer penuh waktu menagih 20–30 jam per minggu. Sisa waktunya habis untuk admin, cari klien, dan pekerjaan yang tidak dibayar. Mulai dari 25 jam, lalu sesuaikan setelah kamu mencatat beberapa minggu kerja klien.</p></details>
+    <details><summary>Target pendapatan saya sebaiknya sebelum atau sesudah pajak?</summary><p>Isi dengan jumlah sebelum pajak penghasilan pribadi (PPh 21, PPh 23, atau PPh Final 0,5% kalau kamu terdaftar sebagai UMKM). Setelah itu, kamu bisa pakai kolom "gross up untuk pajak" di sini, atau sisihkan pajak per invoice dengan kalkulator sisihkan pajak. Ini catatan umum, bukan nasihat pajak, cek aturan resminya di www.pajak.go.id.</p></details>
+    <details><summary>Apakah tarif ini harus saya pakai untuk semua klien?</summary><p>Anggap ini sebagai batas bawahmu. Kamu bisa mengenakan harga lebih tinggi untuk pekerjaan mendesak, keahlian khusus, atau hasil bernilai tinggi, tapi sebaiknya jarang sekali turun di bawah angka ini.</p></details>
+  </section>
+</div></main>
+
+<footer class="site-footer"><div class="container">
+  <p><a href="/">← Semua alat SoloDesk</a></p>
+  <p class="disc">© <span data-year>2026</span> SoloDesk. Hanya informasi umum, bukan nasihat profesional atau nasihat pajak.</p>
+</div></footer>
+
+<script>
+(function(){
+  "use strict";
+  var el=function(id){return document.getElementById(id);};
+  function calc(){
+    var cur=el("currency").value, f=function(n){return SD.fmt(n,cur);};
+    var income=SD.val("income"), exp=SD.val("expenses"),
+        hpw=SD.val("hpw"), off=SD.val("off"),
+        buffer=SD.val("buffer"), tax=SD.val("tax"), hpd=SD.val("hpd_in")||8;
+    var weeks=Math.max(0,52-off);
+    var byear=weeks*hpw;
+    var rev=(income+exp)*(1+buffer/100);
+    if(tax>0 && tax<100) rev=rev/(1-tax/100);
+    var rate=byear>0?rev/byear:0;
+    SD.setText("rate",byear>0?f(rate)+" / hr":"—");
+    SD.setText("dayrate",byear>0?f(rate*hpd):"—");
+    SD.setText("hpd",String(hpd));
+    SD.setText("byear",SD.num(byear,0)+" h");
+    SD.setText("revneed",f(rev));
+    var util=(hpw/40)*100;
+    SD.setText("util",SD.num(util,0)+"% of a 40h week");
+    var s="";
+    if(hpw>=38) s="Heads up: billing "+hpw+" hours a week is very high once you subtract admin and sales. Most freelancers bill 20–30. If that number slips, your real rate needs to be higher.";
+    else if(rate>0) s="At "+f(rate)+"/hr you need to bill "+SD.num(byear,0)+" hours across "+weeks+" working weeks to hit your goal. If clients are scarce, raise the rate rather than the hours.";
+    el("sanity").textContent=s;
+  }
+  ["currency","income","expenses","hpw","off","buffer","tax","hpd_in"].forEach(function(id){
+    el(id).addEventListener("input",calc);
+  });
+  calc();
+})();
+</script>
+</body>
+</html>

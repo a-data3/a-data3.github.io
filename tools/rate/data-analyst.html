@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Freelance Data Analyst Rate Calculator (2026) | SoloDesk</title>
+<meta name="description" content="How freelance data analysts should price their work: hourly for ad hoc pulls, fixed fees for dashboard builds, and retainers for recurring reports.">
+<link rel="canonical" href="https://solodesk.pages.dev/tools/rate/data-analyst.html">
+<meta property="og:title" content="Freelance Data Analyst Rate Calculator">
+<meta property="og:description" content="How freelance data analysts should price their work: hourly for ad hoc pulls, fixed fees for dashboard builds, and retainers for recurring reports.">
+<meta property="og:url" content="https://solodesk.pages.dev/tools/rate/data-analyst.html">
+<meta name="theme-color" content="#1f4fd1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f4fd1'/%3E%3Cpath d='M9 11h14M9 16h9M9 21h14' stroke='white' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/style.css">
+<script src="/assets/site.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SoloDesk Freelance Rate Calculator","applicationCategory":"BusinessApplication","operatingSystem":"Any (web)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+</head>
+<body>
+<header class="site-header"><div class="container"><nav class="nav" aria-label="Primary">
+  <a class="brand" href="/"><svg class="logo" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M9 11h14M9 16h9M9 21h14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>SoloDesk</a>
+  <span class="spacer"></span>
+  <a class="navlink" href="/#tools">Tools</a>
+  <a class="navlink" href="/guides/how-to-set-your-freelance-rate.html">Guides</a>
+</nav></div></header>
+
+<main><div class="container">
+  <p class="crumb"><a href="/">Home</a> › <a href="/tools/freelance-rate-calculator.html">Rate calculator</a> › Data Analyst</p>
+  <h1>Freelance Data Analyst Rate Calculator</h1>
+  <p style="color:var(--muted);max-width:680px">A data analyst sells a clean, defensible number and a chart someone else can act on. What that's worth depends less on hours typed than on how messy the source data is, how much explaining you have to do, and whether the client needs one answer or a system that keeps producing answers after you're gone.</p>
+
+  <div class="adslot" data-ad="top" aria-hidden="true"></div>
+
+  <div class="row c2" style="gap:22px;align-items:start">
+    <div class="tool" style="margin-top:0">
+      <div class="field"><label>Currency</label>
+        <select id="currency">
+          <option value="USD">USD $</option><option value="EUR">EUR €</option><option value="GBP">GBP £</option>
+          <option value="CAD">CAD $</option><option value="AUD">AUD $</option><option value="SGD">SGD $</option>
+          <option value="INR">INR ₹</option><option value="IDR">IDR Rp</option><option value="PHP">PHP ₱</option><option value="PKR">PKR ₨</option><option value="BDT">BDT ৳</option><option value="NGN">NGN ₦</option><option value="NZD">NZD $</option>
+        </select></div>
+      <div class="field"><label>Target annual income <span class="hint">what you want to earn, before personal income tax</span></label>
+        <input type="text" inputmode="decimal" spellcheck="false" id="income" value="90000" min="0" step="1000"></div>
+      <div class="field"><label>Annual business expenses <span class="hint">software, hardware, insurance, fees, subscriptions</span></label>
+        <input type="text" inputmode="decimal" spellcheck="false" id="expenses" value="6000" min="0" step="500"></div>
+      <div class="row c2">
+        <div class="field"><label>Billable hours / week <span class="hint">hours you can invoice, usually well under 40</span></label>
+          <input type="text" inputmode="decimal" spellcheck="false" id="hpw" value="25" min="1" max="80" step="1"></div>
+        <div class="field"><label>Weeks off / year <span class="hint">holiday + sick + admin</span></label>
+          <input type="text" inputmode="decimal" spellcheck="false" id="off" value="6" min="0" max="40" step="1"></div>
+      </div>
+      <div class="row c2">
+        <div class="field"><label>Profit buffer (%) <span class="hint">margin for gaps between projects</span></label>
+          <input type="text" inputmode="decimal" spellcheck="false" id="buffer" value="10" min="0" max="100" step="1"></div>
+        <div class="field"><label>Gross up for tax (%) <span class="hint">optional, leave at 0 to skip</span></label>
+          <input type="text" inputmode="decimal" spellcheck="false" id="tax" value="0" min="0" max="80" step="1"></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="result">
+        <div class="lbl">Your target hourly rate</div>
+        <div class="big" id="rate">—</div>
+        <div style="margin-top:10px">
+          <div class="kv"><span>Day rate (× <span id="hpd">8</span>h)</span><span class="v" id="dayrate">—</span></div>
+          <div class="kv"><span>Billable hours / year</span><span class="v" id="byear">—</span></div>
+          <div class="kv"><span>Revenue you need / year</span><span class="v" id="revneed">—</span></div>
+          <div class="kv"><span>Effective utilisation</span><span class="v" id="util">—</span></div>
+        </div>
+      </div>
+      <div class="field" style="margin-top:14px"><label>Hours in a working day <span class="hint">for the day rate</span></label>
+        <input type="text" inputmode="decimal" spellcheck="false" id="hpd_in" value="8" min="1" max="24" step="1"></div>
+      <div class="note" id="sanity"></div>
+    </div>
+  </div>
+
+  <div class="adslot" data-ad="mid" aria-hidden="true"></div>
+
+  <section class="prose" style="margin-top:24px">
+    <div class="note">In 2026, freelance data analysts commonly charge somewhere in the $35-120 an hour range, with the actual number depending heavily on region, industry, and how much of the stack (SQL, Python, BI tools) the work touches.</div>
+    <h2>Who actually hires a freelance data analyst</h2>
+<p>Most freelance data analyst work comes from a handful of recurring situations. A marketing team wants to know which channel is actually driving signups, not just which one gets the most clicks. An ecommerce operator needs inventory and sales patterns pulled out of a jumble of spreadsheets and platform exports. A SaaS company wants a churn or retention analysis before a board meeting. An agency needs client-facing reports built and refreshed every month. A nonprofit needs numbers packaged for a grant application. A small business owner has a spreadsheet nobody trusts and wants someone to turn it into a decision.</p>
+<p>Each of these carries a different amount of upstream mess, a different audience, and a different tolerance for ambiguity, and that is most of what should set the price.</p>
+<h2>What moves the rate</h2>
+<ul>
+<li><strong>Tool stack.</strong> Work that stays in Excel or Google Sheets tends to sit at the lower end. SQL and Python push the rate up, since they open up larger datasets and repeatable pipelines. Building or maintaining dashboards in Tableau, Power BI, or Looker pushes it further, because the deliverable has to keep working after you hand it off.</li>
+<li><strong>Condition of the data.</strong> A single clean CSV with a data dictionary is a different job than five exports from different systems with no shared keys and inconsistent naming. The second one takes far longer and should be priced accordingly, even though the finished chart might look identical.</li>
+<li><strong>Industry overhead.</strong> Finance, healthcare, and anything touching personal data bring compliance, access controls, and review cycles that add real time and justify a higher rate.</li>
+<li><strong>What the deliverable has to survive.</strong> A one-time answer to a specific question is worth less than a dashboard or model that has to keep functioning as source data changes, with no analyst on hand to fix it when it breaks.</li>
+<li><strong>How much translation is required.</strong> Handing over a table of numbers is one job. Presenting those numbers to executives, explaining what they mean, and recommending a decision is a different and more valuable one.</li>
+</ul>
+<h2>Which pricing model fits</h2>
+<p>Hourly billing fits exploratory work, where nobody yet knows what the data will show or how long it will take to find out. It also fits short, one-off requests that don't justify a proposal.</p>
+<p>A fixed project fee fits once the deliverable is defined: a specific report, a dashboard build, a one-time data cleanup and analysis. This is usually the better model for a data analyst, because it rewards efficiency and stops the client from treating your time as unlimited.</p>
+<p>A retainer fits recurring work: a monthly performance report, a dashboard that needs upkeep as underlying data and business logic shift, an ongoing metrics review tied to a client's reporting cycle.</p>
+<p>Per-unit pricing, a flat rate per report or per dataset, works for narrow, repeatable outputs like a weekly sales summary, but only once the format is stable enough that each one takes roughly the same effort.</p>
+<h2>The classic pricing mistake</h2>
+<p>Analysts routinely quote a project based on the time it takes to build the analysis, and forget to price the time it takes to get the data into a state where analysis is even possible. Cleaning, merging, and validating data is often most of the actual work, and it is invisible in the finished chart. The fix is to ask for a data sample before quoting, and to treat cleanup and analysis as separate line items rather than folding an unknown amount of cleanup into a fixed fee. The related trap is scope creep: a client who asks "can you also pull this" a few times has turned a one-time report into open-ended support, and that should be flagged and billed as such rather than absorbed.</p>
+<h2>Using the calculator</h2>
+<p>Start from your experience level and market, then adjust upward for messy or multi-source data, executive-facing presentation, and any deliverable that has to keep running without you. Adjust downward only for clean, well-scoped, single-source requests.</p>
+    <h2>Rate calculators for other freelance fields</h2>
+    <p>SoloDesk also has rate calculators for <a href="/tools/rate/web-developer.html">web developer</a>, <a href="/tools/rate/graphic-designer.html">graphic designer</a>, <a href="/tools/rate/copywriter.html">copywriter</a>, <a href="/tools/rate/virtual-assistant.html">virtual assistant</a>, <a href="/tools/rate/photographer.html">photographer</a>, <a href="/tools/rate/marketing-consultant.html">marketing consultant</a>, <a href="/tools/rate/translator.html">translator</a>, <a href="/tools/rate/bookkeeper.html">bookkeeper</a>, <a href="/tools/rate/ux-designer.html">ux designer</a>, <a href="/tools/rate/social-media-manager.html">social media manager</a>, <a href="/tools/rate/video-editor.html">video editor</a>, <a href="/tools/rate/illustrator.html">illustrator</a>, <a href="/tools/rate/seo-consultant.html">seo consultant</a>, <a href="/tools/rate/voiceover-artist.html">voice-over artist</a>, <a href="/tools/rate/business-coach.html">business coach</a>, <a href="/tools/rate/wordpress-developer.html">wordpress developer</a>, <a href="/tools/rate/accountant.html">accountant</a>, <a href="/tools/rate/transcriptionist.html">transcriptionist</a>, <a href="/tools/rate/podcast-editor.html">podcast editor</a>, <a href="/tools/rate/proofreader.html">proofreader and editor</a>, <a href="/tools/rate/ecommerce-consultant.html">e-commerce consultant</a>, and a <a href="/tools/freelance-rate-calculator.html">general freelance rate calculator</a>.</p>
+    <p>Once your rate is set, turn it into fixed quotes with the <a href="/tools/project-quote-builder.html">project quote builder</a>, price ongoing work with the <a href="/tools/retainer-pricing-calculator.html">retainer calculator</a>, and put aside tax with the <a href="/tools/tax-set-aside-calculator.html">tax set-aside calculator</a>.</p>
+    <h2>Frequently asked questions</h2>
+    <details><summary>Is this the average data analyst rate?</summary><p>No. Averages hide too much. This works out the rate you need from your own income goal, costs, and billable hours. Published averages are useful only as a sanity check against your number.</p></details>
+    <details><summary>How many hours can I really bill?</summary><p>Most full-time freelancers bill 20 to 30 hours a week once sales, admin, and unpaid work are taken out. Start with a realistic figure, because a number that is too high sets your rate too low.</p></details>
+    <details><summary>Should I show clients this hourly rate?</summary><p>Treat it as your private floor and quote fixed project prices where you can. Clients buy outcomes rather than hours.</p></details>
+  </section>
+</div></main>
+
+<footer class="site-footer"><div class="container">
+  <p><a href="/">← All SoloDesk tools</a></p>
+  <p class="disc">© <span data-year>2026</span> SoloDesk. Information only, not professional or tax advice.</p>
+</div></footer>
+
+<script>
+(function(){
+  "use strict";
+  var el=function(id){return document.getElementById(id);};
+  function calc(){
+    var cur=el("currency").value, f=function(n){return SD.fmt(n,cur);};
+    var income=SD.val("income"), exp=SD.val("expenses"),
+        hpw=SD.val("hpw"), off=SD.val("off"),
+        buffer=SD.val("buffer"), tax=SD.val("tax"), hpd=SD.val("hpd_in")||8;
+    var weeks=Math.max(0,52-off);
+    var byear=weeks*hpw;
+    var rev=(income+exp)*(1+buffer/100);
+    if(tax>0 && tax<100) rev=rev/(1-tax/100);
+    var rate=byear>0?rev/byear:0;
+    SD.setText("rate",byear>0?f(rate)+" / hr":"—");
+    SD.setText("dayrate",byear>0?f(rate*hpd):"—");
+    SD.setText("hpd",String(hpd));
+    SD.setText("byear",SD.num(byear,0)+" h");
+    SD.setText("revneed",f(rev));
+    var util=(hpw/40)*100;
+    SD.setText("util",SD.num(util,0)+"% of a 40h week");
+    var s="";
+    if(hpw>=38) s="Heads up: billing "+hpw+" hours a week is very high once you subtract admin and sales. Most freelancers bill 20–30. If that number slips, your real rate needs to be higher.";
+    else if(rate>0) s="At "+f(rate)+"/hr you need to bill "+SD.num(byear,0)+" hours across "+weeks+" working weeks to hit your goal. If clients are scarce, raise the rate rather than the hours.";
+    el("sanity").textContent=s;
+  }
+  ["currency","income","expenses","hpw","off","buffer","tax","hpd_in"].forEach(function(id){
+    el(id).addEventListener("input",calc);
+  });
+  calc();
+})();
+</script>
+</body>
+</html>

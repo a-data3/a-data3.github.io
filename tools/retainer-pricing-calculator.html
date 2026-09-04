@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Retainer & Package Pricing Calculator for Freelancers | SoloDesk</title>
+<meta name="description" content="Free retainer and package pricing calculator for freelancers. Turn your hourly rate into a monthly retainer, set overage rates, and build 3 tiered packages. No signup needed. It runs in your browser.">
+<link rel="canonical" href="https://solodesk.pages.dev/tools/retainer-pricing-calculator.html">
+<meta property="og:title" content="Retainer & Package Pricing Calculator">
+<meta property="og:description" content="Price a monthly retainer and tiered packages from your hourly rate, with overage handling.">
+<meta property="og:url" content="https://solodesk.pages.dev/tools/retainer-pricing-calculator.html">
+<meta name="theme-color" content="#1f4fd1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f4fd1'/%3E%3Cpath d='M9 11h14M9 16h9M9 21h14' stroke='white' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/style.css">
+<script src="/assets/site.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SoloDesk Retainer & Package Pricing Calculator","applicationCategory":"BusinessApplication","operatingSystem":"Any (web)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+</head>
+<body>
+<header class="site-header"><div class="container"><nav class="nav" aria-label="Primary">
+  <a class="brand" href="/"><svg class="logo" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M9 11h14M9 16h9M9 21h14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>SoloDesk</a>
+  <span class="spacer"></span>
+  <a class="navlink" href="/#tools">Tools</a>
+  <a class="navlink" href="/guides/how-to-set-your-freelance-rate.html">Guides</a>
+</nav></div></header>
+
+<main><div class="container">
+  <p class="crumb"><a href="/">Home</a> › Retainer &amp; Package Pricing</p>
+  <h1>Retainer &amp; Package Pricing Calculator</h1>
+  <p style="color:var(--muted);max-width:680px">Retainers turn one-off projects into predictable monthly income. Start from your hourly rate, decide how many hours the retainer includes, and this tool builds the monthly price, an overage rate, and three ready-to-pitch tiers.</p>
+
+  <div class="adslot" data-ad="top" aria-hidden="true"></div>
+
+  <div class="row c2" style="gap:22px;align-items:start">
+    <div class="tool" style="margin-top:0">
+      <div class="field"><label>Currency</label>
+        <select id="currency">
+          <option value="USD">USD $</option><option value="EUR">EUR €</option><option value="GBP">GBP £</option>
+          <option value="CAD">CAD $</option><option value="AUD">AUD $</option><option value="SGD">SGD $</option>
+          <option value="INR">INR ₹</option><option value="IDR">IDR Rp</option><option value="PHP">PHP ₱</option><option value="PKR">PKR ₨</option><option value="BDT">BDT ৳</option><option value="NGN">NGN ₦</option><option value="NZD">NZD $</option>
+        </select></div>
+      <div class="field"><label>Your hourly rate <span class="hint">your floor, from the rate calculator</span></label>
+        <input type="text" inputmode="decimal" spellcheck="false" id="rate" value="85" min="0" step="1"></div>
+      <div class="field"><label>Hours included per month <span class="hint">the block the retainer buys</span></label>
+        <input type="text" inputmode="decimal" spellcheck="false" id="hours" value="20" min="1" step="1"></div>
+      <div class="row c2">
+        <div class="field"><label>Retainer adjustment (%) <span class="hint">− = commitment discount, + = priority premium</span></label>
+          <input type="text" inputmode="decimal" spellcheck="false" id="adj" value="-10" min="-50" max="50" step="1"></div>
+        <div class="field"><label>Overage rate multiplier <span class="hint">extra hours cost this × your rate</span></label>
+          <input type="text" inputmode="decimal" spellcheck="false" id="over" value="1.25" min="1" max="3" step="0.05"></div>
+      </div>
+      <div class="note">A small discount (5–15%) rewards a client for committing to a monthly block and smooths your income. Charge a <em>premium</em> instead if the retainer buys priority access or guaranteed turnaround.</div>
+    </div>
+
+    <div>
+      <div class="result">
+        <div class="lbl">Monthly retainer price</div>
+        <div class="big" id="monthly">—</div>
+        <div style="margin-top:10px">
+          <div class="kv"><span>Effective hourly (in retainer)</span><span class="v" id="eff">—</span></div>
+          <div class="kv"><span>Overage rate (extra hours)</span><span class="v" id="overrate">—</span></div>
+          <div class="kv"><span>Annual value</span><span class="v" id="annual">—</span></div>
+          <div class="kv"><span>Client saves vs ad-hoc</span><span class="v" id="save">—</span></div>
+        </div>
+      </div>
+      <div class="tool" style="margin-top:14px">
+        <h3 style="margin-top:0">Suggested tiers</h3>
+        <table><thead><tr><th>Tier</th><th class="r">Hours/mo</th><th class="r">Price/mo</th></tr></thead>
+          <tbody id="tiers"></tbody></table>
+        <small>A three-tier menu (good / better / best) nudges clients toward the middle option and makes your pricing feel considered.</small>
+      </div>
+    </div>
+  </div>
+
+  <div class="adslot" data-ad="mid" aria-hidden="true"></div>
+
+  <section class="prose" style="margin-top:26px">
+    <h2>How to price a freelance retainer</h2>
+    <p>A retainer is a recurring fee for a defined block of work or access each month. Done well, it is the most reliable cure for feast-and-famine freelancing: you start each month with income already booked, instead of hunting for the next project.</p>
+    <h3>Start from your hourly floor, then adjust</h3>
+    <p>Work out your true hourly rate first with the <a href="/tools/freelance-rate-calculator.html">rate calculator</a>. The retainer price is that rate times the included hours, then adjusted. There are two ways to think about the adjustment:</p>
+    <ul>
+      <li><strong>Small discount (5–15%):</strong> you trade a little per-hour revenue for guaranteed, predictable income and lower sales effort. Most freelancers land here.</li>
+      <li><strong>Premium (0 to +25%):</strong> if the retainer guarantees priority, faster turnaround, or reserved capacity, that certainty has real value to the client, and you should charge for it.</li>
+    </ul>
+    <h3>Always protect the scope</h3>
+    <p>The classic retainer mistake is agreeing to unlimited work for a fixed fee. Define exactly what the included hours cover, and set an <strong>overage rate</strong> for anything beyond the block. That rate is usually higher than your base rate, because out-of-scope work is disruptive. State whether unused hours roll over (a small perk) or expire monthly (cleaner for you). Borrow a scope clause from the <a href="/tools/contract-clause-library.html">contract clause library</a>.</p>
+    <h3>Offer three tiers</h3>
+    <p>With a single price, the client decides yes or no. With three tiers, the question becomes which one to choose. Most clients pick the middle, so make that tier the one you most want to sell. This calculator builds starter, standard, and pro tiers from your inputs. Adjust the hours to fit the real deliverables at each level.</p>
+    <h3>Bill in advance</h3>
+    <p>Retainers are normally invoiced at the <em>start</em> of the month, before the work begins. That advance payment is where the cash-flow benefit comes from. Set the expectation in writing, and use the <a href="/tools/invoice-generator.html">invoice generator</a> to send it.</p>
+    <div class="rec-box"><div class="tag">Recommended</div>
+      <p style="margin:.3em 0 0">Recurring retainers are easier with software that handles subscriptions and automatic monthly invoices. <a href="#" rel="sponsored nofollow" data-aff="invoicing">See our recommended invoicing tools →</a></p>
+    </div>
+    <h2>Frequently asked questions</h2>
+    <details><summary>Should a retainer be cheaper than my hourly rate?</summary><p>Often a little cheaper, as a reward for commitment and because it saves you sales time, but not always. If you are guaranteeing availability or priority, a premium is justified. Never discount so far that a full retainer earns less than the ad-hoc work it replaces.</p></details>
+    <details><summary>What happens to unused hours?</summary><p>That is up to you. The simplest and most common choice is that they expire each month. The friendlier option is to let them roll over for one month. Whichever you choose, write it into the agreement so there is nothing to argue about later.</p></details>
+    <details><summary>How do I raise a retainer later?</summary><p>Give notice (30–60 days), tie the increase to added value or scope, and apply it at a natural renewal point. Existing retainer clients are your most valuable relationships, so raise prices carefully and with plenty of warning rather than all at once.</p></details>
+  </section>
+</div></main>
+
+<footer class="site-footer"><div class="container">
+  <p><a href="/">← All SoloDesk tools</a></p>
+  <p class="disc">© <span data-year>2026</span> SoloDesk. Information only, not professional advice.</p>
+</div></footer>
+
+<script>
+(function(){
+  "use strict";
+  var el=function(id){return document.getElementById(id);};
+  function calc(){
+    var cur=el("currency").value, f=function(n){return SD.fmt(n,cur);};
+    var rate=SD.val("rate"), hours=SD.val("hours"), adj=SD.val("adj"), over=SD.val("over")||1;
+    var base=rate*hours;
+    var monthly=base*(1+adj/100);
+    var eff=hours>0?monthly/hours:0;
+    var annual=monthly*12;
+    var save=base>0?(1-monthly/base)*100:0;
+    SD.setText("monthly",f(monthly));
+    SD.setText("eff",f(eff)+" / hr");
+    SD.setText("overrate",f(rate*over)+" / hr");
+    SD.setText("annual",f(annual));
+    SD.setText("save",(save>=0?SD.num(save,1)+"%":"+"+SD.num(-save,1)+"% premium"));
+    // tiers: starter 0.5x, standard 1x, pro 2x hours (rounded), same adjustment
+    var tiers=[["Starter",Math.max(1,Math.round(hours*0.5))],["Standard",hours],["Pro",hours*2]];
+    var body="";
+    tiers.forEach(function(t){
+      var pm=rate*t[1]*(1+adj/100);
+      body+="<tr><td>"+t[0]+"</td><td class='r'>"+t[1]+"</td><td class='r'>"+f(pm)+"</td></tr>";
+    });
+    el("tiers").innerHTML=body;
+  }
+  ["currency","rate","hours","adj","over"].forEach(function(id){el(id).addEventListener("input",calc);el(id).addEventListener("change",calc);});
+  calc();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Freelance Graphic Designer Rate Calculator (2026) | SoloDesk</title>
+<meta name="description" content="Typical hourly and project rates for freelance graphic designers in 2026, covering logos and brand identity, plus a calculator to set your rate floor from your own numbers.">
+<link rel="canonical" href="https://solodesk.pages.dev/tools/rate/graphic-designer.html">
+<meta property="og:title" content="Freelance Graphic Designer Rate Calculator">
+<meta property="og:description" content="Typical hourly and project rates for freelance graphic designers in 2026, covering logos and brand identity, plus a calculator to set your rate floor from your own numbers.">
+<meta property="og:url" content="https://solodesk.pages.dev/tools/rate/graphic-designer.html">
+<meta name="theme-color" content="#1f4fd1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f4fd1'/%3E%3Cpath d='M9 11h14M9 16h9M9 21h14' stroke='white' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/style.css">
+<script src="/assets/site.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SoloDesk Freelance Rate Calculator","applicationCategory":"BusinessApplication","operatingSystem":"Any (web)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+</head>
+<body>
+<header class="site-header"><div class="container"><nav class="nav" aria-label="Primary">
+  <a class="brand" href="/"><svg class="logo" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M9 11h14M9 16h9M9 21h14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>SoloDesk</a>
+  <span class="spacer"></span>
+  <a class="navlink" href="/#tools">Tools</a>
+  <a class="navlink" href="/guides/how-to-set-your-freelance-rate.html">Guides</a>
+</nav></div></header>
+
+<main><div class="container">
+  <p class="crumb"><a href="/">Home</a> › <a href="/tools/freelance-rate-calculator.html">Rate calculator</a> › Graphic Designer</p>
+  <h1>Freelance Graphic Designer Rate Calculator</h1>
+  <p style="color:var(--muted);max-width:680px">You might be designing logos for local businesses, building brand systems for funded startups, or taking overflow production from agencies. In each case your rate should reflect the value your design creates, and not only the hours you spend in Illustrator. Use the calculator below to set an honest floor, then read on for how graphic designers price their work in 2026.</p>
+
+  <div class="adslot" data-ad="top" aria-hidden="true"></div>
+
+  <div class="row c2" style="gap:22px;align-items:start">
+    <div class="tool" style="margin-top:0">
+      <div class="field"><label>Currency</label>
+        <select id="currency">
+          <option value="USD">USD $</option><option value="EUR">EUR €</option><option value="GBP">GBP £</option>
+          <option value="CAD">CAD $</option><option value="AUD">AUD $</option><option value="SGD">SGD $</option>
+          <option value="INR">INR ₹</option><option value="IDR">IDR Rp</option><option value="PHP">PHP ₱</option><option value="PKR">PKR ₨</option><option value="BDT">BDT ৳</option><option value="NGN">NGN ₦</option><option value="NZD">NZD $</option>
+        </select></div>
+      <div class="field"><label>Target annual income <span class="hint">what you want to earn, before personal income tax</span></label>
+        <input type="text" inputmode="decimal" spellcheck="false" id="income" value="65000" min="0" step="1000"></div>
+      <div class="field"><label>Annual business expenses <span class="hint">software, hardware, insurance, fees, subscriptions</span></label>
+        <input type="text" inputmode="decimal" spellcheck="false" id="expenses" value="8000" min="0" step="500"></div>
+      <div class="row c2">
+        <div class="field"><label>Billable hours / week <span class="hint">real client hours, not 40</span></label>
+          <input type="text" inputmode="decimal" spellcheck="false" id="hpw" value="24" min="1" max="80" step="1"></div>
+        <div class="field"><label>Weeks off / year <span class="hint">holiday + sick + admin</span></label>
+          <input type="text" inputmode="decimal" spellcheck="false" id="off" value="6" min="0" max="40" step="1"></div>
+      </div>
+      <div class="row c2">
+        <div class="field"><label>Profit buffer (%) <span class="hint">safety margin for gaps</span></label>
+          <input type="text" inputmode="decimal" spellcheck="false" id="buffer" value="10" min="0" max="100" step="1"></div>
+        <div class="field"><label>Gross up for tax (%) <span class="hint">optional; 0 to ignore</span></label>
+          <input type="text" inputmode="decimal" spellcheck="false" id="tax" value="0" min="0" max="80" step="1"></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="result">
+        <div class="lbl">Your target hourly rate</div>
+        <div class="big" id="rate">—</div>
+        <div style="margin-top:10px">
+          <div class="kv"><span>Day rate (× <span id="hpd">8</span>h)</span><span class="v" id="dayrate">—</span></div>
+          <div class="kv"><span>Billable hours / year</span><span class="v" id="byear">—</span></div>
+          <div class="kv"><span>Revenue you need / year</span><span class="v" id="revneed">—</span></div>
+          <div class="kv"><span>Effective utilisation</span><span class="v" id="util">—</span></div>
+        </div>
+      </div>
+      <div class="field" style="margin-top:14px"><label>Hours in a working day <span class="hint">for the day rate</span></label>
+        <input type="text" inputmode="decimal" spellcheck="false" id="hpd_in" value="8" min="1" max="24" step="1"></div>
+      <div class="note" id="sanity"></div>
+    </div>
+  </div>
+
+  <div class="adslot" data-ad="mid" aria-hidden="true"></div>
+
+  <section class="container" style="padding:0">
+    <h2>Rate calculator by profession</h2>
+    <p style="color:var(--muted)">Pick the version pre-set for your field. Each one comes with pricing advice specific to that kind of work.</p>
+    <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))">
+      <a class="card" href="/tools/rate/web-developer.html"><h3>Web Developer</h3><p>Set a rate for freelance web development.</p></a>
+      <a class="card" href="/tools/rate/graphic-designer.html"><h3>Graphic Designer</h3><p>Price logos, branding and design work.</p></a>
+      <a class="card" href="/tools/rate/copywriter.html"><h3>Copywriter</h3><p>Rates for freelance writing and copy.</p></a>
+      <a class="card" href="/tools/rate/marketing-consultant.html"><h3>Marketing Consultant</h3><p>Set consulting and retainer rates.</p></a>
+      <a class="card" href="/tools/rate/photographer.html"><h3>Photographer</h3><p>Day rates and shoot pricing.</p></a>
+      <a class="card" href="/tools/rate/virtual-assistant.html"><h3>Virtual Assistant</h3><p>Hourly and package VA rates.</p></a>
+      <a class="card" href="/tools/rate/translator.html"><h3>Translator</h3><p>Per-word and hourly translation rates.</p></a>
+      <a class="card" href="/tools/rate/bookkeeper.html"><h3>Bookkeeper</h3><p>Set bookkeeping and monthly fees.</p></a>
+    </div>
+  </section>
+
+  <section class="prose" style="margin-top:26px">
+    <div class="note">Most freelance graphic designers charge roughly $40–$85 per hour in 2026, with juniors nearer $35–$55 and senior brand specialists reaching $120–$200+, though rates vary widely by region, niche, and experience.</div>
+    <h2>What moves a graphic designer's rate</h2>
+<p>Two designers with identical software skills can charge wildly different rates, and it rarely comes down to how clean their kerning is. What moves your number is specialization and scope of use. A generalist producing social graphics and sell sheets sits in the $40–$75/hour band; a designer who does brand strategy, packaging, or motion work commands $100–$200 because those skills are scarcer and tied directly to revenue. Just as important is <strong>usage and licensing</strong>: a logo a corner cafe puts on a chalkboard is not the same deliverable as a mark a venture-backed company stamps on national packaging, even when the file is identical. Price the reach as well as the artwork.</p>
+<p>Client type is the other big lever. Agencies subcontracting overflow expect a day rate and pay predictably; funded startups have real budgets and value speed; local businesses and solopreneurs are price-sensitive and need careful scoping. Rush turnarounds, extra concept rounds, and native-file handoff all justify premiums you should name up front rather than absorb.</p>
+<h3>Hourly, project, value-based, or retainer pricing</h3>
+<p>Hourly billing is where most designers start, and it is also what caps their income. The better and faster you get, the less a fixed-scope job pays you, because you lose money on the very efficiency the client is paying for. Reserve hourly billing for open-ended work: ongoing edits, art-direction time, or messy jobs where the scope can't be pinned down.</p>
+<ul>
+<li><strong>Project / flat fee:</strong> the default for anything with a defined deliverable, such as a logo, a brochure, a packaging line, or a pitch deck. Quote the outcome, keep the speed gains, and protect your margin by capping revision rounds.</li>
+<li><strong>Value-based pricing:</strong> for brand identity and strategy work that drives real business outcomes. A client paying $6,000 for an identity system is buying the positioning, the colour and type rules, and the guidelines the company will build its whole presence on. The drawing time is a small part of that.</li>
+<li><strong>Retainer:</strong> for ongoing clients who need steady output, such as social content or marketing collateral. Predictable monthly income is worth a slight discount on your effective rate.</li>
+<li><strong>Day rate:</strong> increasingly standard for agency subcontracting and on-site sprints.</li>
+</ul>
+<h3>The classic mistake: pricing the file instead of the scope</h3>
+<p>The mistake that does the most damage to freelance designers is quoting a flat fee for a deliverable, say "$800 for a logo", without defining how many concepts and revision rounds that includes, or what happens after. Then the client asks for "just a few tweaks" seven times, requests the source files, and wants a social variant thrown in. You have now spent forty hours on an eight-hundred-dollar job, and your effective rate has dropped below minimum wage. Fixed pricing only works when the scope is fixed too. Always specify the number of initial concepts, the revision rounds included, what an extra round costs, and whether native files and expanded usage rights cost more. Your margin lives in the contract rather than in the quote.</p>
+<h3>Using the calculator</h3>
+<p>Start with the hourly figure the calculator gives you. It accounts for your target income, billable hours, and business costs, so it is a true floor rather than a guess. Keep that number to yourself instead of quoting it to clients. Use it privately to sanity-check flat project fees: estimate the realistic hours a job will take, including revisions and handoff, multiply, and add margin for value and usage. If a "quick" logo project pencils out below your floor once revisions are counted, raise the fee or tighten the scope before you sign.</p>
+    <h2>Rate calculators for other freelance fields</h2>
+    <p>If graphic design isn't your field, try the <a href="/tools/rate/web-developer.html">web developer</a>, <a href="/tools/rate/copywriter.html">copywriter</a>, <a href="/tools/rate/virtual-assistant.html">virtual assistant</a>, <a href="/tools/rate/photographer.html">photographer</a>, <a href="/tools/rate/marketing-consultant.html">marketing consultant</a>, <a href="/tools/rate/translator.html">translator</a>, <a href="/tools/rate/bookkeeper.html">bookkeeper</a>, <a href="/tools/rate/ux-designer.html">ux designer</a>, <a href="/tools/rate/social-media-manager.html">social media manager</a>, <a href="/tools/rate/video-editor.html">video editor</a>, <a href="/tools/rate/illustrator.html">illustrator</a>, <a href="/tools/rate/seo-consultant.html">seo consultant</a>, <a href="/tools/rate/voiceover-artist.html">voice-over artist</a>, <a href="/tools/rate/business-coach.html">business coach</a>, <a href="/tools/rate/wordpress-developer.html">wordpress developer</a> rate calculators, or the <a href="/tools/freelance-rate-calculator.html">general freelance rate calculator</a>.</p>
+    <p>Once you've set your rate, turn it into fixed quotes with the <a href="/tools/project-quote-builder.html">project quote builder</a>, price ongoing work with the <a href="/tools/retainer-pricing-calculator.html">retainer calculator</a>, and set aside tax with the <a href="/tools/tax-set-aside-calculator.html">tax set-aside calculator</a>.</p>
+    <h2>Frequently asked questions</h2>
+    <details><summary>Is this the average graphic designer rate?</summary><p>No. Averages hide too much. This calculates the rate <em>you</em> need from your own income goal, costs, and billable hours. Use any published averages only as a sanity check against your number.</p></details>
+    <details><summary>How many hours can I really bill?</summary><p>Most full-time freelancers bill 20–30 hours a week once you subtract sales, admin, and unpaid work. Start with a realistic figure, because an inflated number sets your rate too low.</p></details>
+    <details><summary>Should I show clients this hourly rate?</summary><p>Treat it as your private floor and quote fixed project prices where you can. Clients are paying for the outcome rather than the hours.</p></details>
+  </section>
+</div></main>
+
+<footer class="site-footer"><div class="container">
+  <p><a href="/">← All SoloDesk tools</a></p>
+  <p class="disc">© <span data-year>2026</span> SoloDesk. Information only, not professional or tax advice.</p>
+</div></footer>
+
+<script>
+(function(){
+  "use strict";
+  var el=function(id){return document.getElementById(id);};
+  function calc(){
+    var cur=el("currency").value, f=function(n){return SD.fmt(n,cur);};
+    var income=SD.val("income"), exp=SD.val("expenses"),
+        hpw=SD.val("hpw"), off=SD.val("off"),
+        buffer=SD.val("buffer"), tax=SD.val("tax"), hpd=SD.val("hpd_in")||8;
+    var weeks=Math.max(0,52-off);
+    var byear=weeks*hpw;
+    var rev=(income+exp)*(1+buffer/100);
+    if(tax>0 && tax<100) rev=rev/(1-tax/100);
+    var rate=byear>0?rev/byear:0;
+    SD.setText("rate",byear>0?f(rate)+" / hr":"—");
+    SD.setText("dayrate",byear>0?f(rate*hpd):"—");
+    SD.setText("hpd",String(hpd));
+    SD.setText("byear",SD.num(byear,0)+" h");
+    SD.setText("revneed",f(rev));
+    var util=(hpw/40)*100;
+    SD.setText("util",SD.num(util,0)+"% of a 40h week");
+    var s="";
+    if(hpw>=38) s="Heads up: billing "+hpw+" hours a week is very high once you subtract admin and sales. Most freelancers bill 20–30. If that number slips, your real rate needs to be higher.";
+    else if(rate>0) s="At "+f(rate)+"/hr you need to bill "+SD.num(byear,0)+" hours across "+weeks+" working weeks to hit your goal. If clients are scarce, raise the rate rather than the hours.";
+    el("sanity").textContent=s;
+  }
+  ["currency","income","expenses","hpw","off","buffer","tax","hpd_in"].forEach(function(id){
+    el(id).addEventListener("input",calc);
+  });
+  calc();
+})();
+</script>
+</body>
+</html>

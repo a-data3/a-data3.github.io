@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contract Rate vs Salary Calculator: Compare Freelance and Employee Pay | SoloDesk</title>
+<meta name="description" content="Convert a salary into the freelance rate that matches it, or turn your contract rate into a salary equivalent. Accounts for benefits, unpaid time, and business costs. Free, no signup.">
+<link rel="canonical" href="https://solodesk.pages.dev/tools/contract-rate-vs-salary-calculator.html">
+<meta property="og:title" content="Contract Rate vs Salary Calculator">
+<meta property="og:description" content="See what a salary is worth as a freelance rate, and what your rate is worth as a salary, once benefits and unpaid time are counted.">
+<meta property="og:url" content="https://solodesk.pages.dev/tools/contract-rate-vs-salary-calculator.html">
+<meta name="theme-color" content="#1f4fd1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f4fd1'/%3E%3Cpath d='M9 11h14M9 16h9M9 21h14' stroke='white' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/style.css">
+<script src="/assets/site.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SoloDesk Contract Rate vs Salary Calculator","applicationCategory":"BusinessApplication","operatingSystem":"Any (web)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Why is the freelance rate so much higher than the salary divided by hours?","acceptedAnswer":{"@type":"Answer","text":"An employee's salary is only part of what they cost. The employer also pays for benefits, paid leave, equipment, and the hours between tasks. A freelancer covers all of that from the rate, and can only bill the hours a client agrees to pay for, so the rate has to be higher to end up in the same place."}},
+{"@type":"Question","name":"Is the 1.5 to 2 times rule of thumb right?","acceptedAnswer":{"@type":"Answer","text":"It is a fair starting point for many people, but it hides the assumptions. This calculator shows the actual inputs, so you can see whether your own benefits value, billable hours, and costs land you nearer 1.5 or nearer 2.5."}},
+{"@type":"Question","name":"Does this include tax?","acceptedAnswer":{"@type":"Answer","text":"No. Both sides are compared before personal income tax. Self-employment taxes and contributions vary a lot by country, so use the tax set-aside calculator for that part."}}]}
+</script>
+</head>
+<body>
+<header class="site-header"><div class="container"><nav class="nav" aria-label="Primary">
+  <a class="brand" href="/"><svg class="logo" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M9 11h14M9 16h9M9 21h14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>SoloDesk</a>
+  <span class="spacer"></span>
+  <a class="navlink" href="/#tools">Tools</a>
+  <a class="navlink" href="/guides/how-to-set-your-freelance-rate.html">Guides</a>
+</nav></div></header>
+
+<main><div class="container">
+  <p class="crumb"><a href="/">Home</a> › Contract rate vs salary</p>
+  <h1>Contract Rate vs Salary Calculator</h1>
+  <p style="color:var(--muted);max-width:680px">Thinking about going freelance, or weighing a contract against a job offer? This compares the two properly. It counts the benefits an employer pays for, the time a freelancer cannot bill, and the costs of running your own business.</p>
+
+  <div class="adslot" data-ad="top" aria-hidden="true"></div>
+
+  <div class="row c2" style="gap:24px;align-items:start">
+    <div class="tool" style="margin-top:0">
+      <div class="field"><label for="mode">What do you know?</label>
+        <select id="mode">
+          <option value="salary">I know the salary and want the matching freelance rate</option>
+          <option value="rate">I know my freelance rate and want the salary equivalent</option>
+        </select></div>
+      <div class="field"><label for="currency">Currency</label>
+        <select id="currency">
+          <option value="USD">USD $</option><option value="EUR">EUR €</option><option value="GBP">GBP £</option>
+          <option value="CAD">CAD $</option><option value="AUD">AUD $</option><option value="SGD">SGD $</option>
+          <option value="INR">INR ₹</option><option value="IDR">IDR Rp</option><option value="PHP">PHP ₱</option><option value="PKR">PKR ₨</option><option value="BDT">BDT ৳</option><option value="NGN">NGN ₦</option><option value="NZD">NZD $</option>
+        </select></div>
+      <div class="field" id="f-salary"><label for="salary">Annual salary</label>
+        <span class="hint">the employee figure, before income tax</span>
+        <input type="text" inputmode="decimal" spellcheck="false" id="salary" value="75000"></div>
+      <div class="field" id="f-rate" style="display:none"><label for="rate">Freelance hourly rate</label>
+        <span class="hint">what you charge, or plan to charge</span>
+        <input type="text" inputmode="decimal" spellcheck="false" id="rate" value="85"></div>
+      <div class="field"><label for="benefits">Value of employer benefits (%)</label>
+        <span class="hint">health cover, pension or retirement match, paid leave, insurance; 15 to 30 is common</span>
+        <input type="text" inputmode="decimal" spellcheck="false" id="benefits" value="20"></div>
+      <div class="row c2">
+        <div class="field"><label for="hpw">Billable hours per week</label>
+          <span class="hint">hours a client actually pays for</span>
+          <input type="text" inputmode="decimal" spellcheck="false" id="hpw" value="28"></div>
+        <div class="field"><label for="off">Weeks off per year</label>
+          <span class="hint">holiday, sick days, gaps between clients</span>
+          <input type="text" inputmode="decimal" spellcheck="false" id="off" value="6"></div>
+      </div>
+      <div class="field"><label for="expenses">Annual business costs</label>
+        <span class="hint">software, equipment, insurance, accounting, fees</span>
+        <input type="text" inputmode="decimal" spellcheck="false" id="expenses" value="6000"></div>
+    </div>
+
+    <div>
+      <div class="result">
+        <div class="lbl" id="out-label">Freelance rate that matches this salary</div>
+        <div class="big" id="out-big">—</div>
+        <div style="margin-top:10px">
+          <div class="kv"><span id="k1-label">Day rate (8 hours)</span><span class="v" id="k1">—</span></div>
+          <div class="kv"><span id="k2-label">Total employer cost of the salary</span><span class="v" id="k2">—</span></div>
+          <div class="kv"><span>Billable hours per year</span><span class="v" id="k3">—</span></div>
+          <div class="kv"><span id="k4-label">Rate as a multiple of salary per hour</span><span class="v" id="k4">—</span></div>
+        </div>
+      </div>
+      <div class="note" id="explain"></div>
+    </div>
+  </div>
+
+  <div class="adslot" data-ad="mid" aria-hidden="true"></div>
+
+  <section class="prose" style="margin-top:24px">
+    <h2>How salary and freelance rate really compare</h2>
+    <p>Dividing a salary by 2,080 working hours gives a number that looks like an hourly rate, but it is not the rate a freelancer needs to charge. Three things sit between the two figures.</p>
+    <h3>Benefits are part of the pay</h3>
+    <p>An employer pays more than the salary. Health cover, retirement contributions, paid holiday, sick pay, and insurance typically add 15 to 30 percent on top. When you go freelance, you buy all of that yourself, so the comparison has to start from the employer's full cost, not the salary line.</p>
+    <h3>Not every hour can be billed</h3>
+    <p>An employee is paid for the whole week, including meetings, admin, and slow afternoons. A freelancer is paid only for hours a client agrees to. Selling, quoting, invoicing, learning, and chasing payments come out of the freelancer's own time. Most full-time independents bill 20 to 30 hours a week, and that gap is the largest reason the rate has to be higher.</p>
+    <h3>Running a business costs money</h3>
+    <p>Software, a laptop, professional insurance, an accountant, payment fees, and a workspace all come out of the rate. They are small individually and add up to thousands a year.</p>
+    <h2>How the calculation works</h2>
+    <ul>
+      <li><strong>From salary to rate:</strong> multiply the salary by one plus the benefits percentage, add annual business costs, then divide by billable hours in a year (billable hours per week times working weeks).</li>
+      <li><strong>From rate to salary:</strong> multiply the rate by billable hours in a year, subtract business costs, then divide by one plus the benefits percentage.</li>
+    </ul>
+    <p>Both directions leave income tax out. Employment and self-employment taxes differ by country, and in some places the self-employed pay noticeably more in contributions. The <a href="/tools/tax-set-aside-calculator.html">tax set-aside calculator</a> handles that part separately.</p>
+    <h2>Using the result</h2>
+    <p>If the freelance rate the calculator produces looks high, that is the point. It is what parity actually costs. You may still choose to charge less for other reasons, such as flexibility or a client you want to keep, but you will be doing it knowingly. Set your own number with the <a href="/tools/freelance-rate-calculator.html">rate calculator</a>, then turn it into fixed quotes with the <a href="/tools/project-quote-builder.html">quote builder</a>.</p>
+    <div class="rec-box"><div class="tag">Recommended</div>
+      <p>Going independent means arranging your own insurance and retirement saving. <a href="#" rel="sponsored nofollow" data-aff="insurance">See our recommended options for freelancers</a>.</p>
+    </div>
+    <h2>Frequently asked questions</h2>
+    <details><summary>Why is the freelance rate so much higher than the salary divided by hours?</summary><p>An employee's salary is only part of what they cost. The employer also pays for benefits, paid leave, equipment, and the hours between tasks. A freelancer covers all of that from the rate, and can only bill the hours a client agrees to pay for, so the rate has to be higher to end up in the same place.</p></details>
+    <details><summary>Is the 1.5 to 2 times rule of thumb right?</summary><p>It is a fair starting point for many people, but it hides the assumptions. This calculator shows the actual inputs, so you can see whether your own benefits value, billable hours, and costs land you nearer 1.5 or nearer 2.5.</p></details>
+    <details><summary>Does this include tax?</summary><p>No. Both sides are compared before personal income tax. Self-employment taxes and contributions vary a lot by country, so use the tax set-aside calculator for that part.</p></details>
+  </section>
+</div></main>
+
+<footer class="site-footer"><div class="container">
+  <p><a href="/">← All SoloDesk tools</a></p>
+  <p class="disc">© <span data-year>2026</span> SoloDesk. This is general information, not financial advice.</p>
+</div></footer>
+
+<script>
+(function(){
+  "use strict";
+  var el=function(id){return document.getElementById(id);};
+  function calc(){
+    var cur=el("currency").value, f=function(n){return SD.fmt(n,cur);};
+    var mode=el("mode").value;
+    var benefits=SD.val("benefits")/100, hpw=SD.val("hpw"), off=SD.val("off"), exp=SD.val("expenses");
+    var weeks=Math.max(0,52-off), byear=weeks*hpw;
+    el("f-salary").style.display=mode==="salary"?"":"none";
+    el("f-rate").style.display=mode==="rate"?"":"none";
+    if(mode==="salary"){
+      var salary=SD.val("salary");
+      var employerCost=salary*(1+benefits);
+      var rate=byear>0?(employerCost+exp)/byear:0;
+      var naive=salary/2080;
+      el("out-label").textContent="Freelance rate that matches this salary";
+      el("out-big").textContent=byear>0?f(rate)+" / hr":"—";
+      el("k1-label").textContent="Day rate (8 hours)"; el("k1").textContent=f(rate*8);
+      el("k2-label").textContent="Total employer cost of the salary"; el("k2").textContent=f(employerCost);
+      el("k3").textContent=SD.num(byear,0)+" h";
+      el("k4-label").textContent="Rate as a multiple of salary per hour";
+      el("k4").textContent=naive>0?SD.num(rate/naive,2)+"×":"—";
+      el("explain").textContent="A "+f(salary)+" salary costs the employer about "+f(employerCost)+" with benefits. Spread over "+SD.num(byear,0)+
+        " billable hours plus "+f(exp)+" of business costs, a freelancer needs "+f(rate)+" an hour to match it, before tax on either side.";
+    } else {
+      var r=SD.val("rate");
+      var gross=r*byear;
+      var salaryEq=(gross-exp)/(1+benefits);
+      var naiveS=r*2080;
+      el("out-label").textContent="Salary equivalent of this rate";
+      el("out-big").textContent=byear>0?f(Math.max(0,salaryEq)):"—";
+      el("k1-label").textContent="Gross billings per year"; el("k1").textContent=f(gross);
+      el("k2-label").textContent="After business costs"; el("k2").textContent=f(gross-exp);
+      el("k3").textContent=SD.num(byear,0)+" h";
+      el("k4-label").textContent="Compared with rate × 2,080 hours";
+      el("k4").textContent=naiveS>0?SD.num(salaryEq/naiveS*100,0)+"%":"—";
+      el("explain").textContent="At "+f(r)+" an hour across "+SD.num(byear,0)+" billable hours you bill "+f(gross)+
+        ". After "+f(exp)+" of costs and the benefits you now buy yourself, that is roughly a "+f(Math.max(0,salaryEq))+" salary, before tax on either side.";
+    }
+  }
+  ["mode","currency","salary","rate","benefits","hpw","off","expenses"].forEach(function(id){
+    el(id).addEventListener("input",calc); el(id).addEventListener("change",calc);
+  });
+  calc();
+})();
+</script>
+</body>
+</html>

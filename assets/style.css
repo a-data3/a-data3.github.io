@@ -1,0 +1,165 @@
+/* SoloDesk design system.
+   One accent, cool-biased neutrals, 8pt spacing, hairlines instead of shadows, three type weights,
+   sentence-case labels, no one-side accent bars, no decorative pills, visible focus, reduced motion respected. */
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600&display=swap');
+
+:root{
+  /* neutrals with a slight cool bias */
+  --bg:#f5f6f8; --surface:#ffffff; --surface-2:#eef0f4;
+  --border:#d9dee7; --border-strong:#b9c1cf;
+  --text:#151b26; --muted:#566173;
+  /* the single accent */
+  --accent:#1f4fd1; --accent-hover:#1a42b0; --on-accent:#ffffff; --accent-soft:#e8eefc; --accent-line:#b7c7f2;
+  --ring:rgba(31,79,209,.35);
+  /* semantic colours, separate from the accent */
+  --good:#1a7f4b; --warn:#9a5b00; --danger:#b42318;
+  /* aliases kept for a few page-level styles */
+  --brand:var(--accent); --brand-ink:var(--accent-hover); --shadow:none;
+  /* shape and type */
+  --r-control:4px; --r-panel:8px; --maxw:960px;
+  --font:"Source Sans 3",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --bg:#0f1319; --surface:#161b23; --surface-2:#1e252f;
+    --border:#2a323f; --border-strong:#3a4454;
+    --text:#e6eaf0; --muted:#9aa5b5;
+    --accent:#7ea2ff; --accent-hover:#9bb6ff; --on-accent:#0f1319; --accent-soft:#1a2540; --accent-line:#2f4478;
+    --ring:rgba(126,162,255,.4);
+    --good:#4cc38a; --warn:#e5a23c; --danger:#ff7a6e;
+  }
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{transition:none !important;animation:none !important}}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+h1,h2,h3,h4{line-height:1.2;margin:1.5em 0 .5em;font-weight:600;text-wrap:balance}
+h1{font-size:2rem;margin-top:.25em;letter-spacing:-.01em}
+h2{font-size:1.375rem;letter-spacing:-.01em}
+h3{font-size:1.125rem}
+p{margin:.65em 0}
+small{color:var(--muted);font-size:.875rem}
+strong{font-weight:600}
+code{font-family:var(--mono);font-size:.9em;background:var(--surface-2);padding:.1em .35em;border-radius:var(--r-control)}
+.container{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* Header */
+.site-header{position:sticky;top:0;z-index:20;background:var(--surface);border-bottom:1px solid var(--border)}
+.nav{display:flex;align-items:center;gap:24px;height:56px}
+.brand{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:1.05rem;color:var(--text)}
+.brand:hover{text-decoration:none}
+.brand .logo{width:24px;height:24px;color:var(--accent);flex:none}
+.nav .spacer{flex:1}
+.nav a.navlink{color:var(--muted);font-weight:500;font-size:.95rem;padding:6px 2px}
+.nav a.navlink:hover{color:var(--text);text-decoration:none}
+@media (max-width:640px){.nav a.navlink{display:none}.nav a.navlink.keep{display:inline}}
+
+/* Hero: left-aligned, no pill */
+.hero{padding:48px 0 8px;text-align:left}
+.hero h1{font-size:2.25rem;max-width:22ch}
+.hero p.lede{font-size:1.125rem;color:var(--muted);max-width:60ch;margin:.5em 0 0}
+.reassure{margin:0 0 12px;font-size:.875rem;color:var(--muted);font-weight:500}
+
+/* Card grid: hairline cards, no shadow, no transform */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin:24px 0 8px}
+.card{display:block;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-panel);
+  padding:16px;color:var(--text);transition:border-color .12s ease}
+.card:hover{border-color:var(--border-strong);text-decoration:none}
+.card:focus-visible{border-color:var(--accent)}
+.card .eyebrow{display:block;font-size:.8125rem;font-weight:500;color:var(--muted);margin-bottom:4px}
+.card h3{margin:0 0 4px;font-size:1.0625rem;color:var(--text)}
+.card p{color:var(--muted);font-size:.92rem;margin:0}
+
+/* Layout */
+main{padding:8px 0 64px}
+.crumb{font-size:.85rem;color:var(--muted);margin:20px 0 0}
+.crumb a{color:var(--muted)}
+/* Input groups are not carded; the result panel is the one contained region on a tool page. */
+.tool{background:transparent;border:0;border-radius:0;padding:0;margin:16px 0}
+.row{display:grid;gap:16px}
+.row.c2{grid-template-columns:1fr 1fr}
+.row.c3{grid-template-columns:1fr 1fr 1fr}
+@media (max-width:640px){.row.c2,.row.c3{grid-template-columns:1fr}}
+
+/* Forms */
+.field{margin:12px 0 16px}
+.field label{display:block;font-weight:500;font-size:.875rem;margin-bottom:6px;color:var(--text)}
+.field .hint{display:block;font-weight:400;color:var(--muted);font-size:.8125rem;margin:2px 0 6px}
+input[type=text],input[type=number],input[type=date],input[type=time],input[type=email],select,textarea{
+  width:100%;min-height:40px;padding:8px 12px;font:inherit;color:var(--text);background:var(--surface);
+  border:1px solid var(--border-strong);border-radius:var(--r-control);outline:none;
+  font-variant-numeric:tabular-nums lining-nums;
+  transition:border-color .12s ease,box-shadow .12s ease}
+input::placeholder,textarea::placeholder{color:var(--muted);opacity:.8}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--ring)}
+textarea{min-height:88px;resize:vertical;line-height:1.5}
+textarea[readonly]{background:var(--surface-2);color:var(--text)}
+
+/* Buttons: primary uses the accent, secondary stays neutral */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;font:inherit;font-weight:500;
+  min-height:40px;padding:8px 16px;border-radius:var(--r-control);border:1px solid var(--accent);
+  background:var(--accent);color:var(--on-accent);line-height:1.2;transition:background-color .12s ease,border-color .12s ease}
+.btn:hover{background:var(--accent-hover);border-color:var(--accent-hover);text-decoration:none}
+.btn.ghost{background:var(--surface);color:var(--text);border-color:var(--border-strong)}
+.btn.ghost:hover{background:var(--surface-2)}
+.btn.small{min-height:32px;padding:4px 12px;font-size:.85rem}
+.copybtn{float:right}
+
+/* Results: the one contained region */
+.result{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-panel);padding:16px 20px;margin-top:16px}
+.result .lbl{color:var(--muted);font-size:.875rem;font-weight:500}
+.result .big{font-size:2.25rem;font-weight:600;letter-spacing:-.01em;font-variant-numeric:tabular-nums lining-nums;line-height:1.15;margin-top:2px}
+.kv{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--border);font-size:.95rem}
+.kv:last-child{border-bottom:0}
+.kv .v{font-weight:600;font-variant-numeric:tabular-nums lining-nums;text-align:right}
+
+/* Tables: hairlines only */
+table{width:100%;border-collapse:collapse;margin:12px 0}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--border);font-size:.94rem;vertical-align:top;line-height:1.3}
+th{color:var(--muted);font-size:.875rem;font-weight:500}
+td.r,th.r{text-align:right;font-variant-numeric:tabular-nums lining-nums}
+.winner{color:var(--good);font-weight:600}
+
+/* Notes and callouts: full hairline borders on a tinted ground */
+.note{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-panel);padding:12px 16px;margin:16px 0;font-size:.92rem}
+.rec-box{background:var(--accent-soft);border:1px solid var(--accent-line);border-radius:var(--r-panel);padding:14px 16px;margin:24px 0}
+.rec-box .tag{font-size:.8125rem;font-weight:500;color:var(--muted)}
+.rec-box p{margin:.35em 0 0}
+.adslot{margin:16px 0}
+.tag-pill{display:inline-block;background:var(--surface-2);border:1px solid var(--border);border-radius:var(--r-control);
+  padding:2px 8px;font-size:.8rem;color:var(--muted);margin:2px 6px 2px 0}
+
+/* Prose */
+.prose{max-width:64ch}
+.prose h2{margin-top:1.6em}
+.prose ul,.prose ol{padding-left:1.25em}
+.prose li{margin:.35em 0}
+.prose li::marker{color:var(--muted)}
+
+/* FAQ: dividers, not boxes */
+details{border-top:1px solid var(--border);padding:0}
+details:last-of-type{border-bottom:1px solid var(--border)}
+details summary{cursor:pointer;font-weight:500;padding:14px 0;list-style:none;display:flex;justify-content:space-between;gap:12px}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";color:var(--muted);font-weight:400;flex:none}
+details[open] summary::after{content:"\2212"}
+details p{margin:0 0 14px;color:var(--text)}
+
+/* Footer */
+.site-footer{border-top:1px solid var(--border);background:var(--surface);margin-top:48px;padding:32px 0 28px;color:var(--muted);font-size:.9rem}
+.site-footer .cols{display:flex;flex-wrap:wrap;gap:32px;justify-content:space-between}
+.site-footer a{color:var(--muted)}
+.site-footer a:hover{color:var(--text)}
+.site-footer h4{color:var(--text);font-size:.875rem;font-weight:500;margin:0 0 10px}
+.site-footer ul{list-style:none;padding:0;margin:0}
+.site-footer li{margin:6px 0}
+.site-footer .brand{font-size:1rem}
+.disc{margin-top:20px;font-size:.8rem;color:var(--muted)}

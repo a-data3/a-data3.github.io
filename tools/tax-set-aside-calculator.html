@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Freelance Tax Set-Aside Calculator: How Much to Save Per Invoice | SoloDesk</title>
+<meta name="description" content="Free tax set-aside calculator for freelancers and self-employed workers. See how much of each invoice to bank for tax, with a US self-employment mode and a simple mode for any country. It runs in your browser.">
+<link rel="canonical" href="https://solodesk.pages.dev/tools/tax-set-aside-calculator.html">
+<link rel="alternate" hreflang="en" href="https://solodesk.pages.dev/tools/tax-set-aside-calculator.html">
+<link rel="alternate" hreflang="id" href="https://solodesk.pages.dev/id/kalkulator-pajak-freelancer.html">
+<link rel="alternate" hreflang="x-default" href="https://solodesk.pages.dev/tools/tax-set-aside-calculator.html">
+<meta property="og:title" content="Freelance Tax Set-Aside Calculator">
+<meta property="og:description" content="Work out how much of every payment to set aside for tax so you're never caught short.">
+<meta property="og:url" content="https://solodesk.pages.dev/tools/tax-set-aside-calculator.html">
+<meta name="theme-color" content="#1f4fd1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f4fd1'/%3E%3Cpath d='M9 11h14M9 16h9M9 21h14' stroke='white' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/style.css">
+<script src="/assets/site.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SoloDesk Tax Set-Aside Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any (web)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+</head>
+<body>
+<header class="site-header"><div class="container"><nav class="nav" aria-label="Primary">
+  <a class="brand" href="/"><svg class="logo" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M9 11h14M9 16h9M9 21h14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>SoloDesk</a>
+  <span class="spacer"></span>
+  <a class="navlink" href="/#tools">Tools</a>
+  <a class="navlink" href="/guides/freelancer-tax-basics.html">Guides</a>
+</nav></div></header>
+
+<main><div class="container">
+  <p class="crumb"><a href="/">Home</a> › Tax Set-Aside Calculator</p>
+  <h1>Freelance Tax Set-Aside Calculator</h1>
+  <p style="color:var(--muted);max-width:680px">Some of the cash sitting in your account belongs to the tax office, not to you. This calculator tells you how much of each invoice to move into a separate savings pot so a tax bill never takes you by surprise.</p>
+
+  <div class="note"><strong>Estimate only.</strong> Tax depends on your total income, deductions, and local rules. This calculator gives you a planning figure for how much to set aside. It is not a substitute for a filed tax return. Before you rely on the number, check your country's rules or ask a qualified accountant. See our <a href="/guides/freelancer-tax-basics.html">freelancer tax basics</a>.</div>
+
+  <div class="adslot" data-ad="top" aria-hidden="true"></div>
+
+  <div class="row c2" style="gap:22px;align-items:start">
+    <div class="tool" style="margin-top:0">
+      <div class="field"><label>Mode</label>
+        <select id="mode">
+          <option value="us">United States (self-employed)</option>
+          <option value="simple">Simple (any country, one rate)</option>
+        </select></div>
+      <div class="field"><label>Currency</label>
+        <select id="currency">
+          <option value="USD">USD $</option><option value="EUR">EUR €</option><option value="GBP">GBP £</option>
+          <option value="CAD">CAD $</option><option value="AUD">AUD $</option><option value="SGD">SGD $</option>
+          <option value="INR">INR ₹</option><option value="IDR">IDR Rp</option><option value="PHP">PHP ₱</option><option value="PKR">PKR ₨</option><option value="BDT">BDT ৳</option><option value="NGN">NGN ₦</option><option value="NZD">NZD $</option>
+        </select></div>
+      <div class="field"><label>Payment / invoice amount <span class="hint">the net business profit this payment represents</span></label>
+        <input type="text" inputmode="decimal" spellcheck="false" id="amount" value="3000" min="0" step="100"></div>
+
+      <div id="us-fields">
+        <div class="row c2">
+          <div class="field"><label>Federal income tax (%) <span class="hint">your marginal bracket, e.g. 12 / 22 / 24</span></label>
+            <input type="text" inputmode="decimal" spellcheck="false" id="fed" value="22" min="0" max="60" step="1"></div>
+          <div class="field"><label>State income tax (%) <span class="hint">0 if none</span></label>
+            <input type="text" inputmode="decimal" spellcheck="false" id="state" value="5" min="0" max="20" step="0.5"></div>
+        </div>
+        <div class="note" style="border-left-color:var(--brand)">Self-employment tax of <strong>15.3%</strong> (Social Security + Medicare) is applied automatically on 92.35% of profit, which is the standard method.</div>
+      </div>
+
+      <div id="simple-fields" style="display:none">
+        <div class="field"><label>Your combined tax rate (%) <span class="hint">income tax + any social contributions you expect</span></label>
+          <input type="text" inputmode="decimal" spellcheck="false" id="simple" value="25" min="0" max="70" step="1"></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="result">
+        <div class="lbl">Set aside from this payment</div>
+        <div class="big" id="setaside">—</div>
+        <div style="margin-top:10px">
+          <div class="kv"><span>Effective tax rate</span><span class="v" id="eff">—</span></div>
+          <div class="kv"><span>Keep (roughly)</span><span class="v" id="keep">—</span></div>
+          <div class="kv" id="se-row"><span>· Self-employment tax</span><span class="v" id="se">—</span></div>
+          <div class="kv" id="inc-row"><span>· Income tax (fed + state)</span><span class="v" id="inc">—</span></div>
+        </div>
+      </div>
+      <div class="note" id="tip"></div>
+    </div>
+  </div>
+
+  <div class="adslot" data-ad="mid" aria-hidden="true"></div>
+
+  <section class="prose" style="margin-top:26px">
+    <h2>How much should a freelancer set aside for tax?</h2>
+    <p>A common rule of thumb is to bank <strong>25–30%</strong> of every payment. The real figure depends on where you live and what you earn, so this calculator uses your own rates to give you a specific number instead of a guess.</p>
+    <h3>The United States mode</h3>
+    <p>If you are self-employed in the US, you owe two things on your profit:</p>
+    <ul>
+      <li><strong>Self-employment tax</strong> of 15.3% (12.4% Social Security + 2.9% Medicare), charged on 92.35% of your net profit. It comes on top of income tax, and it catches a lot of first-year freelancers by surprise.</li>
+      <li><strong>Income tax</strong>, meaning federal tax at your marginal bracket plus state income tax if your state has one.</li>
+    </ul>
+    <p>Because no employer is withholding tax for you, most US freelancers pay <strong>quarterly estimated taxes</strong>. Setting money aside from each invoice means the cash is already there when each quarterly payment comes due.</p>
+    <h3>The simple mode (any country)</h3>
+    <p>Outside the US, plug in one combined rate that reflects your income tax plus any mandatory social or self-employment contributions where you live. If you are not sure, a conservative 25–30% is a reasonable starting point until you confirm your actual rate.</p>
+    <h3>Put it in a separate account</h3>
+    <p>The habit that works best is to move the set-aside amount into a <em>separate</em> savings account as soon as a client pays, then treat that money as gone. Money you cannot see is harder to spend by accident, and when the bill arrives it is already waiting for you.</p>
+    <div class="rec-box"><div class="tag">Recommended</div>
+      <p style="margin:.3em 0 0">A separate business or "tax pot" account with instant transfers makes this easy to keep up. <a href="#" rel="sponsored nofollow" data-aff="banking">See our recommended freelancer banking options →</a></p>
+    </div>
+    <h2>Frequently asked questions</h2>
+    <details><summary>Do I set aside tax on the whole invoice or just profit?</summary><p>On profit, meaning the amount left after business expenses for that piece of work. If the payment is mostly your labour with few costs, the invoice and the profit are close to the same number.</p></details>
+    <details><summary>Is 30% enough?</summary><p>For many freelancers on modest incomes, yes. Higher earners, or those in high-tax states or countries, may need more. Use your real marginal rates here rather than a flat guess.</p></details>
+    <details><summary>What about VAT/GST?</summary><p>This tool covers income and self-employment tax. VAT/GST is separate. If you are registered, keep that portion aside as well. Our <a href="/guides/freelancer-tax-basics.html">tax basics guide</a> explains the difference.</p></details>
+  </section>
+</div></main>
+
+<footer class="site-footer"><div class="container">
+  <p><a href="/">← All SoloDesk tools</a></p>
+  <p class="disc">© <span data-year>2026</span> SoloDesk. Estimate only, not tax advice. Check your local rules or ask a qualified accountant.</p>
+</div></footer>
+
+<script>
+(function(){
+  "use strict";
+  var el=function(id){return document.getElementById(id);};
+  function calc(){
+    var cur=el("currency").value, f=function(n){return SD.fmt(n,cur);};
+    var amt=SD.val("amount"), mode=el("mode").value;
+    var seTax=0, incTax=0, total=0;
+    if(mode==="us"){
+      el("us-fields").style.display=""; el("simple-fields").style.display="none";
+      el("se-row").style.display="flex"; el("inc-row").style.display="flex";
+      var fed=SD.val("fed"), state=SD.val("state");
+      seTax=amt*0.9235*0.153;
+      // income tax applies to profit; SE-tax deduction (half) is a simplification we note in the guide
+      incTax=amt*(fed+state)/100;
+      total=seTax+incTax;
+      SD.setText("se",f(seTax)); SD.setText("inc",f(incTax));
+    } else {
+      el("us-fields").style.display="none"; el("simple-fields").style.display="";
+      el("se-row").style.display="none"; el("inc-row").style.display="none";
+      var r=SD.val("simple"); total=amt*r/100;
+    }
+    var eff=amt>0?(total/amt*100):0;
+    SD.setText("setaside",f(total));
+    SD.setText("eff",SD.num(eff,1)+"%");
+    SD.setText("keep",f(amt-total));
+    var tip="";
+    if(eff>0) tip="Move "+f(total)+" ("+SD.num(eff,1)+"%) into a separate tax account the moment this payment lands. Treat the rest as your real income.";
+    el("tip").textContent=tip;
+  }
+  ["mode","currency","amount","fed","state","simple"].forEach(function(id){
+    el(id).addEventListener("input",calc); el(id).addEventListener("change",calc);
+  });
+  calc();
+})();
+</script>
+</body>
+</html>

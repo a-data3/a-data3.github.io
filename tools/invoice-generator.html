@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free Invoice Generator for Freelancers: PDF, No Signup | SoloDesk</title>
+<meta name="description" content="Create a professional invoice and download it as a PDF. No signup, no watermark, no email required. It runs entirely in your browser, so your data never leaves your device.">
+<link rel="canonical" href="https://solodesk.pages.dev/tools/invoice-generator.html">
+<link rel="alternate" hreflang="en" href="https://solodesk.pages.dev/tools/invoice-generator.html">
+<link rel="alternate" hreflang="id" href="https://solodesk.pages.dev/id/buat-invoice-freelance-gratis.html">
+<link rel="alternate" hreflang="x-default" href="https://solodesk.pages.dev/tools/invoice-generator.html">
+<meta property="og:title" content="Free Invoice Generator for Freelancers (PDF, no signup)">
+<meta property="og:description" content="Build a clean invoice and save it as a PDF. It is free, private, and needs no account.">
+<meta property="og:url" content="https://solodesk.pages.dev/tools/invoice-generator.html">
+<meta name="theme-color" content="#1f4fd1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f4fd1'/%3E%3Cpath d='M9 11h14M9 16h9M9 21h14' stroke='white' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/style.css">
+<script src="/assets/site.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SoloDesk Invoice Generator","applicationCategory":"BusinessApplication","operatingSystem":"Any (web)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free browser-based invoice generator for freelancers with PDF download and no signup."}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Is this invoice generator really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every tool on SoloDesk is free with no signup, no watermark, and no email required."}},
+{"@type":"Question","name":"Where is my invoice data stored?","acceptedAnswer":{"@type":"Answer","text":"Only in your own browser. The tool runs locally and your figures are never uploaded. If you choose, your own business details can be remembered on your device and nowhere else."}},
+{"@type":"Question","name":"How do I download the invoice as a PDF?","acceptedAnswer":{"@type":"Answer","text":"Click Download PDF, then choose Save as PDF as the destination in your browser's print dialog. The on-screen controls are hidden automatically so only the invoice prints."}}]}
+</script>
+<style>
+/* Invoice preview + print */
+.invoice-wrap{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+@media (max-width:860px){.invoice-wrap{grid-template-columns:1fr}}
+#preview{background:#fff;color:#111827;border:1px solid var(--border);border-radius:8px;padding:30px;box-shadow:var(--shadow)}
+#preview .inv-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+#preview h2.inv-title{margin:0;font-size:1.8rem;letter-spacing:.02em;color:#111827}
+#preview .biz{font-weight:700;font-size:1.05rem}
+#preview .muted{color:#6b7280;font-size:.86rem;white-space:pre-line}
+#preview table{margin-top:18px}
+#preview th{color:#6b7280}
+#preview th,#preview td{border-bottom:1px solid #e5e7eb;font-size:.9rem}
+#preview td.r,#preview th.r{text-align:right;font-variant-numeric:tabular-nums}
+#preview .totals{margin-left:auto;margin-top:14px;width:min(280px,100%)}
+#preview .totals .kv{border-bottom:1px dashed #e5e7eb;color:#374151}
+#preview .totals .grand{border-top:2px solid #111827;border-bottom:0;font-size:1.15rem;font-weight:800;color:#111827;padding-top:8px;margin-top:4px}
+#preview .notes{margin-top:20px;color:#374151;font-size:.85rem;white-space:pre-line}
+.lineitem{display:grid;grid-template-columns:1fr 76px 96px 34px;gap:8px;margin:8px 0;align-items:center}
+.lineitem input{padding:8px 9px}
+.lineitem .x{cursor:pointer;border:1px solid var(--border);background:var(--surface-2);border-radius:8px;
+  height:38px;display:flex;align-items:center;justify-content:center;color:var(--muted)}
+.lineitem .x:hover{color:var(--danger);border-color:var(--danger)}
+.li-head{display:grid;grid-template-columns:1fr 76px 96px 34px;gap:8px;font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-top:6px}
+@media print{
+  body{background:#fff}
+  .site-header,.site-footer,.controls,.crumb,.prose,.no-print,.adslot{display:none !important}
+  main{padding:0}
+  .invoice-wrap{display:block}
+  #preview{border:0;box-shadow:none;border-radius:0;padding:0;margin:0}
+  .container{max-width:none;padding:0}
+}
+</style>
+</head>
+<body>
+<header class="site-header"><div class="container"><nav class="nav" aria-label="Primary">
+  <a class="brand" href="/"><svg class="logo" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M9 11h14M9 16h9M9 21h14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>SoloDesk</a>
+  <span class="spacer"></span>
+  <a class="navlink" href="/#tools">Tools</a>
+  <a class="navlink" href="/guides/how-to-set-your-freelance-rate.html">Guides</a>
+</nav></div></header>
+
+<main><div class="container">
+  <p class="crumb"><a href="/">Home</a> › Invoice Generator</p>
+  <h1>Free Invoice Generator</h1>
+  <p class="lede" style="color:var(--muted);max-width:680px">Fill in the details on the left and watch the invoice build on the right. When it looks right, download a PDF. There is no signup and no watermark, and your figures never leave your browser.</p>
+
+  <div class="adslot" data-ad="top" aria-hidden="true"></div>
+
+  <div class="invoice-wrap">
+    <!-- ============ FORM ============ -->
+    <div class="tool no-print" style="margin-top:0">
+      <div class="controls" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px">
+        <button class="btn" id="download">⬇ Download PDF</button>
+        <button class="btn ghost small" id="remember" type="button">Remember my details</button>
+        <button class="btn ghost small" id="reset" type="button">Reset</button>
+      </div>
+
+      <div class="row c2">
+        <div class="field"><label>Currency</label>
+          <select id="currency">
+            <option value="USD">USD $</option><option value="EUR">EUR €</option>
+            <option value="GBP">GBP £</option><option value="CAD">CAD $</option>
+            <option value="AUD">AUD $</option><option value="SGD">SGD $</option>
+            <option value="INR">INR ₹</option><option value="IDR">IDR Rp</option><option value="PHP">PHP ₱</option><option value="PKR">PKR ₨</option><option value="BDT">BDT ৳</option><option value="NGN">NGN ₦</option>
+            <option value="JPY">JPY ¥</option><option value="NZD">NZD $</option>
+          </select></div>
+        <div class="field"><label>Invoice #</label><input type="text" id="invno" value="INV-0001"></div>
+      </div>
+      <div class="row c2">
+        <div class="field"><label>Invoice date</label><input type="date" id="idate"></div>
+        <div class="field"><label>Due date</label><input type="date" id="ddate"></div>
+      </div>
+
+      <h3>From (you)</h3>
+      <div class="field"><label>Your name / business</label><input type="text" id="fromName" placeholder="Jane Doe Design"></div>
+      <div class="field"><label>Your details <span class="hint">address, email, tax ID (one per line)</span></label><textarea id="fromInfo" placeholder="hello@janedoe.design&#10;123 Main St&#10;VAT/Tax ID: ..."></textarea></div>
+
+      <h3>Bill to (client)</h3>
+      <div class="field"><label>Client name / company</label><input type="text" id="toName" placeholder="Acme Inc."></div>
+      <div class="field"><label>Client details</label><textarea id="toInfo" placeholder="billing@acme.com&#10;456 Market St"></textarea></div>
+
+      <h3>Line items</h3>
+      <div class="li-head"><span>Description</span><span>Qty</span><span>Rate</span><span></span></div>
+      <div id="items"></div>
+      <button class="btn ghost small" id="additem" type="button" style="margin-top:6px">+ Add line</button>
+
+      <div class="row c2" style="margin-top:14px">
+        <div class="field"><label>Tax / VAT (%)</label><input type="text" inputmode="decimal" spellcheck="false" id="tax" value="0" min="0" step="0.1"></div>
+        <div class="field"><label>Discount (%)</label><input type="text" inputmode="decimal" spellcheck="false" id="disc" value="0" min="0" step="0.1"></div>
+      </div>
+      <div class="field"><label>Notes / payment terms</label><textarea id="notes" placeholder="Payment due within 14 days by bank transfer to ...&#10;Thank you for your business!"></textarea></div>
+    </div>
+
+    <!-- ============ PREVIEW ============ -->
+    <div id="preview" aria-label="Invoice preview">
+      <div class="inv-head">
+        <div><div class="biz" id="p-from">Your name / business</div><div class="muted" id="p-frominfo"></div></div>
+        <div style="text-align:right"><h2 class="inv-title">INVOICE</h2><div class="muted" id="p-meta"></div></div>
+      </div>
+      <div style="margin-top:16px"><div class="muted" style="text-transform:uppercase;font-size:.7rem;letter-spacing:.06em">Bill to</div>
+        <div class="biz" id="p-to" style="font-size:.98rem">Client</div><div class="muted" id="p-toinfo"></div></div>
+      <table><thead><tr><th>Description</th><th class="r">Qty</th><th class="r">Rate</th><th class="r">Amount</th></tr></thead>
+        <tbody id="p-items"></tbody></table>
+      <div class="totals">
+        <div class="kv"><span>Subtotal</span><span class="v" id="p-sub"></span></div>
+        <div class="kv" id="p-disc-row"><span>Discount</span><span class="v" id="p-disc"></span></div>
+        <div class="kv" id="p-tax-row"><span>Tax</span><span class="v" id="p-tax"></span></div>
+        <div class="kv grand"><span>Total</span><span class="v" id="p-total"></span></div>
+      </div>
+      <div class="notes" id="p-notes"></div>
+    </div>
+  </div>
+
+  <div class="adslot" data-ad="mid" aria-hidden="true"></div>
+
+  <!-- ============ GUIDE (info-gain for SEO/E-E-A-T) ============ -->
+  <section class="prose" style="margin-top:30px">
+    <h2>How to invoice as a freelancer (the details that get you paid)</h2>
+    <p>An invoice is a payment request, but it is also a small legal record. A few details do most of the work in getting it paid on time and keeping your books clean. Here is what belongs on every freelance invoice and why.</p>
+    <h3>The essentials every invoice needs</h3>
+    <ul>
+      <li><strong>A unique invoice number.</strong> Sequential numbers (INV-0001, INV-0002) make it easy for you and your client's accounts team to reference a specific bill, and most tax authorities expect them.</li>
+      <li><strong>Both parties' details.</strong> Include your name or business and contact info, plus the client's billing name and address. If you are registered for VAT/GST or have a tax ID, put it on.</li>
+      <li><strong>Invoice date and due date.</strong> Always state a concrete due date, not "on receipt." "Net 14" or a specific calendar date gives you a clear line for chasing late payment.</li>
+      <li><strong>Clear line items.</strong> Describe what you did, the quantity or hours, the rate, and the amount. Vague single-line invoices are the ones that get queried.</li>
+      <li><strong>Totals with tax shown separately.</strong> Show the subtotal, any discount, tax/VAT as its own line, and the grand total.</li>
+      <li><strong>How to pay.</strong> Include bank details, a payment link, or your terms. Making it easy to pay does more than anything else to get you paid faster.</li>
+    </ul>
+    <h3>Set a due date and a late-payment term</h3>
+    <p>Most freelancers use Net 7, Net 14, or Net 30, which is the number of days the client has to pay. Shorter terms get you paid sooner, but very short terms can annoy larger clients with slow accounts systems. Whatever you choose, add a late-payment line to your notes (for example, interest after 30 days) so the term has teeth. You can work out exactly what a late invoice is owed with the <a href="/tools/late-payment-calculator.html">late-payment interest calculator</a>.</p>
+    <h3>Number your invoices from the start</h3>
+    <p>Pick a simple scheme and never reuse a number, even for a cancelled invoice (issue a credit note instead). Consistent numbering makes year-end accounting far less painful and looks professional to clients.</p>
+    <h3>Keep a copy</h3>
+    <p>Because this tool runs entirely in your browser and stores nothing, download the PDF and keep it with your records. Most places require you to keep invoices for several years, so save a copy the moment you send it.</p>
+    <div class="rec-box"><div class="tag">Recommended</div>
+      <p style="margin:.3em 0 0">If you send more than a handful of invoices a month, dedicated invoicing software can automate reminders, recurring bills, and payment links. <a href="#" rel="sponsored nofollow" data-aff="invoicing">See our recommended invoicing tools →</a></p>
+    </div>
+
+    <h2>Frequently asked questions</h2>
+    <details><summary>Is this invoice generator really free?</summary><p>Yes. Every tool on SoloDesk is free with no signup, no watermark, and no email required.</p></details>
+    <details><summary>Where is my invoice data stored?</summary><p>Only in your own browser. The tool runs locally and your figures are never uploaded. If you click "Remember my details," only your own business info (name, address) is saved on your device using local storage. The client details and amounts are never saved.</p></details>
+    <details><summary>How do I download the invoice as a PDF?</summary><p>Click <strong>Download PDF</strong>, then choose <em>Save as PDF</em> as the destination in the print dialog. The form controls are hidden automatically, so only the clean invoice is saved.</p></details>
+    <details><summary>Can I add my logo?</summary><p>Not in this version. It keeps things text-only for speed and privacy. Your business name is shown prominently at the top, which is enough for a professional freelance invoice.</p></details>
+  </section>
+</div></main>
+
+<footer class="site-footer"><div class="container">
+  <p><a href="/">← All SoloDesk tools</a></p>
+  <p class="disc">© <span data-year>2026</span> SoloDesk. This is general information, not professional advice. This tool runs locally in your browser; we don't store your inputs.</p>
+</div></footer>
+
+<script>
+(function(){
+  "use strict";
+  var items=[];
+  var el=function(id){return document.getElementById(id);};
+  function todayISO(d){ d=d||new Date(); return d.toISOString().slice(0,10); }
+  function addItem(desc,qty,rate){
+    items.push({desc:desc||"",qty:qty==null?1:qty,rate:rate==null?0:rate});
+    renderItems();
+  }
+  function renderItems(){
+    var box=el("items"); box.innerHTML="";
+    items.forEach(function(it,i){
+      var row=document.createElement("div"); row.className="lineitem";
+      row.innerHTML='<input type="text" placeholder="Website design — homepage" aria-label="Description">'+
+        '<input type="text" inputmode="decimal" spellcheck="false" min="0" step="0.25" aria-label="Quantity">'+
+        '<input type="text" inputmode="decimal" spellcheck="false" min="0" step="0.01" aria-label="Rate">'+
+        '<div class="x" title="Remove" role="button" tabindex="0">✕</div>';
+      var ins=row.querySelectorAll("input");
+      ins[0].value=it.desc; ins[1].value=it.qty; ins[2].value=it.rate;
+      ins[0].addEventListener("input",function(){it.desc=this.value;render();});
+      ins[1].addEventListener("input",function(){it.qty=SD.parse(this.value);render();});
+      ins[2].addEventListener("input",function(){it.rate=SD.parse(this.value);render();});
+      var rm=row.querySelector(".x");
+      rm.addEventListener("click",function(){items.splice(i,1);renderItems();render();});
+      rm.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){items.splice(i,1);renderItems();render();}});
+      box.appendChild(row);
+    });
+  }
+  function esc(s){return String(s||"").replace(/[&<>]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;"}[c];});}
+  function render(){
+    var cur=el("currency").value;
+    var f=function(n){return SD.fmt(n,cur);};
+    el("p-from").textContent=el("fromName").value||"Your name / business";
+    el("p-frominfo").textContent=el("fromInfo").value||"";
+    el("p-to").textContent=el("toName").value||"Client";
+    el("p-toinfo").textContent=el("toInfo").value||"";
+    var meta="#"+(el("invno").value||"")+"\n";
+    if(el("idate").value) meta+="Issued: "+el("idate").value+"\n";
+    if(el("ddate").value) meta+="Due: "+el("ddate").value;
+    el("p-meta").textContent=meta;
+    var sub=0, body="";
+    items.forEach(function(it){
+      var amt=(it.qty||0)*(it.rate||0); sub+=amt;
+      body+="<tr><td>"+esc(it.desc||"—")+"</td><td class='r'>"+SD.num(it.qty,2)+
+            "</td><td class='r'>"+f(it.rate)+"</td><td class='r'>"+f(amt)+"</td></tr>";
+    });
+    el("p-items").innerHTML=body||"<tr><td colspan='4' style='color:#9ca3af'>Add a line item…</td></tr>";
+    var discPct=SD.val("disc"), taxPct=SD.val("tax");
+    var discAmt=sub*discPct/100, taxable=sub-discAmt, taxAmt=taxable*taxPct/100, total=taxable+taxAmt;
+    el("p-sub").textContent=f(sub);
+    el("p-disc").textContent="−"+f(discAmt); el("p-disc-row").style.display=discPct?"flex":"none";
+    el("p-tax").textContent=f(taxAmt); el("p-tax-row").style.display=taxPct?"flex":"none";
+    el("p-total").textContent=f(total);
+    el("p-notes").textContent=el("notes").value||"";
+  }
+  // wire inputs
+  ["currency","invno","idate","ddate","fromName","fromInfo","toName","toInfo","tax","disc","notes"]
+    .forEach(function(id){el(id).addEventListener("input",render);});
+  el("additem").addEventListener("click",function(){addItem("",1,0);render();});
+  el("download").addEventListener("click",function(){render();window.print();});
+  el("reset").addEventListener("click",function(){
+    if(!confirm("Clear the invoice and start over?"))return;
+    items=[]; ["invno","fromName","fromInfo","toName","toInfo","notes"].forEach(function(id){el(id).value="";});
+    el("invno").value="INV-0001"; el("tax").value=0; el("disc").value=0;
+    addItem("",1,0); render();
+  });
+  // remember only the freelancer's own details, on-device
+  el("remember").addEventListener("click",function(){
+    try{
+      localStorage.setItem("sd_invoice_from",JSON.stringify({name:el("fromName").value,info:el("fromInfo").value,currency:el("currency").value}));
+      this.textContent="Saved on this device"; var b=this; setTimeout(function(){b.textContent="Remember my details";},1500);
+    }catch(e){alert("Couldn't save — your browser may be blocking local storage.");}
+  });
+  function loadRemembered(){
+    try{var s=JSON.parse(localStorage.getItem("sd_invoice_from")||"null");
+      if(s){el("fromName").value=s.name||"";el("fromInfo").value=s.info||"";if(s.currency)el("currency").value=s.currency;}
+    }catch(e){}
+  }
+  // init
+  var now=new Date(), due=new Date(now.getTime()+14*864e5);
+  el("idate").value=todayISO(now); el("ddate").value=todayISO(due);
+  loadRemembered();
+  addItem("Design work — 10 hours",10,60);
+  render();
+})();
+</script>
+</body>
+</html>
