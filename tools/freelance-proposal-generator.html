@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free Freelance Proposal Generator | SoloDesk</title>
+<meta name="description" content="Free proposal generator for freelancers. Fill in the client's problem, your approach, deliverables and two pricing options to get a short proposal you can copy, print or paste into an email. No signup needed.">
+<link rel="canonical" href="https://solodesk.work/tools/freelance-proposal-generator.html">
+<meta property="og:title" content="Free Freelance Proposal Generator">
+<meta property="og:description" content="Write a short client proposal with two pricing options. Copy or print it, no signup needed.">
+<meta property="og:url" content="https://solodesk.work/tools/freelance-proposal-generator.html">
+<meta name="theme-color" content="#1f4fd1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f4fd1'/%3E%3Cpath d='M9 11h14M9 16h9M9 21h14' stroke='white' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/style.css">
+<script src="/assets/site.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SoloDesk Freelance Proposal Generator","applicationCategory":"BusinessApplication","operatingSystem":"Any (web)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<style>
+.sow-wrap{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+@media (max-width:860px){.sow-wrap{grid-template-columns:1fr}}
+#doc{background:#fff;color:#111827;border:1px solid var(--border);border-radius:8px;padding:30px;box-shadow:var(--shadow);white-space:pre-wrap;font-size:.9rem;line-height:1.6;min-height:300px}
+@media print{body{background:#fff}.site-header,.site-footer,.controls,.crumb,.prose,.no-print,.adslot,.form-col{display:none!important}
+main{padding:0}.sow-wrap{display:block}#doc{border:0;box-shadow:none;padding:0}.container{max-width:none;padding:0}}
+</style>
+</head>
+<body>
+<header class="site-header"><div class="container"><nav class="nav" aria-label="Primary">
+  <a class="brand" href="/"><svg class="logo" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M9 11h14M9 16h9M9 21h14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>SoloDesk</a>
+  <span class="spacer"></span>
+  <a class="navlink" href="/#tools">Tools</a>
+  <a class="navlink" href="/guides/how-to-set-your-freelance-rate.html">Guides</a>
+</nav></div></header>
+
+<main><div class="container">
+  <p class="crumb"><a href="/">Home</a> › Freelance Proposal Generator</p>
+  <h1>Freelance Proposal Generator</h1>
+  <p style="color:var(--muted);max-width:680px">A proposal is the document that turns an enquiry into paid work. Fill in what the client asked for, how you plan to handle it, and what it costs. You get a short proposal you can copy into an email, print to PDF, or attach to a quote. Everything stays in your browser.</p>
+
+  <div class="note">This produces a plain-English business document, not a contract. Once the client says yes, pin the detail down with the <a href="/tools/scope-of-work-generator.html">scope of work generator</a> and terms from the <a href="/tools/contract-clause-library.html">contract clause library</a>.</div>
+
+  <div class="adslot" data-ad="top" aria-hidden="true"></div>
+
+  <div class="sow-wrap">
+    <div class="tool form-col" style="margin-top:0">
+      <div class="controls" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px">
+        <button class="btn ghost small copybtn" id="copy" type="button">Copy</button>
+        <button class="btn ghost small" id="print" type="button">Print / PDF</button>
+      </div>
+      <div class="row c2">
+        <div class="field"><label for="from">Your name / business</label><input type="text" id="from" placeholder="Jane Doe Design"></div>
+        <div class="field"><label for="client">Client</label><input type="text" id="client" placeholder="Acme Inc."></div>
+      </div>
+      <div class="field"><label for="title">Project title</label><input type="text" id="title" placeholder="Marketing website redesign"></div>
+      <div class="field"><label for="situation">What the client needs <span class="hint">their problem in your words, two or three sentences</span></label><textarea id="situation" placeholder="Your current site was built for a product you no longer sell, and the contact form goes to an inbox nobody reads. You need a site that explains the new offer and sends enquiries somewhere useful."></textarea></div>
+      <div class="field"><label for="approach">How you will approach it <span class="hint">one step per line</span></label><textarea id="approach" placeholder="Kickoff call and a review of your existing analytics&#10;Sitemap and page-by-page messaging&#10;Design in Figma, two rounds of feedback&#10;Build in Webflow with the form wired to your CRM&#10;Launch, redirects and a handover walkthrough"></textarea></div>
+      <div class="field"><label for="deliverables">What the client gets <span class="hint">one per line</span></label><textarea id="deliverables" placeholder="5 designed and built pages&#10;Mobile and tablet layouts&#10;Contact form connected to HubSpot&#10;Editable CMS for the blog&#10;30 days of post-launch fixes"></textarea></div>
+      <div class="row c2">
+        <div class="field"><label for="timeline">Timeline</label><input type="text" id="timeline" placeholder="5 weeks from kickoff"></div>
+        <div class="field"><label for="terms">Payment terms</label><input type="text" id="terms" placeholder="40% deposit, 60% on launch, net 14"></div>
+      </div>
+
+      <h3>Pricing</h3>
+      <div class="row c2">
+        <div class="field"><label for="opt1name">Recommended option</label><input type="text" id="opt1name" placeholder="Full redesign"></div>
+        <div class="field"><label for="opt1price">Price</label><input type="text" id="opt1price" placeholder="$7,500"></div>
+      </div>
+      <div class="field"><label for="opt1inc">What it includes <span class="hint">one per line</span></label><textarea id="opt1inc" placeholder="Everything in the deliverables list&#10;Copy editing on all five pages&#10;Analytics and conversion tracking"></textarea></div>
+      <div class="row c2">
+        <div class="field"><label for="opt2name">Second option (optional)</label><input type="text" id="opt2name" placeholder="Homepage only"></div>
+        <div class="field"><label for="opt2price">Price</label><input type="text" id="opt2price" placeholder="$3,200"></div>
+      </div>
+      <div class="field"><label for="opt2inc">What it includes <span class="hint">one per line</span></label><textarea id="opt2inc" placeholder="Homepage design and build&#10;Contact form connected to HubSpot&#10;Inner pages restyled to match"></textarea></div>
+
+      <h3>Closing</h3>
+      <div class="field"><label for="why">Why you are a good fit <span class="hint">one proof point per line, keep it specific</span></label><textarea id="why" placeholder="Built 14 sites in Webflow, 6 of them for B2B software&#10;Last redesign for Northwind lifted demo requests 38% in a quarter&#10;I write the copy as I design, so you are not waiting on a second freelancer"></textarea></div>
+      <div class="row c2">
+        <div class="field"><label for="next">Next step</label><input type="text" id="next" placeholder="Reply with the option you want and I will send the contract"></div>
+        <div class="field"><label for="valid">Proposal valid until</label><input type="text" id="valid" placeholder="30 September 2026"></div>
+      </div>
+    </div>
+
+    <div id="doc" aria-label="Proposal preview"></div>
+  </div>
+
+  <div class="adslot" data-ad="mid" aria-hidden="true"></div>
+
+  <section class="prose" style="margin-top:26px">
+    <h2>What goes in a freelance proposal</h2>
+    <p>Most freelance proposals lose the job in the first paragraph by talking about the freelancer. The client is reading to find out whether you understood the problem. Open with their situation in your own words, then move to what you will do about it. A short proposal that answers six questions beats a twelve-page template:</p>
+    <ol>
+      <li><strong>Do you understand the problem?</strong> Restate what the client told you on the call, including the part they were embarrassed about. This is the section that wins the work.</li>
+      <li><strong>What is your plan?</strong> The steps, in order, so the client can picture the project running.</li>
+      <li><strong>What do I get?</strong> A list of concrete deliverables rather than adjectives.</li>
+      <li><strong>How long?</strong> A duration or a set of milestones, with what you need from them to hit it.</li>
+      <li><strong>What does it cost?</strong> The price, the payment schedule, and a second option at a lower number.</li>
+      <li><strong>Why you?</strong> Two or three proof points that match this project. Skip the general biography.</li>
+    </ol>
+    <h3>Give two options, not one</h3>
+    <p>A single price turns the decision into yes or no. Two options turn it into which one, and a surprising share of clients pick the larger package once they can see what the smaller one leaves out. Put the option you want them to buy first and describe it fully, then offer a reduced version at a lower price. Three options work too, though beyond that the choice gets harder and the reply gets slower.</p>
+    <h3>Put a date on it</h3>
+    <p>Proposals go stale. Your rates move and your calendar fills, so a quote from four months ago is a liability when the client resurfaces. A validity date gives you a clean reason to requote, and it nudges a slow decision along. Thirty days is normal for project work.</p>
+    <h3>Send it, then follow up</h3>
+    <p>Paste the proposal into the body of the email rather than attaching a PDF the client has to download. Say when you will follow up, then do it. If the numbers still need work, run them through the <a href="/tools/project-quote-builder.html">project quote builder</a> or check your floor with the <a href="/tools/freelance-rate-calculator.html">freelance rate calculator</a> before you send anything.</p>
+    <div class="rec-box"><div class="tag">Recommended</div>
+      <p style="margin:.3em 0 0">If you send proposals every week, dedicated proposal software adds e-signatures, templates and open tracking. <a href="#" rel="sponsored nofollow" data-aff="proposals">See our recommended proposal tools →</a></p>
+    </div>
+    <h2>Frequently asked questions</h2>
+    <details><summary>How long should a freelance proposal be?</summary><p>One to two pages for most project work. Long proposals get skimmed, and the sections clients actually read are the problem summary, the price and the timeline. If a procurement process demands more, add appendices rather than padding the main document.</p></details>
+    <details><summary>Should I put the price in the proposal or wait?</summary><p>Put it in. Holding the price back to force a call mostly gets you ignored. If the number is likely to be a shock, show a smaller option next to it so the client has somewhere to go other than away.</p></details>
+    <details><summary>Is a proposal the same as a quote or a scope of work?</summary><p>No. A quote is the pricing breakdown, a scope of work defines the deliverables and exclusions in detail, and a proposal is the persuasive document that carries both. Send the proposal first, then the scope of work and contract once the client agrees.</p></details>
+    <details><summary>What do I do when the client goes quiet?</summary><p>Follow up twice, four or five days apart, and keep each message short. If there is still no answer, send a closing note saying you are releasing the slot. That last message gets a reply more often than the two before it.</p></details>
+  </section>
+</div></main>
+
+<footer class="site-footer"><div class="container">
+  <p><a href="/">← All SoloDesk tools</a></p>
+  <p class="disc">© <span data-year>2026</span> SoloDesk. Working document, not legal advice.</p>
+</div></footer>
+
+<script>
+(function(){
+  "use strict";
+  var el=function(id){return document.getElementById(id);};
+  var ids=["from","client","title","situation","approach","deliverables","timeline","terms",
+           "opt1name","opt1price","opt1inc","opt2name","opt2price","opt2inc","why","next","valid"];
+  function lines(id){
+    return (el(id).value||"").split("\n").map(function(s){return s.trim();}).filter(Boolean);
+  }
+  function bullets(id,fallback){
+    var v=lines(id);
+    return v.length?v.map(function(s){return "  • "+s;}).join("\n"):"  • "+fallback;
+  }
+  function numbered(id,fallback){
+    var v=lines(id);
+    if(!v.length) return "  1. "+fallback;
+    return v.map(function(s,i){return "  "+(i+1)+". "+s;}).join("\n");
+  }
+  function txt(id,fallback){return (el(id).value||"").trim()||fallback;}
+  function today(){
+    try{return new Date().toLocaleDateString(SD.locale(),{year:"numeric",month:"long",day:"numeric"});}
+    catch(e){return new Date().toDateString();}
+  }
+  function build(){
+    var me=txt("from","[Your name]");
+    var d="PROPOSAL\n";
+    d+="========\n\n";
+    d+="Prepared for: "+txt("client","[Client]")+"\n";
+    d+="Prepared by: "+me+"\n";
+    d+="Date: "+today()+"\n";
+    var t=txt("title",""); if(t) d+="Project: "+t+"\n";
+    d+="\n1. WHAT YOU NEED\n"+txt("situation","[Describe the client's situation in your own words]")+"\n";
+    d+="\n2. HOW I WILL APPROACH IT\n"+numbered("approach","[First step]")+"\n";
+    d+="\n3. WHAT YOU GET\n"+bullets("deliverables","[Deliverable]")+"\n";
+    d+="\n4. TIMELINE\n"+txt("timeline","[Timeline]")+"\n";
+    d+="\n5. INVESTMENT\n";
+    d+="Option A: "+txt("opt1name","[Option name]")+"\n";
+    d+="Price: "+txt("opt1price","[Price]")+"\n";
+    d+="Includes:\n"+bullets("opt1inc","[What this option covers]")+"\n";
+    var o2=txt("opt2name","");
+    if(o2||txt("opt2price","")||lines("opt2inc").length){
+      d+="\nOption B: "+(o2||"[Option name]")+"\n";
+      d+="Price: "+txt("opt2price","[Price]")+"\n";
+      d+="Includes:\n"+bullets("opt2inc","[What this option covers]")+"\n";
+    }
+    d+="\nPayment terms: "+txt("terms","[Payment terms]")+"\n";
+    d+="\n6. WHY ME\n"+bullets("why","[Proof point]")+"\n";
+    d+="\n7. NEXT STEP\n"+txt("next","Reply to this email with the option you would like and I will send the paperwork.")+"\n";
+    var v=txt("valid","");
+    d+="\n"+(v?("This proposal is valid until "+v+"."):"This proposal is valid for 30 days from the date above.")+"\n";
+    d+="\n"+me+"\n";
+    el("doc").textContent=d;
+  }
+  ids.forEach(function(id){el(id).addEventListener("input",build);});
+  el("copy").addEventListener("click",function(){SD.copy(el("doc").textContent,this);});
+  el("print").addEventListener("click",function(){build();window.print();});
+  build();
+})();
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "7ada08fc6da845c08250bb707a3abf3d"}'></script>
+</body>
+</html>
