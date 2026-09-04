@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://solodesk.pages.dev/sitemap.xml
+Sitemap: https://solodesk.work/sitemap.xml
