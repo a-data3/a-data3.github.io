@@ -231,7 +231,7 @@
       body+="<tr><td>"+esc(it.desc||"—")+"</td><td class='r'>"+SD.num(it.qty,2)+
             "</td><td class='r'>"+f(it.rate)+"</td><td class='r'>"+f(amt)+"</td></tr>";
     });
-    el("p-items").innerHTML=body||"<tr><td colspan='4' style='color:#9ca3af'>Add a line item…</td></tr>";
+    el("p-items").innerHTML=body||"<tr><td colspan='4' style='color:#9ca3af'>Tambahkan baris item…</td></tr>";
     var discPct=SD.val("disc"), taxPct=SD.val("tax");
     var discAmt=sub*discPct/100, taxable=sub-discAmt, taxAmt=taxable*taxPct/100, total=taxable+taxAmt;
     el("p-sub").textContent=f(sub);
@@ -246,7 +246,7 @@
   el("additem").addEventListener("click",function(){addItem("",1,0);render();});
   el("download").addEventListener("click",function(){render();window.print();});
   el("reset").addEventListener("click",function(){
-    if(!confirm("Clear the invoice and start over?"))return;
+    if(!confirm("Kosongkan invoice dan mulai dari awal?"))return;
     items=[]; ["invno","fromName","fromInfo","toName","toInfo","notes"].forEach(function(id){el(id).value="";});
     el("invno").value="INV-0001"; el("tax").value=0; el("disc").value=0;
     addItem("",1,0); render();
@@ -256,7 +256,7 @@
     try{
       localStorage.setItem("sd_invoice_from",JSON.stringify({name:el("fromName").value,info:el("fromInfo").value,currency:el("currency").value}));
       this.textContent="Saved on this device"; var b=this; setTimeout(function(){b.textContent="Remember my details";},1500);
-    }catch(e){alert("Couldn't save — your browser may be blocking local storage.");}
+    }catch(e){alert("Tidak bisa menyimpan. Browser Anda mungkin memblokir penyimpanan lokal.");}
   });
   function loadRemembered(){
     try{var s=JSON.parse(localStorage.getItem("sd_invoice_from")||"null");
@@ -267,7 +267,7 @@
   var now=new Date(), due=new Date(now.getTime()+14*864e5);
   el("idate").value=todayISO(now); el("ddate").value=todayISO(due);
   loadRemembered();
-  addItem("Design work — 10 hours",10,60);
+  addItem("Jasa desain, 10 jam",10,60);
   render();
 })();
 </script>

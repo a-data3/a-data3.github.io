@@ -127,16 +127,16 @@
     var rev=(income+exp)*(1+buffer/100);
     if(tax>0 && tax<100) rev=rev/(1-tax/100);
     var rate=byear>0?rev/byear:0;
-    SD.setText("rate",byear>0?f(rate)+" / hr":"—");
+    SD.setText("rate",byear>0?f(rate)+" / jam":"—");
     SD.setText("dayrate",byear>0?f(rate*hpd):"—");
     SD.setText("hpd",String(hpd));
-    SD.setText("byear",SD.num(byear,0)+" h");
+    SD.setText("byear",SD.num(byear,0)+" jam");
     SD.setText("revneed",f(rev));
     var util=(hpw/40)*100;
-    SD.setText("util",SD.num(util,0)+"% of a 40h week");
+    SD.setText("util",SD.num(util,0)+"% dari 40 jam seminggu");
     var s="";
-    if(hpw>=38) s="Heads up: billing "+hpw+" hours a week is very high once you subtract admin and sales. Most freelancers bill 20–30. If that number slips, your real rate needs to be higher.";
-    else if(rate>0) s="At "+f(rate)+"/hr you need to bill "+SD.num(byear,0)+" hours across "+weeks+" working weeks to hit your goal. If clients are scarce, raise the rate rather than the hours.";
+    if(hpw>=38) s="Perhatian: menagih "+hpw+" jam per minggu sangat tinggi setelah dikurangi administrasi dan mencari klien. Kebanyakan freelancer menagih 20 sampai 30 jam. Kalau angka itu turun, tarif Anda perlu lebih tinggi.";
+    else if(rate>0) s="Dengan "+f(rate)+"/jam, Anda perlu menagih "+SD.num(byear,0)+" jam dalam "+weeks+" minggu kerja untuk mencapai target. Kalau klien sedikit, naikkan tarif, bukan jam kerja.";
     el("sanity").textContent=s;
   }
   ["currency","income","expenses","hpw","off","buffer","tax","hpd_in"].forEach(function(id){

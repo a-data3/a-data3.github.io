@@ -110,7 +110,7 @@
     {key:"wise",name:"Wise",fee:0.6,fx:0,fixed:1},
     {key:"payoneer",name:"Payoneer",fee:1.0,fx:0.5,fixed:0},
     {key:"paypal",name:"PayPal",fee:3.49,fx:3.5,fixed:0.5},
-    {key:"bank",name:"Bank wire",fee:0,fx:2.5,fixed:15}
+    {key:"bank",name:"Transfer bank",fee:0,fx:2.5,fixed:15}
   ];
   var rows=JSON.parse(JSON.stringify(DEF));
   function renderRows(){
@@ -145,7 +145,7 @@
     });
     el("out").innerHTML=body;
     var worst=results.reduce(function(a,b){return b.net<a.net?b:a;},results[0]);
-    el("verdict").textContent="On these numbers, "+best.name+" nets you "+f(best.net-worst.net)+" more than "+worst.name+". Always confirm the live rates for your currencies.";
+    el("verdict").textContent="Dengan angka ini, "+best.name+" memberi Anda "+f(best.net-worst.net)+" lebih banyak daripada "+worst.name+". Selalu cek kurs terkini untuk mata uang Anda.";
   }
   el("reset").addEventListener("click",function(){rows=JSON.parse(JSON.stringify(DEF));renderRows();calc();});
   ["amount","currency"].forEach(function(id){el(id).addEventListener("input",calc);el(id).addEventListener("change",calc);});

@@ -145,7 +145,7 @@
     SD.setText("eff",SD.num(eff,1)+"%");
     SD.setText("keep",f(amt-total));
     var tip="";
-    if(eff>0) tip="Move "+f(total)+" ("+SD.num(eff,1)+"%) into a separate tax account the moment this payment lands. Treat the rest as your real income.";
+    if(eff>0) tip="Sisihkan "+f(total)+" ("+SD.num(eff,1)+"%) ke rekening pajak terpisah begitu pembayaran ini masuk. Anggap sisanya sebagai penghasilan Anda yang sebenarnya.";
     el("tip").textContent=tip;
   }
   ["mode","currency","amount","fed","state","simple"].forEach(function(id){
