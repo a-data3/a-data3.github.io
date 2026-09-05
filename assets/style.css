@@ -185,6 +185,10 @@ td.r,th.r{text-align:right;font-variant-numeric:tabular-nums lining-nums}
 .facts{max-width:76ch}
 .facts th{width:24%}
 @media (max-width:640px){
+  /* narrower gutters so a four-column data table still fits inside a result panel */
+  th,td{padding:8px 6px}
+  th:first-child,td:first-child{padding-left:0}
+  th:last-child,td:last-child{padding-right:0}
   .facts,.facts tbody,.facts tr,.facts th,.facts td{display:block;width:100%}
   .facts th{border-bottom:0;padding-bottom:2px}
   .facts td{padding-top:0;padding-bottom:14px}
