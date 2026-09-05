@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Freelance Discount Calculator: What a Client Discount Costs You | SoloDesk</title>
+<meta name="description" content="Free discount calculator for freelancers. See what a 10 or 20 percent discount does to your effective hourly rate and your profit, and how much extra work it takes to earn the same. No signup needed.">
+<link rel="canonical" href="https://solodesk.work/tools/freelance-discount-calculator.html">
+<meta property="og:title" content="Freelance Discount Calculator">
+<meta property="og:description" content="What a client discount does to your hourly rate and your profit, with a counter-offer you can copy.">
+<meta property="og:url" content="https://solodesk.work/tools/freelance-discount-calculator.html">
+<meta name="theme-color" content="#1f4fd1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f4fd1'/%3E%3Cpath d='M9 11h14M9 16h9M9 21h14' stroke='white' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/style.css">
+<script src="/assets/site.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SoloDesk Freelance Discount Calculator","applicationCategory":"BusinessApplication","operatingSystem":"Any (web)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+</head>
+<body>
+<header class="site-header"><div class="container"><nav class="nav" aria-label="Primary">
+  <a class="brand" href="/"><svg class="logo" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M9 11h14M9 16h9M9 21h14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>SoloDesk</a>
+  <span class="spacer"></span>
+  <a class="navlink" href="/#tools">Tools</a>
+  <a class="navlink" href="/guides/how-to-set-your-freelance-rate.html">Guides</a>
+</nav></div></header>
+
+<main><div class="container">
+  <p class="crumb"><a href="/">Home</a> › Freelance Discount Calculator</p>
+  <h1>Freelance Discount Calculator</h1>
+  <p style="color:var(--muted);max-width:680px">A client asks for ten percent off. This works out what that leaves you: the price after the discount, what your hourly rate drops to, what is left once your costs come out, and how much extra work you would have to sell to end the year where you started.</p>
+
+  <div class="adslot" data-ad="top" aria-hidden="true"></div>
+
+  <div class="row c2" style="gap:22px;align-items:start">
+    <div class="tool" style="margin-top:0">
+      <div class="field"><label>Currency</label>
+        <select id="currency">
+          <option value="USD">USD $</option><option value="EUR">EUR €</option><option value="GBP">GBP £</option>
+          <option value="CAD">CAD $</option><option value="AUD">AUD $</option><option value="SGD">SGD $</option>
+          <option value="INR">INR ₹</option><option value="IDR">IDR Rp</option><option value="PHP">PHP ₱</option><option value="PKR">PKR ₨</option><option value="BDT">BDT ৳</option><option value="NGN">NGN ₦</option><option value="NZD">NZD $</option>
+        </select></div>
+      <div class="field"><label>Price you quoted</label>
+        <input type="text" inputmode="decimal" spellcheck="false" id="price" value="4000" min="0" step="100"></div>
+      <div class="row c2">
+        <div class="field"><label>Discount asked for (%) <span class="hint">the number in their email</span></label>
+          <input type="text" inputmode="decimal" spellcheck="false" id="disc" value="15" min="0" max="90" step="1"></div>
+        <div class="field"><label>Hours the job takes <span class="hint">your honest estimate</span></label>
+          <input type="text" inputmode="decimal" spellcheck="false" id="hours" value="40" min="0" step="1"></div>
+      </div>
+      <div class="field"><label>Direct costs on this job <span class="hint">subcontractors, stock assets, licences, travel</span></label>
+        <input type="text" inputmode="decimal" spellcheck="false" id="costs" value="600" min="0" step="50"></div>
+      <div class="note">Direct costs are the part of the price that never reaches you. They do not shrink when the price does, which is why a discount takes a bigger bite out of profit than it does out of the invoice. If you have no costs on this job, leave it at zero.</div>
+    </div>
+
+    <div>
+      <div class="result">
+        <div class="lbl">Price after the discount</div>
+        <div class="big" id="newprice">—</div>
+        <div style="margin-top:10px">
+          <div class="kv"><span>Revenue you give up</span><span class="v" id="given">—</span></div>
+          <div class="kv"><span>Effective hourly before</span><span class="v" id="effbefore">—</span></div>
+          <div class="kv"><span>Effective hourly after</span><span class="v" id="effafter">—</span></div>
+          <div class="kv"><span>Profit after the discount</span><span class="v" id="profitafter">—</span></div>
+          <div class="kv"><span>Profit drop</span><span class="v" id="drop">—</span></div>
+          <div class="kv"><span>Extra work to earn the same</span><span class="v" id="extrawork">—</span></div>
+        </div>
+      </div>
+      <div class="field" style="margin-top:14px">
+        <label>A reply you can send instead of yes <button class="btn ghost small copybtn" id="copyReply" type="button">Copy</button></label>
+        <textarea id="reply" rows="14" readonly></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="tool">
+    <h3>What each discount level costs you</h3>
+    <table><thead><tr><th>Discount</th><th class="r">Price</th><th class="r">Effective hourly</th><th class="r">Profit drop</th></tr></thead>
+      <tbody id="levels"></tbody></table>
+    <small>Effective hourly here is the price minus your direct costs, divided by the hours the job takes. It is what the job pays you per hour before tax.</small>
+  </div>
+
+  <div class="adslot" data-ad="mid" aria-hidden="true"></div>
+
+  <section class="prose" style="margin-top:26px">
+    <h2>Why a discount hurts more than it looks</h2>
+    <p>A discount comes off the top of your price. Your costs stay exactly where they were. So the money that disappears comes out of the only part of the invoice you were going to keep, and the percentage you lose from your profit comes out bigger than the percentage you took off the price.</p>
+    <p>Take a project quoted at 4,000 with 600 of direct costs that takes you 40 hours. Before any discount you keep 3,400, which is 85 an hour. Give the client 15 percent off and the invoice becomes 3,400, but the 600 of costs has not moved, so you keep 2,800. That is 70 an hour. The price fell by 15 percent and your profit fell by almost 18 percent.</p>
+    <p>The gap widens as costs rise. On a job where half the price goes straight back out to a subcontractor, a 15 percent discount cuts your profit by 30 percent. Run your own numbers above before you agree to anything.</p>
+    <h3>Work out how much more you would have to sell</h3>
+    <p>The "extra work to earn the same" figure asks a harder question. If you discount every job at this level, how much more work do you have to win to end the year with the same money? At 15 percent off the example above, the answer is about 21 percent more projects. That is close to an extra month of selling and delivering for no additional income.</p>
+    <p>It is also the honest way to judge the argument that a discount buys future work. A cheaper client has to send you a lot more volume before the discount pays for itself, and most of them never do.</p>
+    <h3>Answers that are better than yes or no</h3>
+    <p>A flat no ends the conversation, and a flat yes teaches the client that your first price was padded. Most of the time you can keep the price and change something else, or keep the budget and change the scope.</p>
+    <ul>
+      <li><strong>Cut the scope to fit the budget.</strong> The cleanest option. Take out a deliverable, a round of revisions, or a phase, and hold your hourly rate steady. The calculator shows how many hours you would need to remove.</li>
+      <li><strong>Trade the discount for terms.</strong> Full price with 50 percent up front, or payment within seven days instead of thirty. Money now is worth more than money later, so this can be a genuine concession without cutting your rate.</li>
+      <li><strong>Trade it for volume.</strong> A lower rate is defensible on a booked block of three projects or a monthly retainer, because you save the sales time. Price that properly with the <a href="/tools/retainer-pricing-calculator.html">retainer calculator</a>.</li>
+      <li><strong>Trade it for something you need.</strong> A named case study, a testimonial with numbers in it, or an introduction to two similar companies. Ask for it in writing, in the same message where you agree the discount.</li>
+      <li><strong>Offer a smaller first piece.</strong> If the budget is genuinely fixed, a paid discovery session or a single deliverable at full rate beats the whole project at a cut rate.</li>
+    </ul>
+    <h3>When a discount is the right call</h3>
+    <p>Sometimes it is. A quiet month with no pipeline, a client you want on your portfolio, a project that will teach you something you can charge for later, or a long-standing client going through a bad quarter. In those cases, discount on purpose and say so plainly: name the normal price on the invoice, show the reduction as its own line, and put an expiry date on it. A discount the client can see stays a one-off favour. One that disappears into a lower total becomes your new price the next time they call.</p>
+    <p>Whatever you decide, write the agreed figure into the paperwork the same day. The <a href="/tools/project-quote-builder.html">quote builder</a> shows the discount as its own line, and the <a href="/tools/scope-of-work-generator.html">scope of work generator</a> pins down what the reduced scope covers, so the work you removed does not creep back in later.</p>
+    <div class="rec-box"><div class="tag">Recommended</div>
+      <p style="margin:.3em 0 0">Invoicing software that stores your standard rates makes it easier to show a discount as a visible line rather than a lower price. <a href="#" rel="sponsored nofollow" data-aff="invoicing">See our recommended invoicing tools →</a></p>
+    </div>
+    <h2>Frequently asked questions</h2>
+    <details><summary>What discount is normal for freelance work?</summary><p>There is no standard. The common ones are 5 to 10 percent for paying the whole fee up front, and 10 to 15 percent for a committed block of work such as a retainer or several projects booked together. Anything above 20 percent usually means the original quote was inflated, the scope needs to shrink, or the client cannot afford the work.</p></details>
+    <details><summary>Should I build a discount into my quote so I can give it away?</summary><p>It is tempting and it backfires. Padding your price means the clients who never ask are overcharged, and the ones who always ask learn that your numbers move. Quote the price you want, then negotiate on scope and terms rather than on the rate.</p></details>
+    <details><summary>How do I say no without losing the client?</summary><p>Explain what the price buys rather than defending the number. Say the figure covers a specific amount of work, then offer a version that fits their budget with less in it. The client now has a choice instead of a rejection, and can take the smaller version without either of you losing face. The reply above is a starting point.</p></details>
+    <details><summary>Does this account for tax?</summary><p>No. The figures here are before tax. Use the <a href="/tools/tax-set-aside-calculator.html">tax set-aside calculator</a> to see what you should hold back from what is left, and the <a href="/tools/freelance-rate-calculator.html">rate calculator</a> to check that your undiscounted rate covers your costs and time off in the first place.</p></details>
+  </section>
+</div></main>
+
+<footer class="site-footer"><div class="container">
+  <p><a href="/">← All SoloDesk tools</a></p>
+  <p class="disc">© <span data-year>2026</span> SoloDesk. Information only, not professional advice.</p>
+</div></footer>
+
+<script>
+(function(){
+  "use strict";
+  var el=function(id){return document.getElementById(id);};
+  function calc(){
+    var cur=el("currency").value, f=function(n){return SD.fmt(n,cur);};
+    var price=SD.val("price"), hours=SD.val("hours"), costs=SD.val("costs");
+    var d=SD.val("disc");
+    if(d<0)d=0; if(d>95)d=95;
+    var newPrice=price*(1-d/100);
+    var given=price-newPrice;
+    var p0=price-costs, p1=newPrice-costs;
+    var eff0=hours>0?p0/hours:0, eff1=hours>0?p1/hours:0;
+    var cut=hours*d/100;
+    SD.setText("newprice",f(newPrice));
+    SD.setText("given",f(given));
+    SD.setText("effbefore",f(eff0)+" / hr");
+    SD.setText("effafter",f(eff1)+" / hr");
+    SD.setText("profitafter",f(p1));
+    SD.setText("drop",p0>0?SD.num((p0-p1)/p0*100,1)+"%":"check the cost figure");
+    SD.setText("extrawork",(p0>0&&p1>0)?"+"+SD.num((p0/p1-1)*100,1)+"%":"the job stops paying");
+    var body="";
+    [5,10,15,20,25,30].forEach(function(pct){
+      var np=price*(1-pct/100), pp=np-costs;
+      var eh=hours>0?f(pp/hours)+" / hr":"set hours";
+      var dr=p0>0?SD.num((p0-pp)/p0*100,1)+"%":"check costs";
+      body+="<tr><td>"+pct+"%</td><td class='r'>"+f(np)+"</td><td class='r'>"+eh+"</td><td class='r'>"+dr+"</td></tr>";
+    });
+    el("levels").innerHTML=body;
+    el("reply").value=[
+      "Hi [client name],",
+      "",
+      "Thanks for coming back to me on the budget. I can't take "+SD.num(d,1)+"% off this one and keep the scope as quoted. At "+f(newPrice)+" the project no longer covers the "+SD.num(hours,0)+" hours it takes.",
+      "",
+      "Two things that do work:",
+      "",
+      "1. Same budget, smaller scope. I can deliver a "+f(newPrice)+" version by taking out around "+SD.num(cut,1)+" hours of work. [name what comes out]",
+      "2. Full scope at "+f(price)+", with 50% up front and the rest on delivery.",
+      "",
+      "Tell me which one suits and I'll send the updated quote today.",
+      "",
+      "[your name]"
+    ].join("\n");
+  }
+  ["currency","price","disc","hours","costs"].forEach(function(id){el(id).addEventListener("input",calc);el(id).addEventListener("change",calc);});
+  el("copyReply").addEventListener("click",function(){SD.copy(el("reply").value,this);});
+  calc();
+})();
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "7ada08fc6da845c08250bb707a3abf3d"}'></script>
+</body>
+</html>
