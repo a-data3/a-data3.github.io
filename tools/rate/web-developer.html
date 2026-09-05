@@ -21,40 +21,40 @@
 <header class="site-header"><div class="container"><nav class="nav" aria-label="Primary">
   <a class="brand" href="/"><svg class="logo" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M9 11h14M9 16h9M9 21h14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>SoloDesk</a>
   <span class="spacer"></span>
-  <a class="navlink" href="/#tools">Tools</a>
+  <a class="navlink" aria-current="true" href="/#tools">Tools</a>
   <a class="navlink" href="/guides/how-to-set-your-freelance-rate.html">Guides</a>
 </nav></div></header>
 
 <main><div class="container">
   <p class="crumb"><a href="/">Home</a> › <a href="/tools/freelance-rate-calculator.html">Rate calculator</a> › Web Developer</p>
-  <h1>Freelance Web Developer Rate Calculator</h1>
-  <p style="color:var(--muted);max-width:680px">Whether you build Webflow marketing sites, Shopify storefronts, or custom React apps, your rate should reflect what the work is worth to the client rather than the hours it takes you. Use the calculator below to check your number, then read on for how web developers price their work in 2026.</p>
+  <h1>Freelance web developer rate calculator</h1>
+  <p class="lede">Whether you build Webflow marketing sites, Shopify storefronts, or custom React apps, your rate should reflect what the work is worth to the client rather than the hours it takes you. Use the calculator below to check your number, then read on for how web developers price their work in 2026.</p>
 
   <div class="adslot" data-ad="top" aria-hidden="true"></div>
 
   <div class="row c2" style="gap:22px;align-items:start">
     <div class="tool" style="margin-top:0">
-      <div class="field"><label>Currency</label>
+      <div class="field"><label for="currency">Currency</label>
         <select id="currency">
           <option value="USD">USD $</option><option value="EUR">EUR €</option><option value="GBP">GBP £</option>
           <option value="CAD">CAD $</option><option value="AUD">AUD $</option><option value="SGD">SGD $</option>
           <option value="INR">INR ₹</option><option value="IDR">IDR Rp</option><option value="PHP">PHP ₱</option><option value="PKR">PKR ₨</option><option value="BDT">BDT ৳</option><option value="NGN">NGN ₦</option><option value="NZD">NZD $</option>
         </select></div>
-      <div class="field"><label>Target annual income <span class="hint">what you want to earn, before personal income tax</span></label>
-        <input type="text" inputmode="decimal" spellcheck="false" id="income" value="90000" min="0" step="1000"></div>
-      <div class="field"><label>Annual business expenses <span class="hint">software, hardware, insurance, fees, subscriptions</span></label>
-        <input type="text" inputmode="decimal" spellcheck="false" id="expenses" value="9000" min="0" step="500"></div>
+      <div class="field"><label for="income">Target annual income</label>
+        <span class="hint" id="income-hint">what you want to earn, before personal income tax</span><input type="text" inputmode="decimal" spellcheck="false" id="income" value="90000" aria-describedby="income-hint"></div>
+      <div class="field"><label for="expenses">Annual business expenses</label>
+        <span class="hint" id="expenses-hint">software, hardware, insurance, fees, subscriptions</span><input type="text" inputmode="decimal" spellcheck="false" id="expenses" value="9000" aria-describedby="expenses-hint"></div>
       <div class="row c2">
-        <div class="field"><label>Billable hours / week <span class="hint">hours you can bill to clients, usually well under 40</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="hpw" value="25" min="1" max="80" step="1"></div>
-        <div class="field"><label>Weeks off / year <span class="hint">holiday + sick + admin</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="off" value="6" min="0" max="40" step="1"></div>
+        <div class="field"><label for="hpw">Billable hours / week</label>
+          <span class="hint" id="hpw-hint">hours you can bill to clients, usually well under 40</span><input type="text" inputmode="decimal" spellcheck="false" id="hpw" value="25" aria-describedby="hpw-hint"></div>
+        <div class="field"><label for="off">Weeks off / year</label>
+          <span class="hint" id="off-hint">holiday + sick + admin</span><input type="text" inputmode="decimal" spellcheck="false" id="off" value="6" aria-describedby="off-hint"></div>
       </div>
       <div class="row c2">
-        <div class="field"><label>Profit buffer (%) <span class="hint">safety margin for gaps</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="buffer" value="10" min="0" max="100" step="1"></div>
-        <div class="field"><label>Gross up for tax (%) <span class="hint">optional, leave at 0 to skip</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="tax" value="0" min="0" max="80" step="1"></div>
+        <div class="field"><label for="buffer">Profit buffer (%)</label>
+          <span class="hint" id="buffer-hint">safety margin for gaps</span><input type="text" inputmode="decimal" spellcheck="false" id="buffer" value="10" aria-describedby="buffer-hint"></div>
+        <div class="field"><label for="tax">Gross up for tax (%)</label>
+          <span class="hint" id="tax-hint">optional, leave at 0 to skip</span><input type="text" inputmode="decimal" spellcheck="false" id="tax" value="0" aria-describedby="tax-hint"></div>
       </div>
     </div>
 
@@ -69,8 +69,8 @@
           <div class="kv"><span>Effective utilisation</span><span class="v" id="util">—</span></div>
         </div>
       </div>
-      <div class="field" style="margin-top:14px"><label>Hours in a working day <span class="hint">for the day rate</span></label>
-        <input type="text" inputmode="decimal" spellcheck="false" id="hpd_in" value="8" min="1" max="24" step="1"></div>
+      <div class="field" style="margin-top:14px"><label for="hpd_in">Hours in a working day</label>
+        <span class="hint" id="hpd_in-hint">for the day rate</span><input type="text" inputmode="decimal" spellcheck="false" id="hpd_in" value="8" aria-describedby="hpd_in-hint"></div>
       <div class="note" id="sanity"></div>
     </div>
   </div>
@@ -79,7 +79,7 @@
 
   <section class="container" style="padding:0">
     <h2>Rate calculator by profession</h2>
-    <p style="color:var(--muted)">Pick the version pre-set for your field. Each one comes with pricing advice specific to that kind of work.</p>
+    <p class="section-intro">Pick the version pre-set for your field. Each one comes with pricing advice specific to that kind of work.</p>
     <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))">
       <a class="card" href="/tools/rate/web-developer.html"><h3>Web Developer</h3><p>Set a rate for freelance web development.</p></a>
       <a class="card" href="/tools/rate/graphic-designer.html"><h3>Graphic Designer</h3><p>Price logos, branding and design work.</p></a>
@@ -92,7 +92,7 @@
     </div>
   </section>
 
-  <section class="prose" style="margin-top:26px">
+  <section class="prose">
     <div class="note">In 2026, freelance web developers in the US typically charge between $50 and $150 per hour, with a median around $85-$105. Rates vary a lot by region, stack, and experience, and senior specialists in high-demand niches often charge $150-$250+.</div>
     <h2>What moves a web developer's rate</h2><p>Two developers with the same tech stack can charge very different rates. The difference usually comes down to who they work for and what they take responsibility for. Three things matter most. First, whether you own the outcome (a store that converts, a page that loads fast) or just work through tickets. Second, how much is riding on the site: a solo founder's brochure site is a different job from an e-commerce platform doing six figures a month. Third, how much of the stack you cover. Full-stack developers who can handle infrastructure, a headless CMS, payments, and a CI pipeline charge 20-40% more than front-end-only builders, because the client doesn't have to assemble a team around you.</p><p>Specialization pays more than seniority alone. Clients can find a "React developer" anywhere, so they compare on price. A "Shopify Plus developer who has migrated a store off a legacy platform without losing SEO" is much harder to replace. The narrower your niche, and the closer it sits to the client's revenue, the less you compete on price.</p><h2>Which pricing model fits web work</h2><p>Hourly billing is where most developers start, and it works for open-ended maintenance or discovery work where the scope can't be pinned down in advance. The problem is that it punishes you for getting faster. The better you know a stack, the fewer hours each build takes, and the less you earn from it.</p><ul><li><strong>Project pricing</strong> is the usual choice for defined builds (a marketing site, a redesign, a store setup). Quote a flat fee for the deliverable rather than for the hours. You keep the benefit of your speed, and a fixed number is much easier for a client to approve than an open meter. It only works when the scope is written down and you have past builds to estimate from, so protect it with a clear statement of work.</li><li><strong>Retainers</strong> are the option most developers overlook. Nearly every site you launch needs ongoing updates, security patches, plugin maintenance, and small features. Package that as a fixed monthly fee (commonly $1,500-$5,000) for a set block of work. It evens out the feast-or-famine cycle and turns one-off clients into predictable revenue. Price the retainer close to your project rate rather than below it.</li><li><strong>Value-based pricing</strong> applies when the site directly drives revenue, such as a checkout rebuild that lifts conversion. In that case, price against a share of the upside rather than against your hours.</li></ul><h2>The mistake that drags web developers' rates down</h2><p>It's under-scoping the job and then absorbing the extra work for free. A client approves a "5-page site," then asks for a blog, a contact form integration, a newsletter signup, three rounds of "just one more tweak," and content you assumed they'd provide. Each request feels small, so you say yes, and a $6,000 project turns into 90 hours of work at an effective $40/hour. Working faster won't fix this. What fixes it is a written scope that names the deliverables, sets revision limits, says who supplies content, and states a change-order rate for anything outside it. "Happy to add that, it's a small change order" is one of the most profitable sentences you can learn to say.</p><p>A related trap is quoting before discovery. Never price a build from a two-line brief. Run a short paid discovery session, or build a discovery phase into the quote, so your number rests on the real requirements instead of an optimistic guess.</p><h2>Using the calculator</h2><p>Enter your target income, your expenses, and a realistic number of billable hours (client work is often only 60-70% of your week; the rest goes to sales and admin). That gives you a floor hourly rate. To turn it into a project quote, estimate the hours and add a buffer for the scope creep you now know is coming.</p>
     <h2>Rate calculators for other freelance fields</h2>
@@ -135,6 +135,8 @@
     if(hpw>=38) s="Heads up: billing "+hpw+" hours a week is very high once you subtract admin and sales. Most freelancers bill 20–30. If that number slips, your real rate needs to be higher.";
     else if(rate>0) s="At "+f(rate)+"/hr you need to bill "+SD.num(byear,0)+" hours across "+weeks+" working weeks to hit your goal. If clients are scarce, raise the rate rather than the hours.";
     el("sanity").textContent=s;
+    SD.sayLater(byear>0?("Target hourly rate "+f(rate)+", day rate "+f(rate*hpd)+", from "+SD.num(byear,0)+" billable hours a year."):"Enter your billable hours to see a rate.");
+    SD.flashResult(document.querySelector(".result"));
   }
   ["currency","income","expenses","hpw","off","buffer","tax","hpd_in"].forEach(function(id){
     el(id).addEventListener("input",calc);

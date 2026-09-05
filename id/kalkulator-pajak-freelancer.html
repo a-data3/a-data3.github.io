@@ -24,14 +24,14 @@
 <header class="site-header"><div class="container"><nav class="nav" aria-label="Primary">
   <a class="brand" href="/"><svg class="logo" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M9 11h14M9 16h9M9 21h14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>SoloDesk</a>
   <span class="spacer"></span>
-  <a class="navlink" href="/#tools">Alat</a>
+  <a class="navlink" aria-current="true" href="/#tools">Alat</a>
   <a class="navlink" href="/guides/freelancer-tax-basics.html">Panduan</a>
 </nav></div></header>
 
 <main><div class="container">
   <p class="crumb"><a href="/">Beranda</a> › Kalkulator Sisihkan Pajak</p>
-  <h1>Berapa Pajak yang Harus Disisihkan Freelancer Setiap Bulan?</h1>
-  <p style="color:var(--muted);max-width:680px">Sebagian uang yang mengendap di rekening Anda sebenarnya bukan milik Anda, itu jatah kantor pajak. Kalkulator ini membantu Anda menghitung berapa dari setiap pembayaran yang perlu dipindahkan ke tabungan terpisah, supaya tagihan pajak tidak pernah datang sebagai kejutan.</p>
+  <h1>Berapa pajak yang harus disisihkan freelancer setiap bulan?</h1>
+  <p class="lede">Sebagian uang yang mengendap di rekening Anda sebenarnya bukan milik Anda, itu jatah kantor pajak. Kalkulator ini membantu Anda menghitung berapa dari setiap pembayaran yang perlu dipindahkan ke tabungan terpisah, supaya tagihan pajak tidak pernah datang sebagai kejutan.</p>
 
   <div class="note"><strong>Hanya perkiraan.</strong> Besaran pajak bergantung pada total penghasilan, status usaha, dan aturan yang berlaku untuk Anda. Kalkulator ini memberi angka perencanaan untuk disisihkan, bukan pengganti SPT Tahunan yang sebenarnya. Sebelum mengandalkan angka ini, cek aturan terbaru di <a href="https://www.pajak.go.id" target="_blank" rel="noopener">pajak.go.id</a> atau tanya konsultan pajak. Ini bukan nasihat pajak. Lihat juga <a href="/guides/freelancer-tax-basics.html">dasar-dasar pajak freelancer</a> kami.</div>
 
@@ -39,33 +39,33 @@
 
   <div class="row c2" style="gap:22px;align-items:start">
     <div class="tool" style="margin-top:0">
-      <div class="field"><label>Mode</label>
+      <div class="field"><label for="mode">Mode</label>
         <select id="mode">
           <option value="us">Amerika Serikat (tidak berlaku untuk Indonesia)</option>
           <option value="simple" selected>Sederhana (satu tarif, cocok untuk PPh Final Indonesia)</option>
         </select></div>
-      <div class="field"><label>Mata uang</label>
+      <div class="field"><label for="currency">Mata uang</label>
         <select id="currency">
           <option value="USD">USD $</option><option value="EUR">EUR €</option><option value="GBP">GBP £</option>
           <option value="CAD">CAD $</option><option value="AUD">AUD $</option><option value="SGD">SGD $</option>
           <option value="INR">INR ₹</option><option value="IDR" selected>IDR Rp</option><option value="PHP">PHP ₱</option><option value="PKR">PKR ₨</option><option value="BDT">BDT ৳</option><option value="NGN">NGN ₦</option><option value="NZD">NZD $</option>
         </select></div>
-      <div class="field"><label>Jumlah pembayaran / invoice <span class="hint">dasar pengenaan pajaknya, omzet bruto untuk PPh Final atau laba bersih kalau pakai tarif progresif</span></label>
-        <input type="text" inputmode="decimal" spellcheck="false" id="amount" value="15000000" min="0" step="100"></div>
+      <div class="field"><label for="amount">Jumlah pembayaran / invoice</label>
+        <span class="hint" id="amount-hint">dasar pengenaan pajaknya, omzet bruto untuk PPh Final atau laba bersih kalau pakai tarif progresif</span><input type="text" inputmode="decimal" spellcheck="false" id="amount" value="15000000" aria-describedby="amount-hint"></div>
 
       <div id="us-fields" style="display:none">
         <div class="row c2">
-          <div class="field"><label>Pajak federal (%) <span class="hint">tarif marginal Anda, misalnya 12 / 22 / 24</span></label>
-            <input type="text" inputmode="decimal" spellcheck="false" id="fed" value="22" min="0" max="60" step="1"></div>
-          <div class="field"><label>Pajak negara bagian (%) <span class="hint">0 kalau tidak ada</span></label>
-            <input type="text" inputmode="decimal" spellcheck="false" id="state" value="5" min="0" max="20" step="0.5"></div>
+          <div class="field"><label for="fed">Pajak federal (%)</label>
+            <span class="hint" id="fed-hint">tarif marginal Anda, misalnya 12 / 22 / 24</span><input type="text" inputmode="decimal" spellcheck="false" id="fed" value="22" aria-describedby="fed-hint"></div>
+          <div class="field"><label for="state">Pajak negara bagian (%)</label>
+            <span class="hint" id="state-hint">0 kalau tidak ada</span><input type="text" inputmode="decimal" spellcheck="false" id="state" value="5" aria-describedby="state-hint"></div>
         </div>
         <div class="note" style="border-left-color:var(--brand)">Pajak wirausaha mandiri (self-employment tax) sebesar <strong>15,3%</strong> (Social Security + Medicare) dihitung otomatis dari 92,35% laba. Ini metode standar di Amerika Serikat dan tidak berlaku di Indonesia.</div>
       </div>
 
       <div id="simple-fields">
-        <div class="field"><label>Tarif pajak gabungan Anda (%) <span class="hint">misalnya 0,5% untuk PPh Final, atau tarif progresif kalau pekerjaan Anda dikecualikan</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="simple" value="25" min="0" max="70" step="1"></div>
+        <div class="field"><label for="simple">Tarif pajak gabungan Anda (%)</label>
+          <span class="hint" id="simple-hint">misalnya 0,5% untuk PPh Final, atau tarif progresif kalau pekerjaan Anda dikecualikan</span><input type="text" inputmode="decimal" spellcheck="false" id="simple" value="25" aria-describedby="simple-hint"></div>
       </div>
     </div>
 
@@ -86,7 +86,7 @@
 
   <div class="adslot" data-ad="mid" aria-hidden="true"></div>
 
-  <section class="prose" style="margin-top:26px">
+  <section class="prose">
     <h2>Berapa pajak yang harus disisihkan freelancer di Indonesia?</h2>
     <p>Aturan kasar yang sering dipakai adalah menyisihkan <strong>20–30%</strong> dari setiap pembayaran. Angka yang tepat tergantung status pajak Anda, apakah pakai PPh Final, tarif progresif, atau justru pekerjaan Anda termasuk yang dikecualikan dari skema final. Kalkulator ini memakai tarif yang Anda masukkan sendiri, jadi hasilnya lebih pas daripada sekadar tebakan.</p>
     <h3>Kalau Anda pakai PPh Final 0,5%</h3>
@@ -147,6 +147,8 @@
     var tip="";
     if(eff>0) tip="Sisihkan "+f(total)+" ("+SD.num(eff,1)+"%) ke rekening pajak terpisah begitu pembayaran ini masuk. Anggap sisanya sebagai penghasilan Anda yang sebenarnya.";
     el("tip").textContent=tip;
+    SD.sayLater("Sisihkan "+f(total)+" dari "+f(amt)+", efektif "+SD.num(eff,1)+"%. Sisanya "+f(amt-total)+".");
+    SD.flashResult(document.querySelector(".result"));
   }
   ["mode","currency","amount","fed","state","simple"].forEach(function(id){
     el(id).addEventListener("input",calc); el(id).addEventListener("change",calc);

@@ -21,37 +21,37 @@
 <header class="site-header"><div class="container"><nav class="nav" aria-label="Primary">
   <a class="brand" href="/"><svg class="logo" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M9 11h14M9 16h9M9 21h14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>SoloDesk</a>
   <span class="spacer"></span>
-  <a class="navlink" href="/#tools">Tools</a>
+  <a class="navlink" aria-current="true" href="/#tools">Tools</a>
   <a class="navlink" href="/guides/how-to-set-your-freelance-rate.html">Guides</a>
 </nav></div></header>
 
 <main><div class="container">
   <p class="crumb"><a href="/">Home</a> › Late Payment Interest</p>
-  <h1>Late Payment Interest Calculator</h1>
-  <p style="color:var(--muted);max-width:680px">If an invoice is overdue, this works out exactly what you're owed: the original amount, interest, and any late fee. Then copy a firm but polite reminder to send.</p>
+  <h1>Late payment interest calculator</h1>
+  <p class="lede">If an invoice is overdue, this works out exactly what you're owed: the original amount, interest, and any late fee. Then copy a firm but polite reminder to send.</p>
 
   <div class="adslot" data-ad="top" aria-hidden="true"></div>
 
   <div class="row c2" style="gap:22px;align-items:start">
     <div class="tool" style="margin-top:0">
-      <div class="field"><label>Currency</label>
+      <div class="field"><label for="currency">Currency</label>
         <select id="currency">
           <option value="USD">USD $</option><option value="EUR">EUR €</option><option value="GBP">GBP £</option>
           <option value="CAD">CAD $</option><option value="AUD">AUD $</option><option value="SGD">SGD $</option>
           <option value="INR">INR ₹</option><option value="IDR">IDR Rp</option><option value="PHP">PHP ₱</option><option value="PKR">PKR ₨</option><option value="BDT">BDT ৳</option><option value="NGN">NGN ₦</option><option value="NZD">NZD $</option>
         </select></div>
-      <div class="field"><label>Invoice amount</label><input type="text" inputmode="decimal" spellcheck="false" id="amount" value="2000" min="0" step="50"></div>
+      <div class="field"><label for="amount">Invoice amount</label><input type="text" inputmode="decimal" spellcheck="false" id="amount" value="2000"></div>
       <div class="row c2">
-        <div class="field"><label>Due date</label><input type="date" id="due"></div>
-        <div class="field"><label>As of date</label><input type="date" id="asof"></div>
+        <div class="field"><label for="due">Due date</label><input type="date" id="due"></div>
+        <div class="field"><label for="asof">As of date</label><input type="date" id="asof" aria-describedby="asof-err"><p class="err" id="asof-err" role="alert" hidden>The as-of date is before the due date, so nothing is overdue yet.</p></div>
       </div>
-      <div class="field"><label>Annual interest rate (%) <span class="hint">use your contract's rate, or a statutory rate below</span></label>
-        <input type="text" inputmode="decimal" spellcheck="false" id="rate" value="8" min="0" max="60" step="0.5"></div>
+      <div class="field"><label for="rate">Annual interest rate (%)</label>
+        <span class="hint" id="rate-hint">use your contract's rate, or a statutory rate below</span><input type="text" inputmode="decimal" spellcheck="false" id="rate" value="8" aria-describedby="rate-hint rate-err"><p class="err" id="rate-err" role="alert" hidden>Enter an annual rate between 0 and 100%.</p></div>
       <small>Common references: many US contracts use 1.5% per month (18%/yr). UK statutory is 8% above the Bank of England base rate. The EU late-payment reference is 8% above the ECB rate. Use whichever rate your contract or local law allows.</small>
-      <div class="field" style="margin-top:12px"><label>Flat late fee <span class="hint">optional, if your terms allow one</span></label>
-        <input type="text" inputmode="decimal" spellcheck="false" id="fee" value="0" min="0" step="5"></div>
-      <div class="field"><label>Invoice reference <span class="hint">for the reminder text</span></label>
-        <input type="text" id="ref" value="INV-0001"></div>
+      <div class="field" style="margin-top:12px"><label for="fee">Flat late fee</label>
+        <span class="hint" id="fee-hint">optional, if your terms allow one</span><input type="text" inputmode="decimal" spellcheck="false" id="fee" value="0" aria-describedby="fee-hint"></div>
+      <div class="field"><label for="ref">Invoice reference</label>
+        <span class="hint" id="ref-hint">for the reminder text</span><input type="text" id="ref" value="INV-0001" aria-describedby="ref-hint"></div>
     </div>
 
     <div>
@@ -66,15 +66,15 @@
         </div>
       </div>
       <div class="field" style="margin-top:14px">
-        <label>Reminder you can send <button class="btn ghost small copybtn" id="copyRem" type="button">Copy</button></label>
-        <textarea id="reminder" rows="7" readonly></textarea>
+        <div class="field-head"><span id="reminder-lbl">Reminder you can send</span><button class="btn ghost small copybtn" id="copyRem" type="button">Copy</button></div>
+        <textarea id="reminder" readonly aria-labelledby="reminder-lbl"></textarea>
       </div>
     </div>
   </div>
 
   <div class="adslot" data-ad="mid" aria-hidden="true"></div>
 
-  <section class="prose" style="margin-top:26px">
+  <section class="prose">
     <h2>How late-payment interest works</h2>
     <p>Interest on an overdue invoice is usually simple interest: the outstanding amount, multiplied by the annual rate, multiplied by the fraction of a year it is late. This tool uses <code>amount × rate% × days ÷ 365</code>, then adds any flat fee your terms allow.</p>
     <h3>Can a freelancer charge interest?</h3>
@@ -103,12 +103,27 @@
   "use strict";
   var el=function(id){return document.getElementById(id);};
   function iso(d){return d.toISOString().slice(0,10);}
+  // Grow a read-only output to its content so the last line is never clipped.
+  function fit(id){var t=document.getElementById(id);if(!t)return;t.style.height="auto";t.style.height=t.scrollHeight+"px";}
+
+  // Clamp to a valid range and say so, rather than silently producing a wrong reminder.
+  function bound(id,lo,hi){
+    var inp=document.getElementById(id), msg=document.getElementById(id+"-err"), v=SD.parse(inp.value), bad=v<lo||v>hi;
+    if(msg) msg.hidden=!bad;
+    inp.setAttribute("aria-invalid",bad?"true":"false");
+    return Math.min(hi,Math.max(lo,v));
+  }
   function calc(){
     var cur=el("currency").value, f=function(n){return SD.fmt(n,cur);};
-    var amt=SD.val("amount"), rate=SD.val("rate"), fee=SD.val("fee");
+    var amt=SD.val("amount"), rate=bound("rate",0,100), fee=SD.val("fee");
     var due=new Date(el("due").value+"T00:00:00"), asof=new Date(el("asof").value+"T00:00:00");
-    var days=0;
-    if(!isNaN(due)&&!isNaN(asof)) days=Math.max(0,Math.round((asof-due)/864e5));
+    var days=0, early=false;
+    if(!isNaN(due)&&!isNaN(asof)){
+      var raw=Math.round((asof-due)/864e5);
+      early=raw<0; days=Math.max(0,raw);
+    }
+    el("asof-err").hidden=!early;
+    el("asof").setAttribute("aria-invalid",early?"true":"false");
     var interest=amt*(rate/100)*(days/365);
     var total=amt+interest+fee;
     SD.setText("days",days+" day"+(days===1?"":"s"));
@@ -122,6 +137,10 @@
     else rem+=" The outstanding amount is "+f(total)+".";
     rem+="\n\nCould you let me know the expected payment date, or process it at your earliest convenience? Happy to resend payment details if helpful.\n\nThanks very much,\n[Your name]";
     el("reminder").value=rem;
+    fit("reminder");
+    SD.sayLater(days+" day"+(days===1?"":"s")+" overdue, "+f(total)+" now owed on "+f(amt)+
+      " including "+f(interest)+" interest.");
+    SD.flashResult(document.querySelector(".result"));
   }
   var t=new Date(), d=new Date(t.getTime()-14*864e5);
   el("due").value=iso(d); el("asof").value=iso(t);

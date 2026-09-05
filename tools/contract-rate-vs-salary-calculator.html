@@ -27,14 +27,14 @@
 <header class="site-header"><div class="container"><nav class="nav" aria-label="Primary">
   <a class="brand" href="/"><svg class="logo" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M9 11h14M9 16h9M9 21h14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>SoloDesk</a>
   <span class="spacer"></span>
-  <a class="navlink" href="/#tools">Tools</a>
+  <a class="navlink" aria-current="true" href="/#tools">Tools</a>
   <a class="navlink" href="/guides/how-to-set-your-freelance-rate.html">Guides</a>
 </nav></div></header>
 
 <main><div class="container">
   <p class="crumb"><a href="/">Home</a> › Contract rate vs salary</p>
-  <h1>Contract Rate vs Salary Calculator</h1>
-  <p style="color:var(--muted);max-width:680px">Thinking about going freelance, or weighing a contract against a job offer? This compares the two properly. It counts the benefits an employer pays for, the time a freelancer cannot bill, and the costs of running your own business.</p>
+  <h1>Contract rate vs salary calculator</h1>
+  <p class="lede">Thinking about going freelance, or weighing a contract against a job offer? This compares the two properly. It counts the benefits an employer pays for, the time a freelancer cannot bill, and the costs of running your own business.</p>
 
   <div class="adslot" data-ad="top" aria-hidden="true"></div>
 
@@ -90,7 +90,7 @@
 
   <div class="adslot" data-ad="mid" aria-hidden="true"></div>
 
-  <section class="prose" style="margin-top:24px">
+  <section class="prose">
     <h2>How salary and freelance rate really compare</h2>
     <p>Dividing a salary by 2,080 working hours gives a number that looks like an hourly rate, but it is not the rate a freelancer needs to charge. Three things sit between the two figures.</p>
     <h3>Benefits are part of the pay</h3>
@@ -147,6 +147,7 @@
       el("k4").textContent=naive>0?SD.num(rate/naive,2)+"×":"—";
       el("explain").textContent="A "+f(salary)+" salary costs the employer about "+f(employerCost)+" with benefits. Spread over "+SD.num(byear,0)+
         " billable hours plus "+f(exp)+" of business costs, a freelancer needs "+f(rate)+" an hour to match it, before tax on either side.";
+      SD.sayLater(el("explain").textContent);
     } else {
       var r=SD.val("rate");
       var gross=r*byear;
@@ -161,7 +162,9 @@
       el("k4").textContent=naiveS>0?SD.num(salaryEq/naiveS*100,0)+"%":"—";
       el("explain").textContent="At "+f(r)+" an hour across "+SD.num(byear,0)+" billable hours you bill "+f(gross)+
         ". After "+f(exp)+" of costs and the benefits you now buy yourself, that is roughly a "+f(Math.max(0,salaryEq))+" salary, before tax on either side.";
+      SD.sayLater(el("explain").textContent);
     }
+    SD.flashResult(document.querySelector(".result"));
   }
   ["mode","currency","salary","rate","benefits","hpw","off","expenses"].forEach(function(id){
     el(id).addEventListener("input",calc); el(id).addEventListener("change",calc);

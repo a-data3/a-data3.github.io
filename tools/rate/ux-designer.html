@@ -21,40 +21,40 @@
 <header class="site-header"><div class="container"><nav class="nav" aria-label="Primary">
   <a class="brand" href="/"><svg class="logo" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M9 11h14M9 16h9M9 21h14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>SoloDesk</a>
   <span class="spacer"></span>
-  <a class="navlink" href="/#tools">Tools</a>
+  <a class="navlink" aria-current="true" href="/#tools">Tools</a>
   <a class="navlink" href="/guides/how-to-set-your-freelance-rate.html">Guides</a>
 </nav></div></header>
 
 <main><div class="container">
   <p class="crumb"><a href="/">Home</a> › <a href="/tools/freelance-rate-calculator.html">Rate calculator</a> › UX Designer</p>
-  <h1>Freelance UX Designer Rate Calculator</h1>
-  <p style="color:var(--muted);max-width:680px">Clients aren't paying for wireframes by the hour. They're paying for the difference between a checkout flow that converts and one that leaks revenue at every step. Most freelance UX designers still price like production artists, billing for Figma time instead of the research, decisions, and reduced risk clients are actually buying. Use the calculator below to set a floor, then read on for how UX designers really price in 2026.</p>
+  <h1>Freelance UX designer rate calculator</h1>
+  <p class="lede">Clients aren't paying for wireframes by the hour. They're paying for the difference between a checkout flow that converts and one that leaks revenue at every step. Most freelance UX designers still price like production artists, billing for Figma time instead of the research, decisions, and reduced risk clients are actually buying. Use the calculator below to set a floor, then read on for how UX designers really price in 2026.</p>
 
   <div class="adslot" data-ad="top" aria-hidden="true"></div>
 
   <div class="row c2" style="gap:22px;align-items:start">
     <div class="tool" style="margin-top:0">
-      <div class="field"><label>Currency</label>
+      <div class="field"><label for="currency">Currency</label>
         <select id="currency">
           <option value="USD">USD $</option><option value="EUR">EUR €</option><option value="GBP">GBP £</option>
           <option value="CAD">CAD $</option><option value="AUD">AUD $</option><option value="SGD">SGD $</option>
           <option value="INR">INR ₹</option><option value="IDR">IDR Rp</option><option value="PHP">PHP ₱</option><option value="PKR">PKR ₨</option><option value="BDT">BDT ৳</option><option value="NGN">NGN ₦</option><option value="NZD">NZD $</option>
         </select></div>
-      <div class="field"><label>Target annual income <span class="hint">what you want to earn, before personal income tax</span></label>
-        <input type="text" inputmode="decimal" spellcheck="false" id="income" value="95000" min="0" step="1000"></div>
-      <div class="field"><label>Annual business expenses <span class="hint">software, hardware, insurance, fees, subscriptions</span></label>
-        <input type="text" inputmode="decimal" spellcheck="false" id="expenses" value="9000" min="0" step="500"></div>
+      <div class="field"><label for="income">Target annual income</label>
+        <span class="hint" id="income-hint">what you want to earn, before personal income tax</span><input type="text" inputmode="decimal" spellcheck="false" id="income" value="95000" aria-describedby="income-hint"></div>
+      <div class="field"><label for="expenses">Annual business expenses</label>
+        <span class="hint" id="expenses-hint">software, hardware, insurance, fees, subscriptions</span><input type="text" inputmode="decimal" spellcheck="false" id="expenses" value="9000" aria-describedby="expenses-hint"></div>
       <div class="row c2">
-        <div class="field"><label>Billable hours / week <span class="hint">real client hours, not 40</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="hpw" value="24" min="1" max="80" step="1"></div>
-        <div class="field"><label>Weeks off / year <span class="hint">holiday + sick + admin</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="off" value="6" min="0" max="40" step="1"></div>
+        <div class="field"><label for="hpw">Billable hours / week</label>
+          <span class="hint" id="hpw-hint">real client hours, not 40</span><input type="text" inputmode="decimal" spellcheck="false" id="hpw" value="24" aria-describedby="hpw-hint"></div>
+        <div class="field"><label for="off">Weeks off / year</label>
+          <span class="hint" id="off-hint">holiday + sick + admin</span><input type="text" inputmode="decimal" spellcheck="false" id="off" value="6" aria-describedby="off-hint"></div>
       </div>
       <div class="row c2">
-        <div class="field"><label>Profit buffer (%) <span class="hint">safety margin for gaps</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="buffer" value="10" min="0" max="100" step="1"></div>
-        <div class="field"><label>Gross up for tax (%) <span class="hint">optional; 0 to ignore</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="tax" value="0" min="0" max="80" step="1"></div>
+        <div class="field"><label for="buffer">Profit buffer (%)</label>
+          <span class="hint" id="buffer-hint">safety margin for gaps</span><input type="text" inputmode="decimal" spellcheck="false" id="buffer" value="10" aria-describedby="buffer-hint"></div>
+        <div class="field"><label for="tax">Gross up for tax (%)</label>
+          <span class="hint" id="tax-hint">optional; 0 to ignore</span><input type="text" inputmode="decimal" spellcheck="false" id="tax" value="0" aria-describedby="tax-hint"></div>
       </div>
     </div>
 
@@ -69,8 +69,8 @@
           <div class="kv"><span>Effective utilisation</span><span class="v" id="util">—</span></div>
         </div>
       </div>
-      <div class="field" style="margin-top:14px"><label>Hours in a working day <span class="hint">for the day rate</span></label>
-        <input type="text" inputmode="decimal" spellcheck="false" id="hpd_in" value="8" min="1" max="24" step="1"></div>
+      <div class="field" style="margin-top:14px"><label for="hpd_in">Hours in a working day</label>
+        <span class="hint" id="hpd_in-hint">for the day rate</span><input type="text" inputmode="decimal" spellcheck="false" id="hpd_in" value="8" aria-describedby="hpd_in-hint"></div>
       <div class="note" id="sanity"></div>
     </div>
   </div>
@@ -79,7 +79,7 @@
 
   <section class="container" style="padding:0">
     <h2>Rate calculator by profession</h2>
-    <p style="color:var(--muted)">Each one below is pre-set for a specific field, with pricing advice to match.</p>
+    <p class="section-intro">Each one below is pre-set for a specific field, with pricing advice to match.</p>
     <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))">
       <a class="card" href="/tools/rate/web-developer.html"><h3>Web Developer</h3><p>Set a rate for freelance web development.</p></a>
       <a class="card" href="/tools/rate/graphic-designer.html"><h3>Graphic Designer</h3><p>Price logos, branding and design work.</p></a>
@@ -92,7 +92,7 @@
     </div>
   </section>
 
-  <section class="prose" style="margin-top:26px">
+  <section class="prose">
     <div class="note">In 2026, freelance UX designers commonly charge roughly $60–$150+ per hour, with mid-level generalists around $75–$110 and senior or specialized (fintech, enterprise, research-led) designers going well beyond $150, though this varies significantly by region, industry, and experience.</div>
     <h2>What actually moves a UX designer's rate</h2><p>Your rate is set less by your Figma skills than by how close you sit to the client's money and how much ambiguity you can absorb. A designer who takes a vague "we need to redesign onboarding" and returns a researched, tested flow with measurable drop-off improvements commands two to three times the rate of one who waits for tickets. The specific levers:</p><ul><li><strong>Domain complexity.</strong> Consumer marketing sites are the cheap end. Fintech, healthcare, B2B SaaS, enterprise dashboards, and data-heavy or regulated products pay far more because the design problems are harder and the cost of getting them wrong is higher.</li><li><strong>Research ownership.</strong> Designers who run discovery, interviews, and usability testing (not just push pixels) charge a premium. If you can say "I'll validate this before we build it," you are de-risking an engineering budget, and that is worth a lot.</li><li><strong>Business proximity.</strong> Tie your work to activation, conversion, retention, or support-ticket reduction and you stop competing on hourly rate entirely.</li><li><strong>Design systems and dev handoff.</strong> Building or extending a component library, writing clean specs, and speaking engineers' language shortens build time. Teams pay for that fluency.</li><li><strong>Seniority and portfolio proof.</strong> Case studies that show outcomes, not just screens, raise your rate more than anything else.</li></ul><h2>Which pricing model fits UX work</h2><p><strong>Hourly</strong> is the honest choice for open-ended, exploratory, or advisory work where scope cannot be pinned down: early discovery, ongoing tweaks, or "sit in our design reviews." Use it as your fallback and your floor, not your default. The trap is that hourly caps your income at your capacity and punishes you for getting faster.</p><p><strong>Project or fixed-fee</strong> fits most defined deliverables: an app redesign, an onboarding flow, a design-system starter, a website UX overhaul. Price the outcome and the phases (discovery, IA, wireframes, hi-fi, prototype, handoff), not the hours. Always scope the number of rounds of revisions and the number of key screens explicitly, or scope creep eats your margin. A good fixed fee lets a fast, experienced designer earn an effective hourly rate far above what they could bill directly.</p><p><strong>Retainer</strong> is the option most UX designers overlook. A monthly retainer of a set number of days for an ongoing product team gives you predictable income and gives them continuity of design thinking. Startups without a full-time designer love it, and it is the model most likely to turn into a stable, well-paid relationship. <strong>Value-based pricing</strong> is the top tier: when you can credibly tie your work to revenue (a checkout redesign on a site doing serious monthly volume), price against the impact, not your time.</p><h2>The classic mistake</h2><p>The mistake UX designers make over and over is <strong>pricing the deliverables instead of the decisions</strong>, and letting "just one more screen" or "can we try another direction" slide because it feels small. You quoted for a 12-screen app; now it is 20 screens, three extra stakeholders, and a fourth revision round, all at the original price. Fix it with a written scope that names the deliverables, the number of screens, and the number of revision rounds, plus a simple change-order rate for anything beyond it. The second half of the same mistake is invisible research: doing interviews and testing but never showing the client how those reduced their risk, so they see you as a Figma operator and haggle accordingly.</p><h2>Using the calculator</h2><p>Enter your target take-home, realistic billable days (UX work carries heavy non-billable overhead in research and client calls, so be conservative), and expenses to get a baseline hourly rate. Treat that number as your floor. For project and retainer work, translate it upward: estimate the days, apply your rate, then add margin for the risk you are absorbing and the outcome you are delivering.</p>
     <h2>Rate calculators for other freelance fields</h2>
@@ -135,6 +135,8 @@
     if(hpw>=38) s="Heads up: billing "+hpw+" hours a week is very high once you subtract admin and sales. Most freelancers bill 20–30. If that number slips, your real rate needs to be higher.";
     else if(rate>0) s="At "+f(rate)+"/hr you need to bill "+SD.num(byear,0)+" hours across "+weeks+" working weeks to hit your goal. If clients are scarce, raise the rate rather than the hours.";
     el("sanity").textContent=s;
+    SD.sayLater(byear>0?("Target hourly rate "+f(rate)+", day rate "+f(rate*hpd)+", from "+SD.num(byear,0)+" billable hours a year."):"Enter your billable hours to see a rate.");
+    SD.flashResult(document.querySelector(".result"));
   }
   ["currency","income","expenses","hpw","off","buffer","tax","hpd_in"].forEach(function(id){
     el(id).addEventListener("input",calc);

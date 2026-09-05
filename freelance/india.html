@@ -28,14 +28,14 @@
 <main><div class="container">
   <p class="crumb"><a href="/">Home</a> › Freelancing in India</p>
   <h1>Freelancing in India</h1>
-  <p style="color:var(--muted);max-width:680px">India supplies more online freelance work than any other country. Most of it is paid in dollars or pounds and lands in a rupee bank account, which is why payment rails and tax rules are the two questions Indian freelancers ask most. This page covers both at a structural level, with a rate calculator set to rupees.</p>
+  <p class="lede">India supplies more online freelance work than any other country. Most of it is paid in dollars or pounds and lands in a rupee bank account, which is why payment rails and tax rules are the two questions Indian freelancers ask most. This page covers both at a structural level, with a rate calculator set to rupees.</p>
 
   <div class="adslot" data-ad="top" aria-hidden="true"></div>
 
   <h2>At a glance</h2>
-  <table>
+  <table class="facts">
     <tbody>
-      <tr><th style="width:32%">Currency</th><td>INR (₹)</td></tr>
+      <tr><th>Currency</th><td>INR (₹)</td></tr>
       <tr><th>Getting paid</th><td>Payoneer, Wise and PayPal into a rupee bank account; SWIFT wires for large invoices.</td></tr>
       <tr><th>Where the work is</th><td>Upwork, Fiverr and Freelancer.com carry most international work. Truelancer, WorkNHire and Internshala Freelance handle smaller, rupee-denominated jobs for Indian clients.</td></tr>
       <tr><th>Tax ID</th><td>A PAN is needed to file. GST registration (a GSTIN) becomes mandatory once turnover crosses the threshold below.</td></tr>
@@ -51,27 +51,27 @@
   <p>The calculator is set to INR with defaults that are plausible for India. Replace them with your own figures. The method is explained on the <a href="/tools/freelance-rate-calculator.html">rate calculator page</a>, and there are versions tuned to 22 professions.</p>
   <div class="row c2" style="gap:22px;align-items:start">
     <div class="tool" style="margin-top:0">
-      <div class="field"><label>Currency</label>
+      <div class="field"><label for="currency">Currency</label>
         <select id="currency">
           <option value="USD">USD $</option><option value="EUR">EUR €</option><option value="GBP">GBP £</option>
           <option value="CAD">CAD $</option><option value="AUD">AUD $</option><option value="SGD">SGD $</option>
           <option value="INR" selected>INR ₹</option><option value="IDR">IDR Rp</option><option value="PHP">PHP ₱</option><option value="PKR">PKR ₨</option><option value="BDT">BDT ৳</option><option value="NGN">NGN ₦</option><option value="NZD">NZD $</option>
         </select></div>
-      <div class="field"><label>Target annual income <span class="hint">what you want to earn, before personal income tax</span></label>
-        <input type="text" inputmode="decimal" spellcheck="false" id="income" value="1200000" min="0" step="1000"></div>
-      <div class="field"><label>Annual business expenses <span class="hint">software, hardware, insurance, fees, subscriptions</span></label>
-        <input type="text" inputmode="decimal" spellcheck="false" id="expenses" value="90000" min="0" step="500"></div>
+      <div class="field"><label for="income">Target annual income</label>
+        <span class="hint" id="income-hint">what you want to earn, before personal income tax</span><input type="text" inputmode="decimal" spellcheck="false" id="income" value="1200000" aria-describedby="income-hint"></div>
+      <div class="field"><label for="expenses">Annual business expenses</label>
+        <span class="hint" id="expenses-hint">software, hardware, insurance, fees, subscriptions</span><input type="text" inputmode="decimal" spellcheck="false" id="expenses" value="90000" aria-describedby="expenses-hint"></div>
       <div class="row c2">
-        <div class="field"><label>Billable hours / week <span class="hint">hours you can invoice, usually well under 40</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="hpw" value="26" min="1" max="80" step="1"></div>
-        <div class="field"><label>Weeks off / year <span class="hint">holiday + sick + admin</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="off" value="5" min="0" max="40" step="1"></div>
+        <div class="field"><label for="hpw">Billable hours / week</label>
+          <span class="hint" id="hpw-hint">hours you can invoice, usually well under 40</span><input type="text" inputmode="decimal" spellcheck="false" id="hpw" value="26" aria-describedby="hpw-hint"></div>
+        <div class="field"><label for="off">Weeks off / year</label>
+          <span class="hint" id="off-hint">holiday + sick + admin</span><input type="text" inputmode="decimal" spellcheck="false" id="off" value="5" aria-describedby="off-hint"></div>
       </div>
       <div class="row c2">
-        <div class="field"><label>Profit buffer (%) <span class="hint">margin for gaps between projects</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="buffer" value="10" min="0" max="100" step="1"></div>
-        <div class="field"><label>Gross up for tax (%) <span class="hint">optional, leave at 0 to skip</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="tax" value="0" min="0" max="80" step="1"></div>
+        <div class="field"><label for="buffer">Profit buffer (%)</label>
+          <span class="hint" id="buffer-hint">margin for gaps between projects</span><input type="text" inputmode="decimal" spellcheck="false" id="buffer" value="10" aria-describedby="buffer-hint"></div>
+        <div class="field"><label for="tax">Gross up for tax (%)</label>
+          <span class="hint" id="tax-hint">optional, leave at 0 to skip</span><input type="text" inputmode="decimal" spellcheck="false" id="tax" value="0" aria-describedby="tax-hint"></div>
       </div>
     </div>
 
@@ -86,15 +86,15 @@
           <div class="kv"><span>Effective utilisation</span><span class="v" id="util">—</span></div>
         </div>
       </div>
-      <div class="field" style="margin-top:14px"><label>Hours in a working day <span class="hint">for the day rate</span></label>
-        <input type="text" inputmode="decimal" spellcheck="false" id="hpd_in" value="8" min="1" max="24" step="1"></div>
+      <div class="field" style="margin-top:14px"><label for="hpd_in">Hours in a working day</label>
+        <span class="hint" id="hpd_in-hint">for the day rate</span><input type="text" inputmode="decimal" spellcheck="false" id="hpd_in" value="8" aria-describedby="hpd_in-hint"></div>
       <div class="note" id="sanity"></div>
     </div>
   </div>
 
   <div class="adslot" data-ad="mid" aria-hidden="true"></div>
 
-  <section class="prose" style="margin-top:24px">
+  <section class="prose">
     <h2>Getting paid in India</h2>
     <p>Payoneer, PayPal and Wise are the three channels most Indian freelancers use, and all of them settle into an Indian bank account. Payoneer gives you virtual USD, GBP and EUR account details that clients can pay like a local transfer, then withdraws to your bank in rupees in two to three days. Wise converts at the mid-market rate and usually settles in one to two days. PayPal is accepted everywhere but has the highest fees and the worst exchange rate of the three. A SWIFT wire from the client's bank works for large invoices and is the most expensive option for small ones. Compare what actually reaches your account with the <a href="/tools/payment-fee-comparison.html">payment fee comparison</a>.</p>
     <h2>Where Indian freelancers find work</h2>
@@ -154,6 +154,8 @@
     if(hpw>=38) s="Heads up: billing "+hpw+" hours a week is very high once you subtract admin and sales. Most freelancers bill 20–30. If that number slips, your real rate needs to be higher.";
     else if(rate>0) s="At "+f(rate)+"/hr you need to bill "+SD.num(byear,0)+" hours across "+weeks+" working weeks to hit your goal. If clients are scarce, raise the rate rather than the hours.";
     el("sanity").textContent=s;
+    SD.sayLater(byear>0?("Target hourly rate "+f(rate)+", day rate "+f(rate*hpd)+", from "+SD.num(byear,0)+" billable hours a year."):"Enter your billable hours to see a rate.");
+    SD.flashResult(document.querySelector(".result"));
   }
   ["currency","income","expenses","hpw","off","buffer","tax","hpd_in"].forEach(function(id){
     el(id).addEventListener("input",calc);

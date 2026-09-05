@@ -19,39 +19,53 @@
 <style>
 .grid-hours{display:grid;grid-template-columns:repeat(24,1fr);gap:2px;margin:10px 0}
 .grid-hours .cell{height:26px;border-radius:4px;background:var(--surface-2);border:1px solid var(--border);
-  font-size:.6rem;display:flex;align-items:center;justify-content:center;color:var(--muted)}
+  font-size:var(--fs-xs);display:flex;align-items:center;justify-content:center;color:var(--muted)}
 .grid-hours .cell.work{background:color-mix(in srgb,var(--brand) 22%,var(--surface))}
-.grid-hours .cell.overlap{background:var(--good);color:#fff;border-color:var(--good);font-weight:700}
-.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.82rem;color:var(--muted);margin-top:6px}
+.grid-hours .cell.overlap{background:var(--good);color:var(--surface);border-color:var(--good);font-weight:600}
+.hourcap{font-size:var(--fs-sm);color:var(--muted);margin:6px 0 0}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:var(--fs-sm);color:var(--muted);margin-top:6px}
 .legend .sw{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:-2px;margin-right:5px;border:1px solid var(--border)}
-.rowlabel{font-size:.8rem;color:var(--muted);margin:6px 0 2px;font-weight:600}
+.rowlabel{font-size:var(--fs-sm);color:var(--muted);margin:6px 0 2px;font-weight:600}
+/* the hour range is two distinct values, so it stays side by side even on a phone */
+.row.pair{grid-template-columns:1fr 1fr}
+@media (max-width:640px){
+  .row.c2.pair{grid-template-columns:1fr 1fr}
+  .grid-hours{grid-template-columns:repeat(12,1fr)}
+  .grid-hours .cell{height:30px}
+}
 </style>
 </head>
 <body>
 <header class="site-header"><div class="container"><nav class="nav" aria-label="Primary">
   <a class="brand" href="/"><svg class="logo" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M9 11h14M9 16h9M9 21h14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>SoloDesk</a>
   <span class="spacer"></span>
-  <a class="navlink" href="/#tools">Tools</a>
+  <a class="navlink" aria-current="true" href="/#tools">Tools</a>
   <a class="navlink" href="/guides/how-to-set-your-freelance-rate.html">Guides</a>
 </nav></div></header>
 
 <main><div class="container">
   <p class="crumb"><a href="/">Home</a> › Timezone Meeting Planner</p>
-  <h1>Timezone Meeting Planner</h1>
-  <p style="color:var(--muted);max-width:680px">If you work with a client in another country, pick both timezones and your working hours to see exactly when your days overlap. The result is shown in both local times, so nobody has to do the mental maths.</p>
+  <h1>Timezone meeting planner</h1>
+  <p class="lede">If you work with a client in another country, pick both timezones and your working hours to see exactly when your days overlap. The result is shown in both local times, so nobody has to do the mental maths.</p>
 
   <div class="adslot" data-ad="top" aria-hidden="true"></div>
 
   <div class="tool" style="margin-top:0">
     <div class="row c2">
-      <div class="field"><label>Your timezone</label><select id="tzA"></select></div>
-      <div class="field"><label>Client / other timezone</label><select id="tzB"></select></div>
+      <div class="field"><label for="tzA">Your timezone</label><select id="tzA"></select></div>
+      <div class="field"><label for="tzB">Client / other timezone</label><select id="tzB"></select></div>
     </div>
     <div class="row c2">
-      <div class="field"><label>Your working hours</label>
-        <div class="row c2"><input type="text" inputmode="decimal" spellcheck="false" id="aStart" value="9" min="0" max="23"><input type="text" inputmode="decimal" spellcheck="false" id="aEnd" value="17" min="1" max="24"></div></div>
-      <div class="field"><label>Their working hours</label>
-        <div class="row c2"><input type="text" inputmode="decimal" spellcheck="false" id="bStart" value="9" min="0" max="23"><input type="text" inputmode="decimal" spellcheck="false" id="bEnd" value="17" min="1" max="24"></div></div>
+      <div class="field"><span class="lbl" id="ahours-lbl">Your working hours</span>
+        <div class="row c2 pair" role="group" aria-labelledby="ahours-lbl">
+          <div><label class="hint" for="aStart">From</label><input type="text" inputmode="decimal" spellcheck="false" id="aStart" value="9" aria-label="Your working hours, from"></div>
+          <div><label class="hint" for="aEnd">To</label><input type="text" inputmode="decimal" spellcheck="false" id="aEnd" value="17" aria-label="Your working hours, to"></div>
+        </div></div>
+      <div class="field"><span class="lbl" id="bhours-lbl">Their working hours</span>
+        <div class="row c2 pair" role="group" aria-labelledby="bhours-lbl">
+          <div><label class="hint" for="bStart">From</label><input type="text" inputmode="decimal" spellcheck="false" id="bStart" value="9" aria-label="Their working hours, from"></div>
+          <div><label class="hint" for="bEnd">To</label><input type="text" inputmode="decimal" spellcheck="false" id="bEnd" value="17" aria-label="Their working hours, to"></div>
+        </div></div>
     </div>
     <small>Enter hours in 24-hour format (e.g. 9 and 17 for 9am–5pm).</small>
   </div>
@@ -73,7 +87,7 @@
 
   <div class="adslot" data-ad="mid" aria-hidden="true"></div>
 
-  <section class="prose" style="margin-top:26px">
+  <section class="prose">
     <h2>How to schedule across timezones without the headache</h2>
     <p>The overlap grid above lines up two working days on the same UTC clock, so all you have to do is look for the green. Both rows show the <em>same real moments</em>, just labelled in each person's local time. The tool uses each timezone's current UTC offset, so daylight saving is handled automatically for today's date.</p>
     <h3>Tips for remote client work</h3>
@@ -171,6 +185,7 @@
     }
     drawRow("rowA","labA",offA,aS/60,aE/60,best,offA,tzA);
     drawRow("rowB","labB",offB,bS/60,bE/60,best,offB,tzB);
+    SD.sayLater(el("overlapDetail").textContent||"No working-hours overlap between these two timezones.");
   }
   function drawRow(rowId,labId,off,ws,we,best,offSelf,tz){
     var row=el(rowId); row.innerHTML="";

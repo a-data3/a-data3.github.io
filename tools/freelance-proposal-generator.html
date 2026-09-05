@@ -19,7 +19,8 @@
 <style>
 .sow-wrap{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
 @media (max-width:860px){.sow-wrap{grid-template-columns:1fr}}
-#doc{background:#fff;color:#111827;border:1px solid var(--border);border-radius:8px;padding:30px;box-shadow:var(--shadow);white-space:pre-wrap;font-size:.9rem;line-height:1.6;min-height:300px}
+#doc{--paper:#fff;--paper-ink:#151b26;background:var(--paper);color:var(--paper-ink);border:1px solid var(--border);border-radius:8px;
+  padding:clamp(16px,3vw,var(--pad-panel-lg));white-space:pre-wrap;font-size:var(--fs-base);line-height:1.6;min-height:300px}
 @media print{body{background:#fff}.site-header,.site-footer,.controls,.crumb,.prose,.no-print,.adslot,.form-col{display:none!important}
 main{padding:0}.sow-wrap{display:block}#doc{border:0;box-shadow:none;padding:0}.container{max-width:none;padding:0}}
 </style>
@@ -28,14 +29,14 @@ main{padding:0}.sow-wrap{display:block}#doc{border:0;box-shadow:none;padding:0}.
 <header class="site-header"><div class="container"><nav class="nav" aria-label="Primary">
   <a class="brand" href="/"><svg class="logo" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M9 11h14M9 16h9M9 21h14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>SoloDesk</a>
   <span class="spacer"></span>
-  <a class="navlink" href="/#tools">Tools</a>
+  <a class="navlink" aria-current="true" href="/#tools">Tools</a>
   <a class="navlink" href="/guides/how-to-set-your-freelance-rate.html">Guides</a>
 </nav></div></header>
 
 <main><div class="container">
   <p class="crumb"><a href="/">Home</a> › Freelance Proposal Generator</p>
-  <h1>Freelance Proposal Generator</h1>
-  <p style="color:var(--muted);max-width:680px">A proposal is the document that turns an enquiry into paid work. Fill in what the client asked for, how you plan to handle it, and what it costs. You get a short proposal you can copy into an email, print to PDF, or attach to a quote. Everything stays in your browser.</p>
+  <h1>Freelance proposal generator</h1>
+  <p class="lede">A proposal is the document that turns an enquiry into paid work. Fill in what the client asked for, how you plan to handle it, and what it costs. You get a short proposal you can copy into an email, print to PDF, or attach to a quote. Everything stays in your browser.</p>
 
   <div class="note">This produces a plain-English business document, not a contract. Once the client says yes, pin the detail down with the <a href="/tools/scope-of-work-generator.html">scope of work generator</a> and terms from the <a href="/tools/contract-clause-library.html">contract clause library</a>.</div>
 
@@ -52,9 +53,9 @@ main{padding:0}.sow-wrap{display:block}#doc{border:0;box-shadow:none;padding:0}.
         <div class="field"><label for="client">Client</label><input type="text" id="client" placeholder="Acme Inc."></div>
       </div>
       <div class="field"><label for="title">Project title</label><input type="text" id="title" placeholder="Marketing website redesign"></div>
-      <div class="field"><label for="situation">What the client needs <span class="hint">their problem in your words, two or three sentences</span></label><textarea id="situation" placeholder="Your current site was built for a product you no longer sell, and the contact form goes to an inbox nobody reads. You need a site that explains the new offer and sends enquiries somewhere useful."></textarea></div>
-      <div class="field"><label for="approach">How you will approach it <span class="hint">one step per line</span></label><textarea id="approach" placeholder="Kickoff call and a review of your existing analytics&#10;Sitemap and page-by-page messaging&#10;Design in Figma, two rounds of feedback&#10;Build in Webflow with the form wired to your CRM&#10;Launch, redirects and a handover walkthrough"></textarea></div>
-      <div class="field"><label for="deliverables">What the client gets <span class="hint">one per line</span></label><textarea id="deliverables" placeholder="5 designed and built pages&#10;Mobile and tablet layouts&#10;Contact form connected to HubSpot&#10;Editable CMS for the blog&#10;30 days of post-launch fixes"></textarea></div>
+      <div class="field"><label for="situation">What the client needs</label><span class="hint" id="from-hint">their problem in your words, two or three sentences</span><textarea id="situation" placeholder="Your current site was built for a product you no longer sell, and the contact form goes to an inbox nobody reads. You need a site that explains the new offer and sends enquiries somewhere useful." aria-describedby="from-hint"></textarea></div>
+      <div class="field"><label for="approach">How you will approach it</label><span class="hint" id="approach-hint">one step per line</span><textarea id="approach" placeholder="Kickoff call and a review of your existing analytics&#10;Sitemap and page-by-page messaging&#10;Design in Figma, two rounds of feedback&#10;Build in Webflow with the form wired to your CRM&#10;Launch, redirects and a handover walkthrough" aria-describedby="approach-hint"></textarea></div>
+      <div class="field"><label for="deliverables">What the client gets</label><span class="hint" id="deliverables-hint">one per line</span><textarea id="deliverables" placeholder="5 designed and built pages&#10;Mobile and tablet layouts&#10;Contact form connected to HubSpot&#10;Editable CMS for the blog&#10;30 days of post-launch fixes" aria-describedby="deliverables-hint"></textarea></div>
       <div class="row c2">
         <div class="field"><label for="timeline">Timeline</label><input type="text" id="timeline" placeholder="5 weeks from kickoff"></div>
         <div class="field"><label for="terms">Payment terms</label><input type="text" id="terms" placeholder="40% deposit, 60% on launch, net 14"></div>
@@ -63,17 +64,17 @@ main{padding:0}.sow-wrap{display:block}#doc{border:0;box-shadow:none;padding:0}.
       <h3>Pricing</h3>
       <div class="row c2">
         <div class="field"><label for="opt1name">Recommended option</label><input type="text" id="opt1name" placeholder="Full redesign"></div>
-        <div class="field"><label for="opt1price">Price</label><input type="text" id="opt1price" placeholder="$7,500"></div>
+        <div class="field"><label for="opt1price">Recommended option price</label><input type="text" id="opt1price" placeholder="$7,500"></div>
       </div>
-      <div class="field"><label for="opt1inc">What it includes <span class="hint">one per line</span></label><textarea id="opt1inc" placeholder="Everything in the deliverables list&#10;Copy editing on all five pages&#10;Analytics and conversion tracking"></textarea></div>
+      <div class="field"><label for="opt1inc">What the recommended option includes</label><span class="hint" id="timeline-hint">one per line</span><textarea id="opt1inc" placeholder="Everything in the deliverables list&#10;Copy editing on all five pages&#10;Analytics and conversion tracking" aria-describedby="timeline-hint"></textarea></div>
       <div class="row c2">
         <div class="field"><label for="opt2name">Second option (optional)</label><input type="text" id="opt2name" placeholder="Homepage only"></div>
-        <div class="field"><label for="opt2price">Price</label><input type="text" id="opt2price" placeholder="$3,200"></div>
+        <div class="field"><label for="opt2price">Second option price</label><input type="text" id="opt2price" placeholder="$3,200"></div>
       </div>
-      <div class="field"><label for="opt2inc">What it includes <span class="hint">one per line</span></label><textarea id="opt2inc" placeholder="Homepage design and build&#10;Contact form connected to HubSpot&#10;Inner pages restyled to match"></textarea></div>
+      <div class="field"><label for="opt2inc">What the second option includes</label><span class="hint" id="opt2name-hint">one per line</span><textarea id="opt2inc" placeholder="Homepage design and build&#10;Contact form connected to HubSpot&#10;Inner pages restyled to match" aria-describedby="opt2name-hint"></textarea></div>
 
       <h3>Closing</h3>
-      <div class="field"><label for="why">Why you are a good fit <span class="hint">one proof point per line, keep it specific</span></label><textarea id="why" placeholder="Built 14 sites in Webflow, 6 of them for B2B software&#10;Last redesign for Northwind lifted demo requests 38% in a quarter&#10;I write the copy as I design, so you are not waiting on a second freelancer"></textarea></div>
+      <div class="field"><label for="why">Why you are a good fit</label><span class="hint" id="why-hint">one proof point per line, keep it specific</span><textarea id="why" placeholder="Built 14 sites in Webflow, 6 of them for B2B software&#10;Last redesign for Northwind lifted demo requests 38% in a quarter&#10;I write the copy as I design, so you are not waiting on a second freelancer" aria-describedby="why-hint"></textarea></div>
       <div class="row c2">
         <div class="field"><label for="next">Next step</label><input type="text" id="next" placeholder="Reply with the option you want and I will send the contract"></div>
         <div class="field"><label for="valid">Proposal valid until</label><input type="text" id="valid" placeholder="30 September 2026"></div>
@@ -85,7 +86,7 @@ main{padding:0}.sow-wrap{display:block}#doc{border:0;box-shadow:none;padding:0}.
 
   <div class="adslot" data-ad="mid" aria-hidden="true"></div>
 
-  <section class="prose" style="margin-top:26px">
+  <section class="prose">
     <h2>What goes in a freelance proposal</h2>
     <p>Most freelance proposals lose the job in the first paragraph by talking about the freelancer. The client is reading to find out whether you understood the problem. Open with their situation in your own words, then move to what you will do about it. A short proposal that answers six questions beats a twelve-page template:</p>
     <ol>

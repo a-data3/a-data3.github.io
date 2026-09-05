@@ -21,40 +21,40 @@
 <header class="site-header"><div class="container"><nav class="nav" aria-label="Primary">
   <a class="brand" href="/"><svg class="logo" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M9 11h14M9 16h9M9 21h14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>SoloDesk</a>
   <span class="spacer"></span>
-  <a class="navlink" href="/#tools">Tools</a>
+  <a class="navlink" aria-current="true" href="/#tools">Tools</a>
   <a class="navlink" href="/guides/how-to-set-your-freelance-rate.html">Guides</a>
 </nav></div></header>
 
 <main><div class="container">
   <p class="crumb"><a href="/">Home</a> › <a href="/tools/freelance-rate-calculator.html">Rate calculator</a> › Marketing Consultant</p>
-  <h1>Freelance Marketing Consultant Rate Calculator</h1>
-  <p style="color:var(--muted);max-width:680px">Marketing consulting is one of the harder freelance fields to price, because what you sell is judgment rather than a finished deliverable. The founder who hires you is usually after pipeline, a lower CAC, or a brand that finally sounds like one company. Use the calculator below to pressure-test your number, then read the guidance underneath on how consultants in this field structure their fees.</p>
+  <h1>Freelance marketing consultant rate calculator</h1>
+  <p class="lede">Marketing consulting is one of the harder freelance fields to price, because what you sell is judgment rather than a finished deliverable. The founder who hires you is usually after pipeline, a lower CAC, or a brand that finally sounds like one company. Use the calculator below to pressure-test your number, then read the guidance underneath on how consultants in this field structure their fees.</p>
 
   <div class="adslot" data-ad="top" aria-hidden="true"></div>
 
   <div class="row c2" style="gap:22px;align-items:start">
     <div class="tool" style="margin-top:0">
-      <div class="field"><label>Currency</label>
+      <div class="field"><label for="currency">Currency</label>
         <select id="currency">
           <option value="USD">USD $</option><option value="EUR">EUR €</option><option value="GBP">GBP £</option>
           <option value="CAD">CAD $</option><option value="AUD">AUD $</option><option value="SGD">SGD $</option>
           <option value="INR">INR ₹</option><option value="IDR">IDR Rp</option><option value="PHP">PHP ₱</option><option value="PKR">PKR ₨</option><option value="BDT">BDT ৳</option><option value="NGN">NGN ₦</option><option value="NZD">NZD $</option>
         </select></div>
-      <div class="field"><label>Target annual income <span class="hint">what you want to earn, before personal income tax</span></label>
-        <input type="text" inputmode="decimal" spellcheck="false" id="income" value="100000" min="0" step="1000"></div>
-      <div class="field"><label>Annual business expenses <span class="hint">software, hardware, insurance, fees, subscriptions</span></label>
-        <input type="text" inputmode="decimal" spellcheck="false" id="expenses" value="10000" min="0" step="500"></div>
+      <div class="field"><label for="income">Target annual income</label>
+        <span class="hint" id="income-hint">what you want to earn, before personal income tax</span><input type="text" inputmode="decimal" spellcheck="false" id="income" value="100000" aria-describedby="income-hint"></div>
+      <div class="field"><label for="expenses">Annual business expenses</label>
+        <span class="hint" id="expenses-hint">software, hardware, insurance, fees, subscriptions</span><input type="text" inputmode="decimal" spellcheck="false" id="expenses" value="10000" aria-describedby="expenses-hint"></div>
       <div class="row c2">
-        <div class="field"><label>Billable hours / week <span class="hint">hours you can bill to clients, usually well under 40</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="hpw" value="22" min="1" max="80" step="1"></div>
-        <div class="field"><label>Weeks off / year <span class="hint">holiday + sick + admin</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="off" value="6" min="0" max="40" step="1"></div>
+        <div class="field"><label for="hpw">Billable hours / week</label>
+          <span class="hint" id="hpw-hint">hours you can bill to clients, usually well under 40</span><input type="text" inputmode="decimal" spellcheck="false" id="hpw" value="22" aria-describedby="hpw-hint"></div>
+        <div class="field"><label for="off">Weeks off / year</label>
+          <span class="hint" id="off-hint">holiday + sick + admin</span><input type="text" inputmode="decimal" spellcheck="false" id="off" value="6" aria-describedby="off-hint"></div>
       </div>
       <div class="row c2">
-        <div class="field"><label>Profit buffer (%) <span class="hint">safety margin for gaps</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="buffer" value="10" min="0" max="100" step="1"></div>
-        <div class="field"><label>Gross up for tax (%) <span class="hint">optional; 0 to ignore</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="tax" value="0" min="0" max="80" step="1"></div>
+        <div class="field"><label for="buffer">Profit buffer (%)</label>
+          <span class="hint" id="buffer-hint">safety margin for gaps</span><input type="text" inputmode="decimal" spellcheck="false" id="buffer" value="10" aria-describedby="buffer-hint"></div>
+        <div class="field"><label for="tax">Gross up for tax (%)</label>
+          <span class="hint" id="tax-hint">optional; 0 to ignore</span><input type="text" inputmode="decimal" spellcheck="false" id="tax" value="0" aria-describedby="tax-hint"></div>
       </div>
     </div>
 
@@ -69,8 +69,8 @@
           <div class="kv"><span>Effective utilisation</span><span class="v" id="util">—</span></div>
         </div>
       </div>
-      <div class="field" style="margin-top:14px"><label>Hours in a working day <span class="hint">for the day rate</span></label>
-        <input type="text" inputmode="decimal" spellcheck="false" id="hpd_in" value="8" min="1" max="24" step="1"></div>
+      <div class="field" style="margin-top:14px"><label for="hpd_in">Hours in a working day</label>
+        <span class="hint" id="hpd_in-hint">for the day rate</span><input type="text" inputmode="decimal" spellcheck="false" id="hpd_in" value="8" aria-describedby="hpd_in-hint"></div>
       <div class="note" id="sanity"></div>
     </div>
   </div>
@@ -79,7 +79,7 @@
 
   <section class="container" style="padding:0">
     <h2>Rate calculator by profession</h2>
-    <p style="color:var(--muted)">Each one is pre-set for a specific field and comes with pricing advice written for it.</p>
+    <p class="section-intro">Each one is pre-set for a specific field and comes with pricing advice written for it.</p>
     <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))">
       <a class="card" href="/tools/rate/web-developer.html"><h3>Web Developer</h3><p>Set a rate for freelance web development.</p></a>
       <a class="card" href="/tools/rate/graphic-designer.html"><h3>Graphic Designer</h3><p>Price logos, branding and design work.</p></a>
@@ -92,7 +92,7 @@
     </div>
   </section>
 
-  <section class="prose" style="margin-top:26px">
+  <section class="prose">
     <div class="note">Freelance marketing consultants typically bill around $65-150/hour in 2026. Entry-level consultants sit near $50-65, and senior or niche specialists (including fractional CMOs) charge $200-350+/hour. Rates vary widely by region, vertical, and track record.</div>
     <h2>What moves a marketing consultant's rate</h2><p>Years of experience matter less to your rate than two other things: how well you know a particular vertical, and whether a client trusts you to own an outcome. A generalist who "does marketing" for any business competes with every freelancer on a marketplace and lands near $65-100/hour. A consultant who has run demand gen for three Series A B2B SaaS companies, or scaled paid social for DTC brands past $10M, can charge $200-350+/hour. The buyer is paying for the mistakes you already made on someone else's budget.</p><p>The other lever is where you sit between strategy and execution. Consultants who only build the plan (audits, positioning, channel strategy, quarterly roadmaps) can charge high day rates, but they have to keep selling the next engagement. Consultants who own a number, such as marketing-sourced pipeline or blended CAC, can keep a client for a year or more and justify a retainer well above what the hours alone would add up to. Specialization in one channel (lifecycle/email, SEO, paid media, brand) also pays better than "full-stack marketing," because a client finds it easier to trust depth in one area than a promise to cover everything.</p><h2>The pricing model that fits this work</h2><p>Hourly billing is a poor fit for marketing consulting. Use it only for ad-hoc advisory or a first paid diagnostic. The more experienced you are, the faster you reach the insight, so an hourly rate pays you less for exactly the expertise the client is hiring. These models work better:</p><ul><li><strong>Monthly retainer</strong> for ongoing work: fractional CMO leadership, managing a channel, or acting as the outsourced marketing function. In 2026 these commonly run $3,000-8,000/month for growth-stage SMBs and $8,000-25,000/month for embedded fractional CMO engagements. Set a floor for yourself and hold to it.</li><li><strong>Fixed-fee projects</strong> for scoped, finite work: a positioning sprint, a go-to-market plan, a marketing audit, a website messaging overhaul. Price these on the outcome and the risk you take on rather than on hours. Fees typically fall between $2,500 and $50,000.</li><li><strong>Value or performance-based pricing</strong> when you can tie your work to revenue and you trust the client's data. This usually means a base retainer plus a percentage of incremental pipeline, or a milestone bonus.</li></ul><h2>The mistake to avoid</h2><p>The mistake that keeps marketing consultants underpaid is pricing on effort instead of outcome, and then giving away the expensive part for free. A consultant charges $95/hour for a "strategy deck." The plan ends up changing how the company acquires customers, the client turns it into seven figures of revenue, and the consultant never sees a share of that value. A related mistake is letting a clean strategy retainer drift into unbilled execution and "quick favors," until you are doing an agency's workload at an advisor's price. Scope the deliverable in writing and say what is out of scope. Put a change-order line in every agreement.</p><h2>Using this calculator</h2><p>Enter the income you need and your real billable capacity. Marketing consultants can usually sell around 20-25 billable hours a week once you subtract selling, admin, and time spent keeping up with the platforms. Treat the hourly figure the calculator produces as your internal floor, the number any engagement must clear. Then translate it into a retainer or project fee based on the outcome you deliver rather than the hours you spend.</p>
     <h2>Rate calculators for other freelance fields</h2>
@@ -135,6 +135,8 @@
     if(hpw>=38) s="Heads up: billing "+hpw+" hours a week is very high once you subtract admin and sales. Most freelancers bill 20–30. If that number slips, your real rate needs to be higher.";
     else if(rate>0) s="At "+f(rate)+"/hr you need to bill "+SD.num(byear,0)+" hours across "+weeks+" working weeks to hit your goal. If clients are scarce, raise the rate rather than the hours.";
     el("sanity").textContent=s;
+    SD.sayLater(byear>0?("Target hourly rate "+f(rate)+", day rate "+f(rate*hpd)+", from "+SD.num(byear,0)+" billable hours a year."):"Enter your billable hours to see a rate.");
+    SD.flashResult(document.querySelector(".result"));
   }
   ["currency","income","expenses","hpw","off","buffer","tax","hpd_in"].forEach(function(id){
     el(id).addEventListener("input",calc);

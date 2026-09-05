@@ -21,34 +21,34 @@
 <header class="site-header"><div class="container"><nav class="nav" aria-label="Primary">
   <a class="brand" href="/"><svg class="logo" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M9 11h14M9 16h9M9 21h14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>SoloDesk</a>
   <span class="spacer"></span>
-  <a class="navlink" href="/#tools">Tools</a>
+  <a class="navlink" aria-current="true" href="/#tools">Tools</a>
   <a class="navlink" href="/guides/how-to-set-your-freelance-rate.html">Guides</a>
 </nav></div></header>
 
 <main><div class="container">
   <p class="crumb"><a href="/">Home</a> › Retainer &amp; Package Pricing</p>
-  <h1>Retainer &amp; Package Pricing Calculator</h1>
-  <p style="color:var(--muted);max-width:680px">Retainers turn one-off projects into predictable monthly income. Start from your hourly rate, decide how many hours the retainer includes, and this tool builds the monthly price, an overage rate, and three ready-to-pitch tiers.</p>
+  <h1>Retainer and package pricing calculator</h1>
+  <p class="lede">Retainers turn one-off projects into predictable monthly income. Start from your hourly rate, decide how many hours the retainer includes, and this tool builds the monthly price, an overage rate, and three ready-to-pitch tiers.</p>
 
   <div class="adslot" data-ad="top" aria-hidden="true"></div>
 
   <div class="row c2" style="gap:22px;align-items:start">
     <div class="tool" style="margin-top:0">
-      <div class="field"><label>Currency</label>
+      <div class="field"><label for="currency">Currency</label>
         <select id="currency">
           <option value="USD">USD $</option><option value="EUR">EUR €</option><option value="GBP">GBP £</option>
           <option value="CAD">CAD $</option><option value="AUD">AUD $</option><option value="SGD">SGD $</option>
           <option value="INR">INR ₹</option><option value="IDR">IDR Rp</option><option value="PHP">PHP ₱</option><option value="PKR">PKR ₨</option><option value="BDT">BDT ৳</option><option value="NGN">NGN ₦</option><option value="NZD">NZD $</option>
         </select></div>
-      <div class="field"><label>Your hourly rate <span class="hint">your floor, from the rate calculator</span></label>
-        <input type="text" inputmode="decimal" spellcheck="false" id="rate" value="85" min="0" step="1"></div>
-      <div class="field"><label>Hours included per month <span class="hint">the block the retainer buys</span></label>
-        <input type="text" inputmode="decimal" spellcheck="false" id="hours" value="20" min="1" step="1"></div>
+      <div class="field"><label for="rate">Your hourly rate</label>
+        <span class="hint" id="rate-hint">your floor, from the rate calculator</span><input type="text" inputmode="decimal" spellcheck="false" id="rate" value="85" aria-describedby="rate-hint"></div>
+      <div class="field"><label for="hours">Hours included per month</label>
+        <span class="hint" id="hours-hint">the block the retainer buys</span><input type="text" inputmode="decimal" spellcheck="false" id="hours" value="20" aria-describedby="hours-hint"></div>
       <div class="row c2">
-        <div class="field"><label>Retainer adjustment (%) <span class="hint">− = commitment discount, + = priority premium</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="adj" value="-10" min="-50" max="50" step="1"></div>
-        <div class="field"><label>Overage rate multiplier <span class="hint">extra hours cost this × your rate</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="over" value="1.25" min="1" max="3" step="0.05"></div>
+        <div class="field"><label for="adj">Retainer adjustment (%)</label>
+          <span class="hint" id="adj-hint">− = commitment discount, + = priority premium</span><input type="text" inputmode="decimal" spellcheck="false" id="adj" value="-10" aria-describedby="adj-hint"></div>
+        <div class="field"><label for="over">Overage rate multiplier</label>
+          <span class="hint" id="over-hint">extra hours cost this × your rate</span><input type="text" inputmode="decimal" spellcheck="false" id="over" value="1.25" aria-describedby="over-hint"></div>
       </div>
       <div class="note">A small discount (5–15%) rewards a client for committing to a monthly block and smooths your income. Charge a <em>premium</em> instead if the retainer buys priority access or guaranteed turnaround.</div>
     </div>
@@ -75,7 +75,7 @@
 
   <div class="adslot" data-ad="mid" aria-hidden="true"></div>
 
-  <section class="prose" style="margin-top:26px">
+  <section class="prose">
     <h2>How to price a freelance retainer</h2>
     <p>A retainer is a recurring fee for a defined block of work or access each month. Done well, it is the most reliable cure for feast-and-famine freelancing: you start each month with income already booked, instead of hunting for the next project.</p>
     <h3>Start from your hourly floor, then adjust</h3>
@@ -130,6 +130,8 @@
       body+="<tr><td>"+t[0]+"</td><td class='r'>"+t[1]+"</td><td class='r'>"+f(pm)+"</td></tr>";
     });
     el("tiers").innerHTML=body;
+    SD.sayLater("Monthly retainer "+f(monthly)+" for "+SD.num(hours,0)+" hours, an effective "+f(eff)+" per hour.");
+    SD.flashResult(document.querySelector(".result"));
   }
   ["currency","rate","hours","adj","over"].forEach(function(id){el(id).addEventListener("input",calc);el(id).addEventListener("change",calc);});
   calc();

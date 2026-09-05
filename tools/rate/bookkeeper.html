@@ -21,40 +21,40 @@
 <header class="site-header"><div class="container"><nav class="nav" aria-label="Primary">
   <a class="brand" href="/"><svg class="logo" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M9 11h14M9 16h9M9 21h14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>SoloDesk</a>
   <span class="spacer"></span>
-  <a class="navlink" href="/#tools">Tools</a>
+  <a class="navlink" aria-current="true" href="/#tools">Tools</a>
   <a class="navlink" href="/guides/how-to-set-your-freelance-rate.html">Guides</a>
 </nav></div></header>
 
 <main><div class="container">
   <p class="crumb"><a href="/">Home</a> › <a href="/tools/freelance-rate-calculator.html">Rate calculator</a> › Bookkeeper</p>
-  <h1>Freelance Bookkeeper Rate Calculator</h1>
-  <p style="color:var(--muted);max-width:680px">Bookkeeping is priced on the risk you take off an owner's plate and the hours you hand back to them. How long the reconciliation takes you matters far less. Use the calculator below to turn your target income, monthly capacity, and the real scope of each client's books into a rate that holds up whether you bill hourly, per project, or on a fixed monthly retainer.</p>
+  <h1>Freelance bookkeeper rate calculator</h1>
+  <p class="lede">Bookkeeping is priced on the risk you take off an owner's plate and the hours you hand back to them. How long the reconciliation takes you matters far less. Use the calculator below to turn your target income, monthly capacity, and the real scope of each client's books into a rate that holds up whether you bill hourly, per project, or on a fixed monthly retainer.</p>
 
   <div class="adslot" data-ad="top" aria-hidden="true"></div>
 
   <div class="row c2" style="gap:22px;align-items:start">
     <div class="tool" style="margin-top:0">
-      <div class="field"><label>Currency</label>
+      <div class="field"><label for="currency">Currency</label>
         <select id="currency">
           <option value="USD">USD $</option><option value="EUR">EUR €</option><option value="GBP">GBP £</option>
           <option value="CAD">CAD $</option><option value="AUD">AUD $</option><option value="SGD">SGD $</option>
           <option value="INR">INR ₹</option><option value="IDR">IDR Rp</option><option value="PHP">PHP ₱</option><option value="PKR">PKR ₨</option><option value="BDT">BDT ৳</option><option value="NGN">NGN ₦</option><option value="NZD">NZD $</option>
         </select></div>
-      <div class="field"><label>Target annual income <span class="hint">what you want to earn, before personal income tax</span></label>
-        <input type="text" inputmode="decimal" spellcheck="false" id="income" value="60000" min="0" step="1000"></div>
-      <div class="field"><label>Annual business expenses <span class="hint">software, hardware, insurance, fees, subscriptions</span></label>
-        <input type="text" inputmode="decimal" spellcheck="false" id="expenses" value="6000" min="0" step="500"></div>
+      <div class="field"><label for="income">Target annual income</label>
+        <span class="hint" id="income-hint">what you want to earn, before personal income tax</span><input type="text" inputmode="decimal" spellcheck="false" id="income" value="60000" aria-describedby="income-hint"></div>
+      <div class="field"><label for="expenses">Annual business expenses</label>
+        <span class="hint" id="expenses-hint">software, hardware, insurance, fees, subscriptions</span><input type="text" inputmode="decimal" spellcheck="false" id="expenses" value="6000" aria-describedby="expenses-hint"></div>
       <div class="row c2">
-        <div class="field"><label>Billable hours / week <span class="hint">real client hours, not 40</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="hpw" value="27" min="1" max="80" step="1"></div>
-        <div class="field"><label>Weeks off / year <span class="hint">holiday + sick + admin</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="off" value="5" min="0" max="40" step="1"></div>
+        <div class="field"><label for="hpw">Billable hours / week</label>
+          <span class="hint" id="hpw-hint">real client hours, not 40</span><input type="text" inputmode="decimal" spellcheck="false" id="hpw" value="27" aria-describedby="hpw-hint"></div>
+        <div class="field"><label for="off">Weeks off / year</label>
+          <span class="hint" id="off-hint">holiday + sick + admin</span><input type="text" inputmode="decimal" spellcheck="false" id="off" value="5" aria-describedby="off-hint"></div>
       </div>
       <div class="row c2">
-        <div class="field"><label>Profit buffer (%) <span class="hint">safety margin for gaps</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="buffer" value="10" min="0" max="100" step="1"></div>
-        <div class="field"><label>Gross up for tax (%) <span class="hint">optional; 0 to ignore</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="tax" value="0" min="0" max="80" step="1"></div>
+        <div class="field"><label for="buffer">Profit buffer (%)</label>
+          <span class="hint" id="buffer-hint">safety margin for gaps</span><input type="text" inputmode="decimal" spellcheck="false" id="buffer" value="10" aria-describedby="buffer-hint"></div>
+        <div class="field"><label for="tax">Gross up for tax (%)</label>
+          <span class="hint" id="tax-hint">optional; 0 to ignore</span><input type="text" inputmode="decimal" spellcheck="false" id="tax" value="0" aria-describedby="tax-hint"></div>
       </div>
     </div>
 
@@ -69,8 +69,8 @@
           <div class="kv"><span>Effective utilisation</span><span class="v" id="util">—</span></div>
         </div>
       </div>
-      <div class="field" style="margin-top:14px"><label>Hours in a working day <span class="hint">for the day rate</span></label>
-        <input type="text" inputmode="decimal" spellcheck="false" id="hpd_in" value="8" min="1" max="24" step="1"></div>
+      <div class="field" style="margin-top:14px"><label for="hpd_in">Hours in a working day</label>
+        <span class="hint" id="hpd_in-hint">for the day rate</span><input type="text" inputmode="decimal" spellcheck="false" id="hpd_in" value="8" aria-describedby="hpd_in-hint"></div>
       <div class="note" id="sanity"></div>
     </div>
   </div>
@@ -79,7 +79,7 @@
 
   <section class="container" style="padding:0">
     <h2>Rate calculator by profession</h2>
-    <p style="color:var(--muted)">Each version below is pre-set for a specific field and comes with pricing advice for that kind of work.</p>
+    <p class="section-intro">Each version below is pre-set for a specific field and comes with pricing advice for that kind of work.</p>
     <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))">
       <a class="card" href="/tools/rate/web-developer.html"><h3>Web Developer</h3><p>Set a rate for freelance web development.</p></a>
       <a class="card" href="/tools/rate/graphic-designer.html"><h3>Graphic Designer</h3><p>Price logos, branding and design work.</p></a>
@@ -92,7 +92,7 @@
     </div>
   </section>
 
-  <section class="prose" style="margin-top:26px">
+  <section class="prose">
     <div class="note">In 2026, freelance bookkeepers in the US typically charge roughly $30–$75 per hour. Entry-level bookkeepers are around $20–$35, experienced and certified or niche specialists reach $60–$100+, and fixed monthly retainers commonly run $300–$1,000. Rates vary a lot by region, industry, and experience.</div>
     <h2>What moves a bookkeeper's rate</h2><p>Two clients paying the same monthly fee can be very different amounts of work. Scope matters more than any headline hourly figure, and it comes down to a handful of concrete things:</p><ul><li><strong>Transaction volume.</strong> Forty transactions a month is a different job from 900, so price in bands (0–50, 51–150, 151–400, and so on) instead of giving one flat quote.</li><li><strong>Accounts to reconcile.</strong> Every bank account, credit card, loan, PayPal, Stripe, and merchant feed is one more reconciliation each month.</li><li><strong>Industry complexity.</strong> E-commerce sellers with inventory and multi-state sales tax, contractors who need job costing, restaurants with tip and COGS tracking, and law firms with IOLTA trust accounting all carry more risk than a simple service business, and they should pay a premium for it.</li><li><strong>Payroll and AP/AR.</strong> Running payroll, chasing receivables, and paying bills are add-ons. Never include them by default.</li><li><strong>Software and the state of the books.</strong> A clean QuickBooks Online or Xero file moves fast. Shoebox receipts, commingled personal spending, and a year of uncategorized transactions do not.</li><li><strong>Credentials.</strong> A QBO ProAdvisor or Xero-certified bookkeeper, or one who also does light advisory and cash-flow reporting, can charge at the top of the range.</li></ul><h2>Which pricing model fits</h2><p>Ongoing bookkeeping is recurring, predictable work, which fits a <strong>fixed monthly retainer</strong> tied to transaction volume and scope. The client gets a stable number, and you get revenue that does not shrink as you get faster. Build two or three tiers (essentials, standard, and full service with AP/AR and reporting) so clients can pick the one that fits and the upgrade path is clear.</p><p>Save <strong>hourly billing</strong> for two situations: diagnostic work where you cannot see the scope yet, and messy catch-up where you do not know how deep the hole goes. <strong>Cleanup and catch-up should be a separate one-time project.</strong> Quote a flat fee (or a "not-to-exceed" range) after a quick diagnostic, and do not fold months of backlog into the ongoing monthly rate.</p><h2>The classic mistake</h2><p>The mistake that caps a bookkeeper's income is <strong>billing by the hour on recurring work</strong>. Your value goes up as you get better. You learn the client's file, automate bank feeds, build rules in QuickBooks, and close the month in a fraction of the original time. Under hourly billing, every one of those improvements <em>lowers what you get paid</em> for the same work. Fixed monthly pricing works the other way: the faster and cleaner you work, the higher your effective rate climbs, and the client still gets what they care about, which is accurate books and no surprises at tax time.</p><p>The second trap is <strong>quoting a monthly rate before you have seen the books</strong>. Always run a short diagnostic first. A "cheap" client with two years of commingled transactions and no reconciliations will eat your margin for as long as you keep them.</p><h2>Using the calculator</h2><p>Enter your target annual income and a realistic billable capacity. Admin, client onboarding, software, and marketing take up 30–40% of your week, so bill against a lower number than the 40-hour ideal. The tool turns that into a floor hourly rate. Use it to check whether your monthly retainers clear that floor once you divide the fee by the hours a client really takes. If a $400/month client takes eight hours, that is $50/hour. Decide whether that clears your target before you sign.</p>
     <h2>Rate calculators for other freelance fields</h2>
@@ -135,6 +135,8 @@
     if(hpw>=38) s="Heads up: billing "+hpw+" hours a week is very high once you subtract admin and sales. Most freelancers bill 20–30. If that number slips, your real rate needs to be higher.";
     else if(rate>0) s="At "+f(rate)+"/hr you need to bill "+SD.num(byear,0)+" hours across "+weeks+" working weeks to hit your goal. If clients are scarce, raise the rate rather than the hours.";
     el("sanity").textContent=s;
+    SD.sayLater(byear>0?("Target hourly rate "+f(rate)+", day rate "+f(rate*hpd)+", from "+SD.num(byear,0)+" billable hours a year."):"Enter your billable hours to see a rate.");
+    SD.flashResult(document.querySelector(".result"));
   }
   ["currency","income","expenses","hpw","off","buffer","tax","hpd_in"].forEach(function(id){
     el(id).addEventListener("input",calc);

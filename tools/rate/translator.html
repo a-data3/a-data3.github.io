@@ -21,40 +21,40 @@
 <header class="site-header"><div class="container"><nav class="nav" aria-label="Primary">
   <a class="brand" href="/"><svg class="logo" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M9 11h14M9 16h9M9 21h14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>SoloDesk</a>
   <span class="spacer"></span>
-  <a class="navlink" href="/#tools">Tools</a>
+  <a class="navlink" aria-current="true" href="/#tools">Tools</a>
   <a class="navlink" href="/guides/how-to-set-your-freelance-rate.html">Guides</a>
 </nav></div></header>
 
 <main><div class="container">
   <p class="crumb"><a href="/">Home</a> › <a href="/tools/freelance-rate-calculator.html">Rate calculator</a> › Translator</p>
-  <h1>Freelance Translator Rate Calculator</h1>
-  <p style="color:var(--muted);max-width:680px">Translation is one of the few freelance fields still priced by the word, and that makes rates harder to set than they look. The same 2,000 words can be a two-hour job or a two-day one depending on the language pair, the subject matter, and how clean the source text is. Use this calculator to check your per-word, per-project, and hourly numbers against the income you need.</p>
+  <h1>Freelance translator rate calculator</h1>
+  <p class="lede">Translation is one of the few freelance fields still priced by the word, and that makes rates harder to set than they look. The same 2,000 words can be a two-hour job or a two-day one depending on the language pair, the subject matter, and how clean the source text is. Use this calculator to check your per-word, per-project, and hourly numbers against the income you need.</p>
 
   <div class="adslot" data-ad="top" aria-hidden="true"></div>
 
   <div class="row c2" style="gap:22px;align-items:start">
     <div class="tool" style="margin-top:0">
-      <div class="field"><label>Currency</label>
+      <div class="field"><label for="currency">Currency</label>
         <select id="currency">
           <option value="USD">USD $</option><option value="EUR">EUR €</option><option value="GBP">GBP £</option>
           <option value="CAD">CAD $</option><option value="AUD">AUD $</option><option value="SGD">SGD $</option>
           <option value="INR">INR ₹</option><option value="IDR">IDR Rp</option><option value="PHP">PHP ₱</option><option value="PKR">PKR ₨</option><option value="BDT">BDT ৳</option><option value="NGN">NGN ₦</option><option value="NZD">NZD $</option>
         </select></div>
-      <div class="field"><label>Target annual income <span class="hint">what you want to earn, before personal income tax</span></label>
-        <input type="text" inputmode="decimal" spellcheck="false" id="income" value="55000" min="0" step="1000"></div>
-      <div class="field"><label>Annual business expenses <span class="hint">software, hardware, insurance, fees, subscriptions</span></label>
-        <input type="text" inputmode="decimal" spellcheck="false" id="expenses" value="5000" min="0" step="500"></div>
+      <div class="field"><label for="income">Target annual income</label>
+        <span class="hint" id="income-hint">what you want to earn, before personal income tax</span><input type="text" inputmode="decimal" spellcheck="false" id="income" value="55000" aria-describedby="income-hint"></div>
+      <div class="field"><label for="expenses">Annual business expenses</label>
+        <span class="hint" id="expenses-hint">software, hardware, insurance, fees, subscriptions</span><input type="text" inputmode="decimal" spellcheck="false" id="expenses" value="5000" aria-describedby="expenses-hint"></div>
       <div class="row c2">
-        <div class="field"><label>Billable hours / week <span class="hint">real client hours, not 40</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="hpw" value="26" min="1" max="80" step="1"></div>
-        <div class="field"><label>Weeks off / year <span class="hint">holiday + sick + admin</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="off" value="6" min="0" max="40" step="1"></div>
+        <div class="field"><label for="hpw">Billable hours / week</label>
+          <span class="hint" id="hpw-hint">real client hours, not 40</span><input type="text" inputmode="decimal" spellcheck="false" id="hpw" value="26" aria-describedby="hpw-hint"></div>
+        <div class="field"><label for="off">Weeks off / year</label>
+          <span class="hint" id="off-hint">holiday + sick + admin</span><input type="text" inputmode="decimal" spellcheck="false" id="off" value="6" aria-describedby="off-hint"></div>
       </div>
       <div class="row c2">
-        <div class="field"><label>Profit buffer (%) <span class="hint">safety margin for gaps</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="buffer" value="10" min="0" max="100" step="1"></div>
-        <div class="field"><label>Gross up for tax (%) <span class="hint">optional; 0 to ignore</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="tax" value="0" min="0" max="80" step="1"></div>
+        <div class="field"><label for="buffer">Profit buffer (%)</label>
+          <span class="hint" id="buffer-hint">safety margin for gaps</span><input type="text" inputmode="decimal" spellcheck="false" id="buffer" value="10" aria-describedby="buffer-hint"></div>
+        <div class="field"><label for="tax">Gross up for tax (%)</label>
+          <span class="hint" id="tax-hint">optional; 0 to ignore</span><input type="text" inputmode="decimal" spellcheck="false" id="tax" value="0" aria-describedby="tax-hint"></div>
       </div>
     </div>
 
@@ -69,8 +69,8 @@
           <div class="kv"><span>Effective utilisation</span><span class="v" id="util">—</span></div>
         </div>
       </div>
-      <div class="field" style="margin-top:14px"><label>Hours in a working day <span class="hint">for the day rate</span></label>
-        <input type="text" inputmode="decimal" spellcheck="false" id="hpd_in" value="8" min="1" max="24" step="1"></div>
+      <div class="field" style="margin-top:14px"><label for="hpd_in">Hours in a working day</label>
+        <span class="hint" id="hpd_in-hint">for the day rate</span><input type="text" inputmode="decimal" spellcheck="false" id="hpd_in" value="8" aria-describedby="hpd_in-hint"></div>
       <div class="note" id="sanity"></div>
     </div>
   </div>
@@ -79,7 +79,7 @@
 
   <section class="container" style="padding:0">
     <h2>Rate calculator by profession</h2>
-    <p style="color:var(--muted)">Prefer a version pre-set for your field, with pricing advice specific to it?</p>
+    <p class="section-intro">Prefer a version pre-set for your field, with pricing advice specific to it?</p>
     <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))">
       <a class="card" href="/tools/rate/web-developer.html"><h3>Web Developer</h3><p>Set a rate for freelance web development.</p></a>
       <a class="card" href="/tools/rate/graphic-designer.html"><h3>Graphic Designer</h3><p>Price logos, branding and design work.</p></a>
@@ -92,7 +92,7 @@
     </div>
   </section>
 
-  <section class="prose" style="margin-top:26px">
+  <section class="prose">
     <div class="note">In 2026, freelance translators typically charge around $0.08–$0.30 per source word, rising to $0.20–$0.60+ for legal, medical, or patent work. That works out to roughly $30–$80 an hour for experienced generalists and $75+ for specialists. It varies widely by language pair, region, and whether you work for agencies or direct clients.</div>
     <h2>What actually moves a translator's rate</h2><p>A few things drive most of the difference. Your <strong>language pair</strong> matters, and so does how scarce it is: English&gt;Spanish and English&gt;French are crowded, so prices get squeezed, while pairs like English&gt;Japanese, English&gt;Nordic languages, or anything involving Icelandic, Finnish, or Korean cost more because fewer qualified people exist. <strong>Specialization</strong> matters too. A subject-matter expert in legal, medical, patent, financial, or pharma translation charges two to three times what a generalist does for the same word count, because a mistranslated dosage or contract clause carries real liability. There's also <strong>who the client is</strong>. Agencies (LSPs) supply steady volume but negotiate hard and often impose CAT-tool match grids. Direct clients, such as law firms, device manufacturers, publishers, and SaaS companies localizing their product, routinely pay 1.5–3x agency rates. And <strong>certified or sworn status</strong> and turnaround play a part. Certified documents for immigration or court, and real same-day rush work, both justify a surcharge.</p><h2>Which pricing model fits</h2><p>Per-word pricing (usually per <em>source</em> word, so the count is fixed before you start) is still the default and the easiest to quote to agencies. The problem is that the faster and more fluent you get, the less you earn per hour for the same quality, so run your per-word rate back through an hourly check. Your real throughput might be 400 words an hour on a dense patent and 900 on a simple letter, and the math needs to clear your target hourly rate in both cases. Use <strong>per-project or value pricing</strong> for transcreation and marketing, where word counts are tiny but the stakes are high, and <strong>hourly</strong> for revision, editing, proofreading, and MTPE (machine-translation post-editing). A <strong>retainer</strong> works well for a direct client who sends predictable monthly volume, such as a SaaS product with a rolling release cycle.</p><h2>The mistakes that cost translators money</h2><p>The classic one is charging per word for a marketing tagline. Translating a five-word slogan might take two hours of research and a dozen drafts, and it might be worth thousands to the client, but billed per word it earns you cents. Other traps include accepting agency <strong>fuzzy-match grids</strong> that pay 30–70% for repetitions and near-matches without checking they still hit your hourly floor, taking <strong>MTPE work at a flat 60% discount</strong> when the AI output is so bad you end up retranslating it, and having <strong>no minimum fee</strong>, so a 40-word job costs you more in admin than it pays. Set a minimum (many translators use the equivalent of 250–300 words or one hour) and hold to it.</p><h2>Using this calculator</h2><p>Enter your target annual income and a realistic number of billable hours. Remember that quoting, invoicing, and CAT-tool cleanup aren't billable. The calculator returns the hourly rate you need, and you can convert that to a per-word figure using your honest words-per-hour for the kind of text you translate. Quote the per-word number to agencies, but keep the underlying hourly floor in view so you can walk away from grids and post-editing offers that dip below it.</p>
     <h2>Rate calculators for other freelance fields</h2>
@@ -135,6 +135,8 @@
     if(hpw>=38) s="Heads up: billing "+hpw+" hours a week is very high once you subtract admin and sales. Most freelancers bill 20–30. If that number slips, your real rate needs to be higher.";
     else if(rate>0) s="At "+f(rate)+"/hr you need to bill "+SD.num(byear,0)+" hours across "+weeks+" working weeks to hit your goal. If clients are scarce, raise the rate rather than the hours.";
     el("sanity").textContent=s;
+    SD.sayLater(byear>0?("Target hourly rate "+f(rate)+", day rate "+f(rate*hpd)+", from "+SD.num(byear,0)+" billable hours a year."):"Enter your billable hours to see a rate.");
+    SD.flashResult(document.querySelector(".result"));
   }
   ["currency","income","expenses","hpw","off","buffer","tax","hpd_in"].forEach(function(id){
     el(id).addEventListener("input",calc);

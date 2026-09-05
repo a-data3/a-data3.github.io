@@ -24,14 +24,14 @@
 <header class="site-header"><div class="container"><nav class="nav" aria-label="Primary">
   <a class="brand" href="/"><svg class="logo" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M9 11h14M9 16h9M9 21h14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>SoloDesk</a>
   <span class="spacer"></span>
-  <a class="navlink" href="/#tools">Tools</a>
+  <a class="navlink" aria-current="true" href="/#tools">Tools</a>
   <a class="navlink" href="/guides/freelancer-tax-basics.html">Guides</a>
 </nav></div></header>
 
 <main><div class="container">
   <p class="crumb"><a href="/">Home</a> › Tax Set-Aside Calculator</p>
-  <h1>Freelance Tax Set-Aside Calculator</h1>
-  <p style="color:var(--muted);max-width:680px">Some of the cash sitting in your account belongs to the tax office, not to you. This calculator tells you how much of each invoice to move into a separate savings pot so a tax bill never takes you by surprise.</p>
+  <h1>Freelance tax set-aside calculator</h1>
+  <p class="lede">Some of the cash sitting in your account belongs to the tax office, not to you. This calculator tells you how much of each invoice to move into a separate savings pot so a tax bill never takes you by surprise.</p>
 
   <div class="note"><strong>Estimate only.</strong> Tax depends on your total income, deductions, and local rules. This calculator gives you a planning figure for how much to set aside. It is not a substitute for a filed tax return. Before you rely on the number, check your country's rules or ask a qualified accountant. See our <a href="/guides/freelancer-tax-basics.html">freelancer tax basics</a>.</div>
 
@@ -39,33 +39,33 @@
 
   <div class="row c2" style="gap:22px;align-items:start">
     <div class="tool" style="margin-top:0">
-      <div class="field"><label>Mode</label>
+      <div class="field"><label for="mode">Mode</label>
         <select id="mode">
           <option value="us">United States (self-employed)</option>
           <option value="simple">Simple (any country, one rate)</option>
         </select></div>
-      <div class="field"><label>Currency</label>
+      <div class="field"><label for="currency">Currency</label>
         <select id="currency">
           <option value="USD">USD $</option><option value="EUR">EUR €</option><option value="GBP">GBP £</option>
           <option value="CAD">CAD $</option><option value="AUD">AUD $</option><option value="SGD">SGD $</option>
           <option value="INR">INR ₹</option><option value="IDR">IDR Rp</option><option value="PHP">PHP ₱</option><option value="PKR">PKR ₨</option><option value="BDT">BDT ৳</option><option value="NGN">NGN ₦</option><option value="NZD">NZD $</option>
         </select></div>
-      <div class="field"><label>Payment / invoice amount <span class="hint">the net business profit this payment represents</span></label>
-        <input type="text" inputmode="decimal" spellcheck="false" id="amount" value="3000" min="0" step="100"></div>
+      <div class="field"><label for="amount">Payment / invoice amount</label>
+        <span class="hint" id="amount-hint">the net business profit this payment represents</span><input type="text" inputmode="decimal" spellcheck="false" id="amount" value="3000" aria-describedby="amount-hint"></div>
 
       <div id="us-fields">
         <div class="row c2">
-          <div class="field"><label>Federal income tax (%) <span class="hint">your marginal bracket, e.g. 12 / 22 / 24</span></label>
-            <input type="text" inputmode="decimal" spellcheck="false" id="fed" value="22" min="0" max="60" step="1"></div>
-          <div class="field"><label>State income tax (%) <span class="hint">0 if none</span></label>
-            <input type="text" inputmode="decimal" spellcheck="false" id="state" value="5" min="0" max="20" step="0.5"></div>
+          <div class="field"><label for="fed">Federal income tax (%)</label>
+            <span class="hint" id="fed-hint">your marginal bracket, e.g. 12 / 22 / 24</span><input type="text" inputmode="decimal" spellcheck="false" id="fed" value="22" aria-describedby="fed-hint"></div>
+          <div class="field"><label for="state">State income tax (%)</label>
+            <span class="hint" id="state-hint">0 if none</span><input type="text" inputmode="decimal" spellcheck="false" id="state" value="5" aria-describedby="state-hint"></div>
         </div>
         <div class="note" style="border-left-color:var(--brand)">Self-employment tax of <strong>15.3%</strong> (Social Security + Medicare) is applied automatically on 92.35% of profit, which is the standard method.</div>
       </div>
 
       <div id="simple-fields" style="display:none">
-        <div class="field"><label>Your combined tax rate (%) <span class="hint">income tax + any social contributions you expect</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="simple" value="25" min="0" max="70" step="1"></div>
+        <div class="field"><label for="simple">Your combined tax rate (%)</label>
+          <span class="hint" id="simple-hint">income tax + any social contributions you expect</span><input type="text" inputmode="decimal" spellcheck="false" id="simple" value="25" aria-describedby="simple-hint"></div>
       </div>
     </div>
 
@@ -86,7 +86,7 @@
 
   <div class="adslot" data-ad="mid" aria-hidden="true"></div>
 
-  <section class="prose" style="margin-top:26px">
+  <section class="prose">
     <h2>How much should a freelancer set aside for tax?</h2>
     <p>A common rule of thumb is to bank <strong>25–30%</strong> of every payment. The real figure depends on where you live and what you earn, so this calculator uses your own rates to give you a specific number instead of a guess.</p>
     <h3>The United States mode</h3>
@@ -144,6 +144,8 @@
     var tip="";
     if(eff>0) tip="Move "+f(total)+" ("+SD.num(eff,1)+"%) into a separate tax account the moment this payment lands. Treat the rest as your real income.";
     el("tip").textContent=tip;
+    SD.sayLater("Set aside "+f(total)+" of "+f(amt)+", an effective "+SD.num(eff,1)+"%. You keep "+f(amt-total)+".");
+    SD.flashResult(document.querySelector(".result"));
   }
   ["mode","currency","amount","fed","state","simple"].forEach(function(id){
     el(id).addEventListener("input",calc); el(id).addEventListener("change",calc);

@@ -19,22 +19,35 @@
 <style>
 .q-wrap{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
 @media (max-width:860px){.q-wrap{grid-template-columns:1fr}}
-#preview{background:#fff;color:#111827;border:1px solid var(--border);border-radius:8px;padding:30px;box-shadow:var(--shadow)}
+/* The preview is paper, so it declares its own ink scope and keeps it in both themes. */
+#preview{--paper:#fff;--paper-ink:#151b26;--paper-ink-soft:#566173;--paper-rule:#d9dee7;
+  background:var(--paper);color:var(--paper-ink);border:1px solid var(--border);border-radius:8px;
+  padding:clamp(16px,3vw,var(--pad-panel-lg))}
 #preview .inv-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
-#preview h2.inv-title{margin:0;font-size:1.7rem;color:#111827}
-#preview .biz{font-weight:700;font-size:1.05rem}
-#preview .muted{color:#6b7280;font-size:.86rem;white-space:pre-line}
-#preview th{color:#6b7280}#preview th,#preview td{border-bottom:1px solid #e5e7eb;font-size:.9rem}
+#preview .inv-title{margin:0;font-size:var(--fs-xl);font-weight:600;line-height:1.2;color:var(--paper-ink)}
+#preview .biz{font-weight:600;font-size:var(--fs-md)}
+#preview .muted{color:var(--paper-ink-soft);font-size:var(--fs-base);white-space:pre-line}
+#preview .empty{color:var(--paper-ink-soft)}
+#preview .cap{color:var(--paper-ink-soft);text-transform:uppercase;font-size:var(--fs-xs);letter-spacing:.06em}
+#preview th{color:var(--paper-ink-soft)}
+#preview th,#preview td{border-bottom:1px solid var(--paper-rule);font-size:var(--fs-base)}
 #preview td.r,#preview th.r{text-align:right;font-variant-numeric:tabular-nums}
 #preview .totals{margin-left:auto;margin-top:14px;width:min(300px,100%)}
-#preview .totals .kv{border-bottom:1px dashed #e5e7eb;color:#374151}
-#preview .totals .grand{border-top:2px solid #111827;border-bottom:0;font-size:1.1rem;font-weight:800;color:#111827;padding-top:8px}
-#preview .dep{background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:10px 12px;margin-top:12px;color:#1e3a8a;font-size:.9rem}
-#preview .notes{margin-top:18px;color:#374151;font-size:.85rem;white-space:pre-line}
-.lineitem{display:grid;grid-template-columns:1fr 70px 92px 32px;gap:8px;margin:8px 0;align-items:center}
-.lineitem .x{cursor:pointer;border:1px solid var(--border);background:var(--surface-2);border-radius:8px;height:38px;display:flex;align-items:center;justify-content:center;color:var(--muted)}
+#preview .totals .kv{border-bottom:1px dashed var(--paper-rule);color:var(--paper-ink)}
+#preview .totals .grand{border-top:2px solid var(--paper-ink);border-bottom:0;font-size:var(--fs-lg);font-weight:600;color:var(--paper-ink);padding-top:8px}
+#preview .dep{background:var(--accent-soft);border:1px solid var(--accent-line);border-radius:8px;padding:10px 12px;margin-top:12px;color:var(--paper-ink);font-size:var(--fs-base)}
+#preview .notes{margin-top:18px;color:var(--paper-ink);font-size:var(--fs-base);white-space:pre-line}
+.lineitem{display:grid;grid-template-columns:minmax(0,1fr) 76px 96px 44px;gap:8px;margin:8px 0;align-items:center}
 .lineitem .x:hover{color:var(--danger)}
-.li-head{display:grid;grid-template-columns:1fr 70px 92px 32px;gap:8px;font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.li-head{display:grid;grid-template-columns:minmax(0,1fr) 76px 96px 44px;gap:8px}
+@media (max-width:640px){
+  .li-head{display:none}
+  .lineitem{grid-template-columns:1fr 72px 44px;grid-template-areas:'desc desc desc' 'qty rate x';row-gap:6px}
+  .lineitem>:nth-child(1){grid-area:desc}
+  .lineitem>:nth-child(2){grid-area:qty}
+  .lineitem>:nth-child(3){grid-area:rate}
+  .lineitem>:nth-child(4){grid-area:x}
+}
 @media print{body{background:#fff}.site-header,.site-footer,.controls,.crumb,.prose,.no-print,.adslot{display:none!important}
 main{padding:0}.q-wrap{display:block}#preview{border:0;box-shadow:none;padding:0}.container{max-width:none;padding:0}}
 </style>
@@ -43,14 +56,14 @@ main{padding:0}.q-wrap{display:block}#preview{border:0;box-shadow:none;padding:0
 <header class="site-header"><div class="container"><nav class="nav" aria-label="Primary">
   <a class="brand" href="/"><svg class="logo" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M9 11h14M9 16h9M9 21h14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>SoloDesk</a>
   <span class="spacer"></span>
-  <a class="navlink" href="/#tools">Tools</a>
+  <a class="navlink" aria-current="true" href="/#tools">Tools</a>
   <a class="navlink" href="/guides/how-to-set-your-freelance-rate.html">Guides</a>
 </nav></div></header>
 
 <main><div class="container">
   <p class="crumb"><a href="/">Home</a> › Project Quote Builder</p>
-  <h1>Project Quote Builder</h1>
-  <p style="color:var(--muted);max-width:680px">Turn a scope into a clean fixed-price quote with a deposit, discount, and tax. The preview updates as you type, and you can download a PDF when you're ready. Nothing is uploaded.</p>
+  <h1>Project quote builder</h1>
+  <p class="lede">Turn a scope into a clean fixed-price quote with a deposit, discount, and tax. The preview updates as you type, and you can download a PDF when you're ready. Nothing is uploaded.</p>
 
   <div class="adslot" data-ad="top" aria-hidden="true"></div>
 
@@ -61,16 +74,16 @@ main{padding:0}.q-wrap{display:block}#preview{border:0;box-shadow:none;padding:0
         <button class="btn ghost small" id="reset" type="button">Reset</button>
       </div>
       <div class="row c2">
-        <div class="field"><label>Currency</label><select id="currency">
+        <div class="field"><label for="currency">Currency</label><select id="currency">
           <option value="USD">USD $</option><option value="EUR">EUR €</option><option value="GBP">GBP £</option>
           <option value="CAD">CAD $</option><option value="AUD">AUD $</option><option value="SGD">SGD $</option>
           <option value="INR">INR ₹</option><option value="IDR">IDR Rp</option><option value="PHP">PHP ₱</option><option value="PKR">PKR ₨</option><option value="BDT">BDT ৳</option><option value="NGN">NGN ₦</option><option value="NZD">NZD $</option>
         </select></div>
-        <div class="field"><label>Quote #</label><input type="text" id="qno" value="Q-0001"></div>
+        <div class="field"><label for="qno">Quote #</label><input type="text" id="qno" value="Q-0001"></div>
       </div>
       <div class="row c2">
-        <div class="field"><label>Date</label><input type="date" id="qdate"></div>
-        <div class="field"><label>Valid until</label><input type="date" id="valid"></div>
+        <div class="field"><label for="qdate">Date</label><input type="date" id="qdate"></div>
+        <div class="field"><label for="valid">Valid until</label><input type="date" id="valid"></div>
       </div>
       <h3>From</h3>
       <div class="field"><label for="fromName">Your name or business</label><input type="text" id="fromName" placeholder="Jane Doe Design"></div>
@@ -83,20 +96,20 @@ main{padding:0}.q-wrap{display:block}#preview{border:0;box-shadow:none;padding:0
       <div id="items"></div>
       <button class="btn ghost small" id="additem" type="button" style="margin-top:6px">+ Add line</button>
       <div class="row c3" style="margin-top:14px">
-        <div class="field"><label>Discount (%)</label><input type="text" inputmode="decimal" spellcheck="false" id="disc" value="0" min="0" step="1"></div>
-        <div class="field"><label>Tax (%)</label><input type="text" inputmode="decimal" spellcheck="false" id="tax" value="0" min="0" step="0.1"></div>
-        <div class="field"><label>Deposit (%)</label><input type="text" inputmode="decimal" spellcheck="false" id="deposit" value="50" min="0" max="100" step="5"></div>
+        <div class="field"><label for="disc">Discount (%)</label><input type="text" inputmode="decimal" spellcheck="false" id="disc" value="0"></div>
+        <div class="field"><label for="tax">Tax (%)</label><input type="text" inputmode="decimal" spellcheck="false" id="tax" value="0"></div>
+        <div class="field"><label for="deposit">Deposit (%)</label><input type="text" inputmode="decimal" spellcheck="false" id="deposit" value="50"></div>
       </div>
-      <div class="field"><label>Notes / terms</label><textarea id="notes" placeholder="Timeline, revisions included, what's out of scope, payment terms..."></textarea></div>
+      <div class="field"><label for="notes">Notes / terms</label><textarea id="notes" placeholder="Timeline, revisions included, what's out of scope, payment terms..."></textarea></div>
     </div>
 
     <div id="preview" aria-label="Quote preview">
       <div class="inv-head">
         <div><div class="biz" id="p-from">Your name / business</div><div class="muted" id="p-frominfo"></div></div>
-        <div style="text-align:right"><h2 class="inv-title">QUOTE</h2><div class="muted" id="p-meta"></div></div>
+        <div style="text-align:right"><div class="inv-title" aria-hidden="true">QUOTE</div><div class="muted" id="p-meta"></div></div>
       </div>
-      <div style="margin-top:14px"><div class="muted" style="text-transform:uppercase;font-size:.7rem;letter-spacing:.06em">Prepared for</div>
-        <div class="biz" id="p-to" style="font-size:.98rem">Client</div><div class="muted" id="p-toinfo"></div></div>
+      <div style="margin-top:14px"><div class="cap">Prepared for</div>
+        <div class="biz" id="p-to">Client</div><div class="muted" id="p-toinfo"></div></div>
       <table><thead><tr><th>Description</th><th class="r">Qty</th><th class="r">Price</th><th class="r">Amount</th></tr></thead><tbody id="p-items"></tbody></table>
       <div class="totals">
         <div class="kv"><span>Subtotal</span><span class="v" id="p-sub"></span></div>
@@ -111,7 +124,7 @@ main{padding:0}.q-wrap{display:block}#preview{border:0;box-shadow:none;padding:0
 
   <div class="adslot" data-ad="mid" aria-hidden="true"></div>
 
-  <section class="prose" style="margin-top:26px">
+  <section class="prose">
     <h2>How to write a freelance project quote that wins the job</h2>
     <p>A good quote makes the price feel fair and lowers the risk the client is taking on. It also protects you from scope creep later. How you frame the number usually matters more than the number itself.</p>
     <h3>Quote the outcome rather than the hours</h3>
@@ -150,12 +163,21 @@ main{padding:0}.q-wrap{display:block}#preview{border:0;box-shadow:none;padding:0
     var box=el("items");box.innerHTML="";
     items.forEach(function(it,i){
       var row=document.createElement("div");row.className="lineitem";
-      row.innerHTML='<input type="text" placeholder="Deliverable" aria-label="Description"><input type="text" inputmode="decimal" spellcheck="false" min="0" step="0.5" aria-label="Quantity"><input type="text" inputmode="decimal" spellcheck="false" min="0" step="0.01" aria-label="Price"><div class="x" role="button" tabindex="0" title="Remove" aria-label="Remove line">✕</div>';
+      row.innerHTML='<input type="text" placeholder="Deliverable" aria-label="Description">'+
+        '<input type="text" inputmode="decimal" spellcheck="false" placeholder="Qty" aria-label="Qty">'+
+        '<input type="text" inputmode="decimal" spellcheck="false" placeholder="Price" aria-label="Price">'+
+        '<button type="button" class="x" aria-label="Remove '+esc(it.desc||("line "+(i+1)))+'">'+
+        '<svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true" focusable="false">'+
+        '<path d="M3 3l10 10M13 3L3 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>';
       var ins=row.querySelectorAll("input");ins[0].value=it.desc;ins[1].value=it.qty;ins[2].value=it.rate;
       ins[0].addEventListener("input",function(){it.desc=this.value;render();});
       ins[1].addEventListener("input",function(){it.qty=SD.parse(this.value);render();});
       ins[2].addEventListener("input",function(){it.rate=SD.parse(this.value);render();});
-      row.querySelector(".x").addEventListener("click",function(){items.splice(i,1);renderItems();render();});
+      row.querySelector(".x").addEventListener("click",function(){
+        items.splice(i,1);renderItems();render();
+        var rows=box.querySelectorAll(".x");
+        (rows[Math.min(i,rows.length-1)]||el("additem")).focus();
+      });
       box.appendChild(row);
     });
   }
@@ -172,7 +194,7 @@ main{padding:0}.q-wrap{display:block}#preview{border:0;box-shadow:none;padding:0
     var sub=0,body="";
     items.forEach(function(it){var a=(it.qty||0)*(it.rate||0);sub+=a;
       body+="<tr><td>"+esc(it.desc||"—")+"</td><td class='r'>"+SD.num(it.qty,2)+"</td><td class='r'>"+f(it.rate)+"</td><td class='r'>"+f(a)+"</td></tr>";});
-    el("p-items").innerHTML=body||"<tr><td colspan='4' style='color:#9ca3af'>Add a line item…</td></tr>";
+    el("p-items").innerHTML=body||"<tr><td colspan='4' class='empty'>Add a line item…</td></tr>";
     var dP=SD.val("disc"),tP=SD.val("tax"),depP=SD.val("deposit");
     var dA=sub*dP/100,taxable=sub-dA,tA=taxable*tP/100,total=taxable+tA;
     el("p-sub").textContent=f(sub);
@@ -185,7 +207,11 @@ main{padding:0}.q-wrap{display:block}#preview{border:0;box-shadow:none;padding:0
     el("p-notes").textContent=el("notes").value||"";
   }
   ["currency","qno","qdate","valid","fromName","fromInfo","toName","toInfo","disc","tax","deposit","notes"].forEach(function(id){el(id).addEventListener("input",render);});
-  el("additem").addEventListener("click",function(){addItem("",1,0);render();});
+  el("additem").addEventListener("click",function(){
+    addItem("",1,0);render();
+    var rows=el("items").querySelectorAll(".lineitem");
+    if(rows.length) rows[rows.length-1].querySelector("input").focus();
+  });
   el("download").addEventListener("click",function(){render();window.print();});
   el("reset").addEventListener("click",function(){if(!confirm("Clear the quote?"))return;items=[];["qno","fromName","fromInfo","toName","toInfo","notes"].forEach(function(id){el(id).value="";});el("qno").value="Q-0001";el("disc").value=0;el("tax").value=0;el("deposit").value=50;addItem("",1,0);render();});
   var t=new Date(),v=new Date(t.getTime()+30*864e5);

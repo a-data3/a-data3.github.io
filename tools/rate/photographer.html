@@ -21,40 +21,40 @@
 <header class="site-header"><div class="container"><nav class="nav" aria-label="Primary">
   <a class="brand" href="/"><svg class="logo" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M9 11h14M9 16h9M9 21h14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>SoloDesk</a>
   <span class="spacer"></span>
-  <a class="navlink" href="/#tools">Tools</a>
+  <a class="navlink" aria-current="true" href="/#tools">Tools</a>
   <a class="navlink" href="/guides/how-to-set-your-freelance-rate.html">Guides</a>
 </nav></div></header>
 
 <main><div class="container">
   <p class="crumb"><a href="/">Home</a> › <a href="/tools/freelance-rate-calculator.html">Rate calculator</a> › Photographer</p>
-  <h1>Freelance Photographer Rate Calculator</h1>
-  <p style="color:var(--muted);max-width:680px">Photography is one of the few freelance trades where the shoot itself is often the smallest part of what you're actually selling. Your rate has to cover the shoot day, the hours of culling and retouching afterward, and the gear that depreciates every year. For commercial work it also has to cover the license that lets a client use the images at all. This calculator helps you build a number that accounts for all of it, so you're not quoting a figure that feels right and losing money on every job.</p>
+  <h1>Freelance photographer rate calculator</h1>
+  <p class="lede">Photography is one of the few freelance trades where the shoot itself is often the smallest part of what you're actually selling. Your rate has to cover the shoot day, the hours of culling and retouching afterward, and the gear that depreciates every year. For commercial work it also has to cover the license that lets a client use the images at all. This calculator helps you build a number that accounts for all of it, so you're not quoting a figure that feels right and losing money on every job.</p>
 
   <div class="adslot" data-ad="top" aria-hidden="true"></div>
 
   <div class="row c2" style="gap:22px;align-items:start">
     <div class="tool" style="margin-top:0">
-      <div class="field"><label>Currency</label>
+      <div class="field"><label for="currency">Currency</label>
         <select id="currency">
           <option value="USD">USD $</option><option value="EUR">EUR €</option><option value="GBP">GBP £</option>
           <option value="CAD">CAD $</option><option value="AUD">AUD $</option><option value="SGD">SGD $</option>
           <option value="INR">INR ₹</option><option value="IDR">IDR Rp</option><option value="PHP">PHP ₱</option><option value="PKR">PKR ₨</option><option value="BDT">BDT ৳</option><option value="NGN">NGN ₦</option><option value="NZD">NZD $</option>
         </select></div>
-      <div class="field"><label>Target annual income <span class="hint">what you want to earn, before personal income tax</span></label>
-        <input type="text" inputmode="decimal" spellcheck="false" id="income" value="60000" min="0" step="1000"></div>
-      <div class="field"><label>Annual business expenses <span class="hint">software, hardware, insurance, fees, subscriptions</span></label>
-        <input type="text" inputmode="decimal" spellcheck="false" id="expenses" value="14000" min="0" step="500"></div>
+      <div class="field"><label for="income">Target annual income</label>
+        <span class="hint" id="income-hint">what you want to earn, before personal income tax</span><input type="text" inputmode="decimal" spellcheck="false" id="income" value="60000" aria-describedby="income-hint"></div>
+      <div class="field"><label for="expenses">Annual business expenses</label>
+        <span class="hint" id="expenses-hint">software, hardware, insurance, fees, subscriptions</span><input type="text" inputmode="decimal" spellcheck="false" id="expenses" value="14000" aria-describedby="expenses-hint"></div>
       <div class="row c2">
-        <div class="field"><label>Billable hours / week <span class="hint">real client hours, not 40</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="hpw" value="20" min="1" max="80" step="1"></div>
-        <div class="field"><label>Weeks off / year <span class="hint">holiday + sick + admin</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="off" value="6" min="0" max="40" step="1"></div>
+        <div class="field"><label for="hpw">Billable hours / week</label>
+          <span class="hint" id="hpw-hint">real client hours, not 40</span><input type="text" inputmode="decimal" spellcheck="false" id="hpw" value="20" aria-describedby="hpw-hint"></div>
+        <div class="field"><label for="off">Weeks off / year</label>
+          <span class="hint" id="off-hint">holiday + sick + admin</span><input type="text" inputmode="decimal" spellcheck="false" id="off" value="6" aria-describedby="off-hint"></div>
       </div>
       <div class="row c2">
-        <div class="field"><label>Profit buffer (%) <span class="hint">safety margin for gaps</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="buffer" value="10" min="0" max="100" step="1"></div>
-        <div class="field"><label>Gross up for tax (%) <span class="hint">optional; 0 to ignore</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="tax" value="0" min="0" max="80" step="1"></div>
+        <div class="field"><label for="buffer">Profit buffer (%)</label>
+          <span class="hint" id="buffer-hint">safety margin for gaps</span><input type="text" inputmode="decimal" spellcheck="false" id="buffer" value="10" aria-describedby="buffer-hint"></div>
+        <div class="field"><label for="tax">Gross up for tax (%)</label>
+          <span class="hint" id="tax-hint">optional; 0 to ignore</span><input type="text" inputmode="decimal" spellcheck="false" id="tax" value="0" aria-describedby="tax-hint"></div>
       </div>
     </div>
 
@@ -69,8 +69,8 @@
           <div class="kv"><span>Effective utilisation</span><span class="v" id="util">—</span></div>
         </div>
       </div>
-      <div class="field" style="margin-top:14px"><label>Hours in a working day <span class="hint">for the day rate</span></label>
-        <input type="text" inputmode="decimal" spellcheck="false" id="hpd_in" value="8" min="1" max="24" step="1"></div>
+      <div class="field" style="margin-top:14px"><label for="hpd_in">Hours in a working day</label>
+        <span class="hint" id="hpd_in-hint">for the day rate</span><input type="text" inputmode="decimal" spellcheck="false" id="hpd_in" value="8" aria-describedby="hpd_in-hint"></div>
       <div class="note" id="sanity"></div>
     </div>
   </div>
@@ -79,7 +79,7 @@
 
   <section class="container" style="padding:0">
     <h2>Rate calculator by profession</h2>
-    <p style="color:var(--muted)">Pick a version pre-set for your field, with pricing advice specific to it.</p>
+    <p class="section-intro">Pick a version pre-set for your field, with pricing advice specific to it.</p>
     <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))">
       <a class="card" href="/tools/rate/web-developer.html"><h3>Web Developer</h3><p>Set a rate for freelance web development.</p></a>
       <a class="card" href="/tools/rate/graphic-designer.html"><h3>Graphic Designer</h3><p>Price logos, branding and design work.</p></a>
@@ -92,7 +92,7 @@
     </div>
   </section>
 
-  <section class="prose" style="margin-top:26px">
+  <section class="prose">
     <div class="note">Most freelance photographers charge roughly $75–$300 per hour in 2026 (commercial specialists run higher via day rates plus licensing), though this varies widely by genre, region, and experience.</div>
     <h2>What actually drives a photographer's rate</h2><p>Genre sets the baseline. A portrait session and a national ad campaign are priced by completely different logic, even if both take one afternoon. Broadly, the ranges freelancers see in 2026 look like this:</p><ul><li><strong>Portraits &amp; headshots:</strong> $150–$500 per session, sometimes hourly at $100–$250.</li><li><strong>Weddings:</strong> day rates of roughly $1,100–$4,400, with full packages spanning $2,500–$10,000.</li><li><strong>Events &amp; corporate:</strong> $150–$500 per hour; corporate work often lands at $220–$280.</li><li><strong>Editorial:</strong> low shoot fees ($100–$250, or $500–$1,500 for a magazine series) offset by narrow, cheap usage.</li><li><strong>Commercial &amp; advertising:</strong> day rates of $1,500–$10,000+, before licensing is even added.</li></ul><h3>Licensing is the real lever in commercial work</h3><p>For anything a brand uses to sell something, your creative fee and your license fee are two separate line items. The price of the license depends on <em>how</em> the images get used, rather than on how long the shoot took. Social and web usage is modest; print ads, packaging, out-of-home billboards, and broadcast command the most. Duration multiplies it: a perpetual license typically costs 2x–4x a one-year term. Adding international territory can add another 50%–200% on top. This is also where releases matter: without model and property releases, an image can only be used editorially, and the moment a client wants it for advertising they need a commercial license you're entitled to charge for.</p><h2>The pricing model that fits</h2><p>Pure hourly billing only makes sense for open-ended event coverage. Everywhere else, photographers do better with a <strong>day rate or session fee plus a separate deliverables/licensing charge</strong>. For weddings and portraits, package pricing (coverage + a set number of edited images + print or album options) reads more cleanly to clients and lets you anchor on value rather than time. For commercial jobs, quote creative fee, usage license, and expenses (gear rental, assistants, a second shooter, travel, catering) as distinct lines. That protects you when the shoot gets rescheduled or the client wants broader usage later.</p><h2>The classic mistake</h2><p>The most expensive error is <strong>pricing only the shoot day and giving the rest away for free</strong>. Two things get buried: post-production and licensing. A wedding can generate 20–40 hours of culling and editing that vanish if you quoted a flat "8-hour" rate. And many photographers hand over full commercial rights, or an unlimited RAW dump, for the price of a single day, then watch their image run on a billboard for three years with no additional fee. Charge for editing time explicitly, and treat usage as something you sell every time rather than a favor you throw in once.</p><h3>Using the calculator</h3><p>Start with your target annual income and a realistic number of billable days. Marketing, editing, and admin eat well over half your working hours, so you're not billing 250 days a year. Layer in your cost of doing business: gear replacement, insurance, software, backups, and taxes. The output gives you a floor. For commercial jobs, add licensing on top of that floor rather than folding it in, and never let a shoot-day number become your ceiling.</p>
     <h2>Rate calculators for other freelance fields</h2>
@@ -135,6 +135,8 @@
     if(hpw>=38) s="Heads up: billing "+hpw+" hours a week is very high once you subtract admin and sales. Most freelancers bill 20–30. If that number slips, your real rate needs to be higher.";
     else if(rate>0) s="At "+f(rate)+"/hr you need to bill "+SD.num(byear,0)+" hours across "+weeks+" working weeks to hit your goal. If clients are scarce, raise the rate rather than the hours.";
     el("sanity").textContent=s;
+    SD.sayLater(byear>0?("Target hourly rate "+f(rate)+", day rate "+f(rate*hpd)+", from "+SD.num(byear,0)+" billable hours a year."):"Enter your billable hours to see a rate.");
+    SD.flashResult(document.querySelector(".result"));
   }
   ["currency","income","expenses","hpw","off","buffer","tax","hpd_in"].forEach(function(id){
     el(id).addEventListener("input",calc);

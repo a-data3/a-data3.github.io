@@ -21,40 +21,40 @@
 <header class="site-header"><div class="container"><nav class="nav" aria-label="Primary">
   <a class="brand" href="/"><svg class="logo" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M9 11h14M9 16h9M9 21h14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>SoloDesk</a>
   <span class="spacer"></span>
-  <a class="navlink" href="/#tools">Tools</a>
+  <a class="navlink" aria-current="true" href="/#tools">Tools</a>
   <a class="navlink" href="/guides/how-to-set-your-freelance-rate.html">Guides</a>
 </nav></div></header>
 
 <main><div class="container">
   <p class="crumb"><a href="/">Home</a> › <a href="/tools/freelance-rate-calculator.html">Rate calculator</a> › Virtual Assistant</p>
-  <h1>Freelance Virtual Assistant Rate Calculator</h1>
-  <p style="color:var(--muted);max-width:680px">Whether you run inboxes and calendars for a busy coach or manage a launch for an e-commerce brand, your rate should reflect the responsibility you carry as well as the hours you log. Use the calculator to set a VA rate you can defend, then read on for how virtual assistants price their work in 2026.</p>
+  <h1>Freelance virtual assistant rate calculator</h1>
+  <p class="lede">Whether you run inboxes and calendars for a busy coach or manage a launch for an e-commerce brand, your rate should reflect the responsibility you carry as well as the hours you log. Use the calculator to set a VA rate you can defend, then read on for how virtual assistants price their work in 2026.</p>
 
   <div class="adslot" data-ad="top" aria-hidden="true"></div>
 
   <div class="row c2" style="gap:22px;align-items:start">
     <div class="tool" style="margin-top:0">
-      <div class="field"><label>Currency</label>
+      <div class="field"><label for="currency">Currency</label>
         <select id="currency">
           <option value="USD">USD $</option><option value="EUR">EUR €</option><option value="GBP">GBP £</option>
           <option value="CAD">CAD $</option><option value="AUD">AUD $</option><option value="SGD">SGD $</option>
           <option value="INR">INR ₹</option><option value="IDR">IDR Rp</option><option value="PHP">PHP ₱</option><option value="PKR">PKR ₨</option><option value="BDT">BDT ৳</option><option value="NGN">NGN ₦</option><option value="NZD">NZD $</option>
         </select></div>
-      <div class="field"><label>Target annual income <span class="hint">what you want to earn, before personal income tax</span></label>
-        <input type="text" inputmode="decimal" spellcheck="false" id="income" value="45000" min="0" step="1000"></div>
-      <div class="field"><label>Annual business expenses <span class="hint">software, hardware, insurance, fees, subscriptions</span></label>
-        <input type="text" inputmode="decimal" spellcheck="false" id="expenses" value="4000" min="0" step="500"></div>
+      <div class="field"><label for="income">Target annual income</label>
+        <span class="hint" id="income-hint">what you want to earn, before personal income tax</span><input type="text" inputmode="decimal" spellcheck="false" id="income" value="45000" aria-describedby="income-hint"></div>
+      <div class="field"><label for="expenses">Annual business expenses</label>
+        <span class="hint" id="expenses-hint">software, hardware, insurance, fees, subscriptions</span><input type="text" inputmode="decimal" spellcheck="false" id="expenses" value="4000" aria-describedby="expenses-hint"></div>
       <div class="row c2">
-        <div class="field"><label>Billable hours / week <span class="hint">hours clients pay for, usually under 40</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="hpw" value="30" min="1" max="80" step="1"></div>
-        <div class="field"><label>Weeks off / year <span class="hint">holiday + sick + admin</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="off" value="5" min="0" max="40" step="1"></div>
+        <div class="field"><label for="hpw">Billable hours / week</label>
+          <span class="hint" id="hpw-hint">hours clients pay for, usually under 40</span><input type="text" inputmode="decimal" spellcheck="false" id="hpw" value="30" aria-describedby="hpw-hint"></div>
+        <div class="field"><label for="off">Weeks off / year</label>
+          <span class="hint" id="off-hint">holiday + sick + admin</span><input type="text" inputmode="decimal" spellcheck="false" id="off" value="5" aria-describedby="off-hint"></div>
       </div>
       <div class="row c2">
-        <div class="field"><label>Profit buffer (%) <span class="hint">safety margin for gaps</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="buffer" value="10" min="0" max="100" step="1"></div>
-        <div class="field"><label>Gross up for tax (%) <span class="hint">optional; 0 to ignore</span></label>
-          <input type="text" inputmode="decimal" spellcheck="false" id="tax" value="0" min="0" max="80" step="1"></div>
+        <div class="field"><label for="buffer">Profit buffer (%)</label>
+          <span class="hint" id="buffer-hint">safety margin for gaps</span><input type="text" inputmode="decimal" spellcheck="false" id="buffer" value="10" aria-describedby="buffer-hint"></div>
+        <div class="field"><label for="tax">Gross up for tax (%)</label>
+          <span class="hint" id="tax-hint">optional; 0 to ignore</span><input type="text" inputmode="decimal" spellcheck="false" id="tax" value="0" aria-describedby="tax-hint"></div>
       </div>
     </div>
 
@@ -69,8 +69,8 @@
           <div class="kv"><span>Effective utilisation</span><span class="v" id="util">—</span></div>
         </div>
       </div>
-      <div class="field" style="margin-top:14px"><label>Hours in a working day <span class="hint">for the day rate</span></label>
-        <input type="text" inputmode="decimal" spellcheck="false" id="hpd_in" value="8" min="1" max="24" step="1"></div>
+      <div class="field" style="margin-top:14px"><label for="hpd_in">Hours in a working day</label>
+        <span class="hint" id="hpd_in-hint">for the day rate</span><input type="text" inputmode="decimal" spellcheck="false" id="hpd_in" value="8" aria-describedby="hpd_in-hint"></div>
       <div class="note" id="sanity"></div>
     </div>
   </div>
@@ -79,7 +79,7 @@
 
   <section class="container" style="padding:0">
     <h2>Rate calculator by profession</h2>
-    <p style="color:var(--muted)">Each of these is pre-set for one field and comes with pricing advice specific to it.</p>
+    <p class="section-intro">Each of these is pre-set for one field and comes with pricing advice specific to it.</p>
     <div class="grid" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr))">
       <a class="card" href="/tools/rate/web-developer.html"><h3>Web Developer</h3><p>Set a rate for freelance web development.</p></a>
       <a class="card" href="/tools/rate/graphic-designer.html"><h3>Graphic Designer</h3><p>Price logos, branding and design work.</p></a>
@@ -92,7 +92,7 @@
     </div>
   </section>
 
-  <section class="prose" style="margin-top:26px">
+  <section class="prose">
     <div class="note">In 2026, general admin virtual assistants typically charge around $20–$40/hour, while specialized VAs (OBM, bookkeeping, tech, launch management) commonly run $40–$75+/hour. Rates vary widely by region, niche, and experience.</div>
     <h2>What moves a virtual assistant's rate</h2><p>Specialization matters more than anything else. A general admin VA handling email triage, scheduling, data entry, and travel booking usually sits at the lower end of the market. Once you own a specialty, you stop competing on price with everyone who can use a shared calendar. That specialty might be inbox and operations management (OBM), bookkeeping, social media and content scheduling, podcast or launch management, CRM and funnel setup, real estate transaction coordination, or executive support. Specialized VAs routinely charge 1.5 to 3 times what generalists do.</p><h3>What clients will pay more for</h3><ul><li><strong>Depth in specific software:</strong> knowing tools like ClickUp, Dubsado, HoneyBook, Kajabi, QuickBooks, Shopify, or Meta Business Suite well lets you charge for that expertise rather than for keystrokes.</li><li><strong>Ownership vs. task-taking:</strong> "manage my inbox so I never see spam" is worth far more to a client than "reply to these 20 emails," because they are paying for an outcome rather than a task.</li><li><strong>Time-zone overlap and responsiveness:</strong> being available in real time during a US or client business day earns a premium over asynchronous, next-day work.</li><li><strong>Managing others:</strong> if you coordinate the client's other contractors, VAs, or freelancers, that is team-lead work rather than assistant work, and it should be priced that way.</li><li><strong>Client-facing trust:</strong> anything touching money, clients, or the founder's reputation carries risk, and you can charge for carrying it.</li></ul><h2>Which pricing model fits VA work</h2><p>Most virtual assistants start on pure hourly, and it is the model that punishes you most as you improve. The better you get, the faster you finish, so hourly billing shrinks your income as a reward for getting good at your job. It also invites clock-watching and awkward conversations about whether a task "should have taken that long."</p><p>The model that fits this work better is the <strong>monthly retainer package</strong>: a set block of hours (commonly 10, 20, or 40) at a rate slightly below your hourly, in exchange for predictable income for you and priority access for the client. A retainer rewards you for being efficient and steadies your calendar. It also turns one-off clients into recurring revenue you can plan around. Use the calculator to find your true hourly number first, then build packages on top of it. A 20-hour retainer at a modest per-hour discount in exchange for the commitment is a common example.</p><p>For defined deliverables with a clear scope, such as a launch, a CRM migration, or an inbox-zero cleanup, quote a flat project or value-based price instead of hours. When your work directly produces revenue (managing a sales pipeline, running a launch), base your fee on that value rather than on the hours at your desk.</p><h2>The mistakes VAs make most often</h2><p>The most common error is anchoring your rate to the global offshore market you see on job boards and racing to the bottom against $5–$8/hour listings. That is a different service in a different market, and competing there caps your income permanently. The second mistake, specific to retainers, is <strong>letting scope creep swallow your margin</strong>. This is the client who booked 10 hours but "just adds one more thing" until you find yourself working 18. Define what a package includes and track your hours honestly, then price in a buffer for the extras that always come up. Raise your rates for new clients regularly and give existing clients notice. Your rate should climb as your specialty deepens rather than stay frozen at the number you nervously picked in year one.</p>
     <h2>Rate calculators for other freelance fields</h2>
@@ -135,6 +135,8 @@
     if(hpw>=38) s="Heads up: billing "+hpw+" hours a week is very high once you subtract admin and sales. Most freelancers bill 20–30. If that number slips, your real rate needs to be higher.";
     else if(rate>0) s="At "+f(rate)+"/hr you need to bill "+SD.num(byear,0)+" hours across "+weeks+" working weeks to hit your goal. If clients are scarce, raise the rate rather than the hours.";
     el("sanity").textContent=s;
+    SD.sayLater(byear>0?("Target hourly rate "+f(rate)+", day rate "+f(rate*hpd)+", from "+SD.num(byear,0)+" billable hours a year."):"Enter your billable hours to see a rate.");
+    SD.flashResult(document.querySelector(".result"));
   }
   ["currency","income","expenses","hpw","off","buffer","tax","hpd_in"].forEach(function(id){
     el(id).addEventListener("input",calc);
