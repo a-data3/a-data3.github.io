@@ -57,7 +57,7 @@ main{padding:0}.q-wrap{display:block}#preview{border:0;box-shadow:none;padding:0
   <a class="brand" href="/"><svg class="logo" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M9 11h14M9 16h9M9 21h14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>SoloDesk</a>
   <span class="spacer"></span>
   <a class="navlink" aria-current="true" href="/#tools">Tools</a>
-  <a class="navlink" href="/guides/how-to-set-your-freelance-rate.html">Guides</a>
+  <a class="navlink" href="/guides/">Guides</a>
 </nav></div></header>
 
 <main><div class="container">
@@ -94,6 +94,7 @@ main{padding:0}.q-wrap{display:block}#preview{border:0;box-shadow:none;padding:0
       <h3>Line items</h3>
       <div class="li-head"><span>Description</span><span>Qty</span><span>Price</span><span></span></div>
       <div id="items"></div>
+      <div id="undoslot" role="status" aria-live="polite"></div>
       <button class="btn ghost small" id="additem" type="button" style="margin-top:6px">+ Add line</button>
       <div class="row c3" style="margin-top:14px">
         <div class="field"><label for="disc">Discount (%)</label><input type="text" inputmode="decimal" spellcheck="false" id="disc" value="0"></div>
@@ -174,7 +175,13 @@ main{padding:0}.q-wrap{display:block}#preview{border:0;box-shadow:none;padding:0
       ins[1].addEventListener("input",function(){it.qty=SD.parse(this.value);render();});
       ins[2].addEventListener("input",function(){it.rate=SD.parse(this.value);render();});
       row.querySelector(".x").addEventListener("click",function(){
+        var gone=items[i], at=i; if(!gone) return;
         items.splice(i,1);renderItems();render();
+        SD.undo(el("undoslot"),"Removed "+(gone.desc||("line "+(at+1)))+".",function(){
+          items.splice(at,0,gone);renderItems();render();
+          var back=el("items").querySelectorAll(".x");
+          if(back[at]) back[at].focus();
+        });
         var rows=box.querySelectorAll(".x");
         (rows[Math.min(i,rows.length-1)]||el("additem")).focus();
       });
@@ -213,7 +220,7 @@ main{padding:0}.q-wrap{display:block}#preview{border:0;box-shadow:none;padding:0
     if(rows.length) rows[rows.length-1].querySelector("input").focus();
   });
   el("download").addEventListener("click",function(){render();window.print();});
-  el("reset").addEventListener("click",function(){if(!confirm("Clear the quote?"))return;items=[];["qno","fromName","fromInfo","toName","toInfo","notes"].forEach(function(id){el(id).value="";});el("qno").value="Q-0001";el("disc").value=0;el("tax").value=0;el("deposit").value=50;addItem("",1,0);render();});
+  el("reset").addEventListener("click",function(){if(!confirm("Clear the quote?"))return;SD.undoHide(el("undoslot"));items=[];["qno","fromName","fromInfo","toName","toInfo","notes"].forEach(function(id){el(id).value="";});el("qno").value="Q-0001";el("disc").value=0;el("tax").value=0;el("deposit").value=50;addItem("",1,0);render();});
   var t=new Date(),v=new Date(t.getTime()+30*864e5);
   el("qdate").value=iso(t);el("valid").value=iso(v);
   addItem("Website design & build — fixed scope",1,2500);

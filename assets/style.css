@@ -63,7 +63,8 @@ code{font-family:var(--mono);font-size:.9em;background:var(--surface-2);padding:
 /* Section rhythm: one tier between sections, headings carry the sub-tiers */
 main>section+section,main>.container>section+section{margin-top:56px}
 main>section>h2:first-child,main>.container>section>h2:first-child{margin-top:0}
-@media (max-width:640px){main>section+section,main>.container>section+section{margin-top:40px}}
+main>.container>.lede+section{margin-top:48px}
+@media (max-width:640px){main>section+section,main>.container>section+section{margin-top:40px}main>.container>.lede+section{margin-top:40px}}
 
 /* Header */
 .site-header{position:sticky;top:0;z-index:20;background:var(--surface);border-bottom:1px solid var(--border)}
@@ -163,6 +164,15 @@ input[aria-invalid="true"],select[aria-invalid="true"],textarea[aria-invalid="tr
   transition:color var(--dur) var(--ease),border-color var(--dur) var(--ease)}
 .li-head,.thead,.prov-head{font-size:var(--fs-sm);text-transform:none;letter-spacing:normal;
   color:var(--muted);font-weight:500;align-items:end}
+
+/* Undo bar: sits under a repeating-row list after a row is removed */
+.undo-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  margin-top:8px;padding:8px 12px;background:var(--surface-2);border:1px solid var(--border);
+  border-radius:var(--r-panel);color:var(--muted);font-size:var(--fs-sm)}
+.undo-bar[hidden]{display:none}
+.undo-bar .undo-text{min-width:0;overflow-wrap:anywhere}
+/* a temporary control never belongs in a printed document */
+@media print{.undo-bar{display:none !important}}
 
 /* Results: the one contained region */
 .result{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-panel);padding:var(--pad-panel);

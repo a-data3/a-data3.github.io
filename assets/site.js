@@ -78,6 +78,52 @@
     clearTimeout(SD._sayDebounce);
     SD._sayDebounce = setTimeout(function () { SD.say(msg); }, wait == null ? 500 : wait);
   };
+  // Undo bar for a removed repeating row. One bar per container: a second removal
+  // replaces the message, and the bar goes away on undo or after 8 seconds.
+  SD._undoBar = function (container) {
+    var bar = container.querySelector(".undo-bar");
+    if (bar && bar._text) return bar;
+    bar = document.createElement("div");
+    bar.className = "undo-bar";
+    bar.hidden = true;
+    var text = document.createElement("span");
+    text.className = "undo-text";
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "btn ghost small";
+    btn.textContent = "Undo";
+    bar.appendChild(text);
+    bar.appendChild(btn);
+    bar._text = text;
+    bar._btn = btn;
+    container.appendChild(bar);
+    return bar;
+  };
+  SD.undo = function (container, message, onUndo) {
+    if (!container) return null;
+    var bar = SD._undoBar(container);
+    clearTimeout(bar._t);
+    bar.hidden = false;
+    bar._text.textContent = message;
+    bar._btn.onclick = function () {
+      SD.undoHide(container);
+      if (onUndo) onUndo();
+    };
+    bar._t = setTimeout(function () { SD.undoHide(container); }, 8000);
+    return bar;
+  };
+  SD.undoHide = function (container) {
+    var bar = container && container.querySelector(".undo-bar");
+    if (!bar) return;
+    clearTimeout(bar._t);
+    if (document.activeElement === bar._btn) {
+      var next = container.nextElementSibling;
+      if (next && next.focus) next.focus();
+    }
+    bar._btn.onclick = null;
+    bar._text.textContent = "";
+    bar.hidden = true;
+  };
   // Flash the result panel so the sighted case gets the same cue.
   SD.flashResult = function (elOrId) {
     var el = typeof elOrId === "string" ? document.getElementById(elOrId) : elOrId;
