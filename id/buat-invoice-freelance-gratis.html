@@ -53,7 +53,9 @@
   .site-header,.site-footer,.controls,.crumb,.prose,.no-print,.adslot,main h1,.lede,.li-head{display:none !important}
   main .container > *:not(.invoice-wrap){display:none !important}
   main{padding:0}
-  @page{margin:14mm}
+  /* zero page margin makes the browser drop its own header and footer (date, page title, URL); the padding restores the margin */
+  @page{size:auto;margin:0}
+  body{padding:14mm}
   .invoice-wrap{display:block}
   #preview{border:0;box-shadow:none;border-radius:0;padding:0;margin:0}
   .container{max-width:none;padding:0}
@@ -270,7 +272,7 @@
   ["currency","invno","idate","ddate","fromName","fromInfo","toName","toInfo","tax","disc","notes","paymethod","paydetails"]
     .forEach(function(id){el(id).addEventListener("input",render);el(id).addEventListener("change",render);});
   el("additem").addEventListener("click",function(){addItem("",1,0);render();});
-  el("download").addEventListener("click",function(){render();window.print();});
+  el("download").addEventListener("click",function(){render();var t=document.title;document.title="Invoice "+(el("invno").value||"");window.print();setTimeout(function(){document.title=t;},2000);});
   el("reset").addEventListener("click",function(){
     if(!confirm("Kosongkan invoice dan mulai dari awal?"))return;
     items=[]; ["invno","fromName","fromInfo","toName","toInfo","notes","paymethod","paydetails"].forEach(function(id){el(id).value="";});
