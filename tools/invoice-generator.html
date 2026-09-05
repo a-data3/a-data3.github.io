@@ -23,7 +23,7 @@
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"Is this invoice generator really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every tool on SoloDesk is free with no signup, no watermark, and no email required."}},
 {"@type":"Question","name":"Where is my invoice data stored?","acceptedAnswer":{"@type":"Answer","text":"Only in your own browser. The tool runs locally and your figures are never uploaded. If you choose, your own business details can be remembered on your device and nowhere else."}},
-{"@type":"Question","name":"How do I download the invoice as a PDF?","acceptedAnswer":{"@type":"Answer","text":"Click Download PDF, then choose Save as PDF as the destination in your browser's print dialog. The on-screen controls are hidden automatically so only the invoice prints."}}]}
+{"@type":"Question","name":"How do I download the invoice as a PDF?","acceptedAnswer":{"@type":"Answer","text":"Click Download PDF, then choose Save as PDF as the destination in your browser's print dialog. Everything except the invoice itself is hidden, so the saved file has no page title, links or branding from this site."}},{"@type":"Question","name":"Can I add my logo and bank details?","acceptedAnswer":{"@type":"Answer","text":"Yes. Upload a PNG, JPG or SVG in the Logo field and it appears at the top left of the invoice. Fill in the payment method and account details and they print in a Payment section above the notes. Both stay on your device."}}]}
 </script>
 <style>
 /* Invoice preview + print */
@@ -50,8 +50,10 @@
 .li-head{display:grid;grid-template-columns:1fr 76px 96px 34px;gap:8px;font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-top:6px}
 @media print{
   body{background:#fff}
-  .site-header,.site-footer,.controls,.crumb,.prose,.no-print,.adslot{display:none !important}
+  .site-header,.site-footer,.controls,.crumb,.prose,.no-print,.adslot,main h1,.lede,.li-head{display:none !important}
+  main .container > *:not(.invoice-wrap){display:none !important}
   main{padding:0}
+  @page{margin:14mm}
   .invoice-wrap{display:block}
   #preview{border:0;box-shadow:none;border-radius:0;padding:0;margin:0}
   .container{max-width:none;padding:0}
@@ -77,7 +79,7 @@
     <!-- ============ FORM ============ -->
     <div class="tool no-print" style="margin-top:0">
       <div class="controls" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px">
-        <button class="btn" id="download">⬇ Download PDF</button>
+        <button class="btn" id="download">Download PDF</button>
         <button class="btn ghost small" id="remember" type="button">Remember my details</button>
         <button class="btn ghost small" id="reset" type="button">Reset</button>
       </div>
@@ -101,6 +103,7 @@
       <h3>From (you)</h3>
       <div class="field"><label>Your name / business</label><input type="text" id="fromName" placeholder="Jane Doe Design"></div>
       <div class="field"><label>Your details <span class="hint">address, email, tax ID (one per line)</span></label><textarea id="fromInfo" placeholder="hello@janedoe.design&#10;123 Main St&#10;VAT/Tax ID: ..."></textarea></div>
+      <div class="field"><label>Logo <span class="hint">optional, PNG, JPG or SVG, stays on this device</span></label><input type="file" id="logo" accept="image/png,image/jpeg,image/svg+xml,image/webp"><button class="btn ghost small" id="logoclear" type="button" style="margin-top:6px;display:none">Remove logo</button></div>
 
       <h3>Bill to (client)</h3>
       <div class="field"><label>Client name / company</label><input type="text" id="toName" placeholder="Acme Inc."></div>
@@ -115,13 +118,18 @@
         <div class="field"><label>Tax / VAT (%)</label><input type="text" inputmode="decimal" spellcheck="false" id="tax" value="0" min="0" step="0.1"></div>
         <div class="field"><label>Discount (%)</label><input type="text" inputmode="decimal" spellcheck="false" id="disc" value="0" min="0" step="0.1"></div>
       </div>
-      <div class="field"><label>Notes / payment terms</label><textarea id="notes" placeholder="Payment due within 14 days by bank transfer to ...&#10;Thank you for your business!"></textarea></div>
+      <h3>Payment details</h3>
+      <div class="field"><label>Payment method</label>
+        <select id="paymethod"><option value="">Not shown</option><option>Bank transfer</option><option>PayPal</option><option>Wise</option><option>Payoneer</option><option>Card or payment link</option><option>Other</option></select></div>
+      <div class="field"><label>Account details <span class="hint">one per line, exactly as the client should enter them</span></label><textarea id="paydetails" placeholder="Bank: First National Bank&#10;Account name: Jane Doe Design&#10;Account number or IBAN: ...&#10;SWIFT / BIC: ...&#10;Reference: INV-0001"></textarea></div>
+
+      <div class="field"><label>Notes / payment terms</label><textarea id="notes" placeholder="Payment due within 14 days.&#10;Thank you for your business!"></textarea></div>
     </div>
 
     <!-- ============ PREVIEW ============ -->
     <div id="preview" aria-label="Invoice preview">
       <div class="inv-head">
-        <div><div class="biz" id="p-from">Your name / business</div><div class="muted" id="p-frominfo"></div></div>
+        <div><img id="p-logo" alt="" style="display:none;max-height:64px;max-width:220px;object-fit:contain;margin:0 0 10px"><div class="biz" id="p-from">Your name / business</div><div class="muted" id="p-frominfo"></div></div>
         <div style="text-align:right"><h2 class="inv-title">INVOICE</h2><div class="muted" id="p-meta"></div></div>
       </div>
       <div style="margin-top:16px"><div class="muted" style="text-transform:uppercase;font-size:.7rem;letter-spacing:.06em">Bill to</div>
@@ -133,6 +141,11 @@
         <div class="kv" id="p-disc-row"><span>Discount</span><span class="v" id="p-disc"></span></div>
         <div class="kv" id="p-tax-row"><span>Tax</span><span class="v" id="p-tax"></span></div>
         <div class="kv grand"><span>Total</span><span class="v" id="p-total"></span></div>
+      </div>
+      <div id="p-pay" style="display:none;margin-top:18px;font-size:.86rem;color:#374151">
+        <div class="muted" style="text-transform:uppercase;font-size:.7rem;letter-spacing:.06em">Payment</div>
+        <div id="p-paymethod" style="font-weight:600;color:#111827"></div>
+        <div id="p-paydetails" style="white-space:pre-line"></div>
       </div>
       <div class="notes" id="p-notes"></div>
     </div>
@@ -166,7 +179,8 @@
     <h2>Frequently asked questions</h2>
     <details><summary>Is this invoice generator really free?</summary><p>Yes. Every tool on SoloDesk is free with no signup, no watermark, and no email required.</p></details>
     <details><summary>Where is my invoice data stored?</summary><p>Only in your own browser. The tool runs locally and your figures are never uploaded. If you click "Remember my details," only your own business info (name, address) is saved on your device using local storage. The client details and amounts are never saved.</p></details>
-    <details><summary>How do I download the invoice as a PDF?</summary><p>Click <strong>Download PDF</strong>, then choose <em>Save as PDF</em> as the destination in the print dialog. The form controls are hidden automatically, so only the clean invoice is saved.</p></details>
+    <details><summary>How do I download the invoice as a PDF?</summary><p>Click <strong>Download PDF</strong>, then choose <em>Save as PDF</em> as the destination in the print dialog. Everything except the invoice itself is hidden, so the saved file has no page title, no links and no branding from this site.</p></details>
+    <details><summary>Can I add my logo and bank details?</summary><p>Yes. Upload a PNG, JPG or SVG in the Logo field and it appears at the top left of the invoice. Fill in the payment method and account details and they print in a Payment section above the notes. Both stay on your device; "Remember my details" keeps them for next time.</p></details>
     <details><summary>Can I add my logo?</summary><p>Not in this version. It keeps things text-only for speed and privacy. Your business name is shown prominently at the top, which is enough for a professional freelance invoice.</p></details>
   </section>
 </div></main>
@@ -230,29 +244,48 @@
     el("p-disc").textContent="−"+f(discAmt); el("p-disc-row").style.display=discPct?"flex":"none";
     el("p-tax").textContent=f(taxAmt); el("p-tax-row").style.display=taxPct?"flex":"none";
     el("p-total").textContent=f(total);
+    var pm=el("paymethod").value, pd=el("paydetails").value;
+    el("p-paymethod").textContent=pm; el("p-paydetails").textContent=pd;
+    el("p-pay").style.display=(pm||pd)?"block":"none";
     el("p-notes").textContent=el("notes").value||"";
   }
+  // logo: read on-device, never uploaded anywhere
+  var logoData="";
+  function showLogo(){
+    var img=el("p-logo");
+    if(logoData){img.src=logoData;img.style.display="block";el("logoclear").style.display="";}
+    else{img.removeAttribute("src");img.style.display="none";el("logoclear").style.display="none";}
+  }
+  el("logo").addEventListener("change",function(){
+    var f=this.files&&this.files[0]; if(!f)return;
+    if(f.size>1500000){alert("Please use a logo under 1.5 MB.");this.value="";return;}
+    var r=new FileReader(); r.onload=function(){logoData=String(r.result);showLogo();}; r.readAsDataURL(f);
+  });
+  el("logoclear").addEventListener("click",function(){logoData="";el("logo").value="";showLogo();});
   // wire inputs
-  ["currency","invno","idate","ddate","fromName","fromInfo","toName","toInfo","tax","disc","notes"]
-    .forEach(function(id){el(id).addEventListener("input",render);});
+  ["currency","invno","idate","ddate","fromName","fromInfo","toName","toInfo","tax","disc","notes","paymethod","paydetails"]
+    .forEach(function(id){el(id).addEventListener("input",render);el(id).addEventListener("change",render);});
   el("additem").addEventListener("click",function(){addItem("",1,0);render();});
   el("download").addEventListener("click",function(){render();window.print();});
   el("reset").addEventListener("click",function(){
     if(!confirm("Clear the invoice and start over?"))return;
-    items=[]; ["invno","fromName","fromInfo","toName","toInfo","notes"].forEach(function(id){el(id).value="";});
+    items=[]; ["invno","fromName","fromInfo","toName","toInfo","notes","paymethod","paydetails"].forEach(function(id){el(id).value="";});
     el("invno").value="INV-0001"; el("tax").value=0; el("disc").value=0;
+    logoData=""; el("logo").value=""; showLogo();
     addItem("",1,0); render();
   });
   // remember only the freelancer's own details, on-device
   el("remember").addEventListener("click",function(){
     try{
-      localStorage.setItem("sd_invoice_from",JSON.stringify({name:el("fromName").value,info:el("fromInfo").value,currency:el("currency").value}));
+      localStorage.setItem("sd_invoice_from",JSON.stringify({name:el("fromName").value,info:el("fromInfo").value,currency:el("currency").value,
+        logo:logoData,paymethod:el("paymethod").value,paydetails:el("paydetails").value}));
       this.textContent="Saved on this device"; var b=this; setTimeout(function(){b.textContent="Remember my details";},1500);
-    }catch(e){alert("Couldn't save — your browser may be blocking local storage.");}
+    }catch(e){alert("Couldn't save. Your browser may be blocking local storage, or the logo is too large to keep.");}
   });
   function loadRemembered(){
     try{var s=JSON.parse(localStorage.getItem("sd_invoice_from")||"null");
-      if(s){el("fromName").value=s.name||"";el("fromInfo").value=s.info||"";if(s.currency)el("currency").value=s.currency;}
+      if(s){el("fromName").value=s.name||"";el("fromInfo").value=s.info||"";if(s.currency)el("currency").value=s.currency;
+        el("paymethod").value=s.paymethod||"";el("paydetails").value=s.paydetails||"";logoData=s.logo||"";showLogo();}
     }catch(e){}
   }
   // init

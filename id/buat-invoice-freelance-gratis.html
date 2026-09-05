@@ -23,7 +23,7 @@
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"Apakah invoice generator ini benar-benar gratis?","acceptedAnswer":{"@type":"Answer","text":"Ya. Semua alat di SoloDesk gratis, tanpa daftar, tanpa watermark, dan tanpa email."}},
 {"@type":"Question","name":"Di mana data invoice saya disimpan?","acceptedAnswer":{"@type":"Answer","text":"Hanya di browser kamu sendiri. Alat ini berjalan secara lokal dan angka-angkamu tidak pernah diunggah. Kalau kamu mau, detail bisnismu sendiri bisa disimpan di perangkatmu saja, tidak di tempat lain."}},
-{"@type":"Question","name":"Bagaimana cara mengunduh invoice sebagai PDF?","acceptedAnswer":{"@type":"Answer","text":"Klik Unduh PDF, lalu pilih Save as PDF sebagai tujuan di kotak dialog cetak browsermu. Kontrol di layar otomatis tersembunyi jadi yang tercetak cuma invoice-nya."}}]}
+{"@type":"Question","name":"Bagaimana cara mengunduh invoice sebagai PDF?","acceptedAnswer":{"@type":"Answer","text":"Klik Unduh PDF, lalu pilih Save as PDF sebagai tujuan di kotak dialog cetak browsermu. Semua selain invoice disembunyikan, jadi file yang tersimpan tidak memuat judul halaman, tautan, atau merek situs ini."}},{"@type":"Question","name":"Bisa tambah logo dan rekening bank?","acceptedAnswer":{"@type":"Answer","text":"Bisa. Unggah PNG, JPG atau SVG di kolom Logo dan logonya tampil di kiri atas invoice. Isi cara pembayaran dan rincian rekening, lalu keduanya tercetak di bagian Pembayaran di atas catatan. Semuanya tetap di perangkat kamu."}}]}
 </script>
 <style>
 /* Invoice preview + print */
@@ -50,8 +50,10 @@
 .li-head{display:grid;grid-template-columns:1fr 76px 96px 34px;gap:8px;font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-top:6px}
 @media print{
   body{background:#fff}
-  .site-header,.site-footer,.controls,.crumb,.prose,.no-print,.adslot{display:none !important}
+  .site-header,.site-footer,.controls,.crumb,.prose,.no-print,.adslot,main h1,.lede,.li-head{display:none !important}
+  main .container > *:not(.invoice-wrap){display:none !important}
   main{padding:0}
+  @page{margin:14mm}
   .invoice-wrap{display:block}
   #preview{border:0;box-shadow:none;border-radius:0;padding:0;margin:0}
   .container{max-width:none;padding:0}
@@ -77,7 +79,7 @@
     <!-- ============ FORM ============ -->
     <div class="tool no-print" style="margin-top:0">
       <div class="controls" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px">
-        <button class="btn" id="download">⬇ Unduh PDF</button>
+        <button class="btn" id="download">Unduh PDF</button>
         <button class="btn ghost small" id="remember" type="button">Ingat Info Saya</button>
         <button class="btn ghost small" id="reset" type="button">Reset</button>
       </div>
@@ -101,6 +103,7 @@
       <h3>Dari (kamu)</h3>
       <div class="field"><label>Nama / bisnis kamu</label><input type="text" id="fromName" placeholder="Studio Desain Nadia"></div>
       <div class="field"><label>Detail kamu <span class="hint">alamat, email, NPWP (satu per baris)</span></label><textarea id="fromInfo" placeholder="hello@studionadia.id&#10;Jl. Melati No. 12, Jakarta&#10;NPWP: ..."></textarea></div>
+      <div class="field"><label>Logo <span class="hint">opsional, PNG, JPG atau SVG, tetap tersimpan di perangkat ini</span></label><input type="file" id="logo" accept="image/png,image/jpeg,image/svg+xml,image/webp"><button class="btn ghost small" id="logoclear" type="button" style="margin-top:6px;display:none">Hapus logo</button></div>
 
       <h3>Ditagihkan ke (klien)</h3>
       <div class="field"><label>Nama klien / perusahaan</label><input type="text" id="toName" placeholder="PT Maju Bersama"></div>
@@ -115,13 +118,18 @@
         <div class="field"><label>Pajak / PPN (%)</label><input type="text" inputmode="decimal" spellcheck="false" id="tax" value="0" min="0" step="0.1"></div>
         <div class="field"><label>Diskon (%)</label><input type="text" inputmode="decimal" spellcheck="false" id="disc" value="0" min="0" step="0.1"></div>
       </div>
-      <div class="field"><label>Catatan / syarat pembayaran</label><textarea id="notes" placeholder="Pembayaran jatuh tempo 14 hari lewat transfer bank ke ...&#10;Terima kasih!"></textarea></div>
+      <h3>Rincian pembayaran</h3>
+      <div class="field"><label>Cara pembayaran</label>
+        <select id="paymethod"><option value="">Tidak ditampilkan</option><option>Transfer bank</option><option>PayPal</option><option>Wise</option><option>Payoneer</option><option>Kartu atau tautan pembayaran</option><option>Lainnya</option></select></div>
+      <div class="field"><label>Rincian rekening <span class="hint">satu per baris, persis seperti yang harus diisi klien</span></label><textarea id="paydetails" placeholder="Bank: BCA&#10;Atas nama: Studio Nadia&#10;Nomor rekening: ...&#10;Kode SWIFT (klien luar negeri): ...&#10;Referensi: INV-0001"></textarea></div>
+
+      <div class="field"><label>Catatan / syarat pembayaran</label><textarea id="notes" placeholder="Pembayaran jatuh tempo 14 hari.&#10;Terima kasih!"></textarea></div>
     </div>
 
     <!-- ============ PREVIEW ============ -->
     <div id="preview" aria-label="Invoice preview">
       <div class="inv-head">
-        <div><div class="biz" id="p-from">Nama / bisnis kamu</div><div class="muted" id="p-frominfo"></div></div>
+        <div><img id="p-logo" alt="" style="display:none;max-height:64px;max-width:220px;object-fit:contain;margin:0 0 10px"><div class="biz" id="p-from">Nama / bisnis kamu</div><div class="muted" id="p-frominfo"></div></div>
         <div style="text-align:right"><h2 class="inv-title">INVOICE</h2><div class="muted" id="p-meta"></div></div>
       </div>
       <div style="margin-top:16px"><div class="muted" style="text-transform:uppercase;font-size:.7rem;letter-spacing:.06em">Ditagihkan ke</div>
@@ -133,6 +141,11 @@
         <div class="kv" id="p-disc-row"><span>Diskon</span><span class="v" id="p-disc"></span></div>
         <div class="kv" id="p-tax-row"><span>Pajak</span><span class="v" id="p-tax"></span></div>
         <div class="kv grand"><span>Total</span><span class="v" id="p-total"></span></div>
+      </div>
+      <div id="p-pay" style="display:none;margin-top:18px;font-size:.86rem;color:#374151">
+        <div class="muted" style="text-transform:uppercase;font-size:.7rem;letter-spacing:.06em">Pembayaran</div>
+        <div id="p-paymethod" style="font-weight:600;color:#111827"></div>
+        <div id="p-paydetails" style="white-space:pre-line"></div>
       </div>
       <div class="notes" id="p-notes"></div>
     </div>
@@ -175,7 +188,7 @@
     <details><summary>Apakah invoice generator ini benar-benar gratis?</summary><p>Ya. Semua alat di SoloDesk gratis, tanpa daftar, tanpa watermark, dan tanpa email.</p></details>
     <details><summary>Di mana data invoice saya disimpan?</summary><p>Hanya di browser kamu sendiri. Alat ini berjalan secara lokal dan angka-angkamu tidak pernah diunggah. Kalau kamu klik "Ingat Info Saya", hanya info bisnismu sendiri (nama, alamat) yang disimpan di perangkatmu lewat local storage. Detail klien dan nominalnya tidak pernah disimpan.</p></details>
     <details><summary>Bagaimana cara mengunduh invoice sebagai PDF?</summary><p>Klik <strong>Unduh PDF</strong>, lalu pilih <em>Save as PDF</em> sebagai tujuan di kotak dialog cetak. Kontrol formulir otomatis tersembunyi, jadi yang tersimpan cuma invoice yang bersih.</p></details>
-    <details><summary>Bisa tambah logo?</summary><p>Belum di versi ini. Sengaja dibuat teks saja demi kecepatan dan privasi. Nama bisnismu tetap ditampilkan menonjol di bagian atas, dan itu sudah cukup untuk invoice freelance yang profesional.</p></details>
+    <details><summary>Bisa tambah logo dan rekening bank?</summary><p>Bisa. Unggah PNG, JPG atau SVG di kolom Logo dan logonya tampil di kiri atas invoice. Isi cara pembayaran dan rincian rekening, lalu keduanya tercetak di bagian Pembayaran di atas catatan. Semuanya tetap di perangkat kamu; "Ingat Info Saya" menyimpannya untuk invoice berikutnya.</p></details>
   </section>
 </div></main>
 
@@ -238,29 +251,48 @@
     el("p-disc").textContent="−"+f(discAmt); el("p-disc-row").style.display=discPct?"flex":"none";
     el("p-tax").textContent=f(taxAmt); el("p-tax-row").style.display=taxPct?"flex":"none";
     el("p-total").textContent=f(total);
+    var pm=el("paymethod").value, pd=el("paydetails").value;
+    el("p-paymethod").textContent=pm; el("p-paydetails").textContent=pd;
+    el("p-pay").style.display=(pm||pd)?"block":"none";
     el("p-notes").textContent=el("notes").value||"";
   }
   // wire inputs
-  ["currency","invno","idate","ddate","fromName","fromInfo","toName","toInfo","tax","disc","notes"]
-    .forEach(function(id){el(id).addEventListener("input",render);});
+  // logo: dibaca di perangkat, tidak pernah diunggah
+  var logoData="";
+  function showLogo(){
+    var img=el("p-logo");
+    if(logoData){img.src=logoData;img.style.display="block";el("logoclear").style.display="";}
+    else{img.removeAttribute("src");img.style.display="none";el("logoclear").style.display="none";}
+  }
+  el("logo").addEventListener("change",function(){
+    var f=this.files&&this.files[0]; if(!f)return;
+    if(f.size>1500000){alert("Gunakan logo di bawah 1,5 MB.");this.value="";return;}
+    var r=new FileReader(); r.onload=function(){logoData=String(r.result);showLogo();}; r.readAsDataURL(f);
+  });
+  el("logoclear").addEventListener("click",function(){logoData="";el("logo").value="";showLogo();});
+  ["currency","invno","idate","ddate","fromName","fromInfo","toName","toInfo","tax","disc","notes","paymethod","paydetails"]
+    .forEach(function(id){el(id).addEventListener("input",render);el(id).addEventListener("change",render);});
   el("additem").addEventListener("click",function(){addItem("",1,0);render();});
   el("download").addEventListener("click",function(){render();window.print();});
   el("reset").addEventListener("click",function(){
     if(!confirm("Kosongkan invoice dan mulai dari awal?"))return;
-    items=[]; ["invno","fromName","fromInfo","toName","toInfo","notes"].forEach(function(id){el(id).value="";});
+    items=[]; ["invno","fromName","fromInfo","toName","toInfo","notes","paymethod","paydetails"].forEach(function(id){el(id).value="";});
+    logoData=""; el("logo").value=""; showLogo();
     el("invno").value="INV-0001"; el("tax").value=0; el("disc").value=0;
     addItem("",1,0); render();
   });
   // remember only the freelancer's own details, on-device
   el("remember").addEventListener("click",function(){
     try{
-      localStorage.setItem("sd_invoice_from",JSON.stringify({name:el("fromName").value,info:el("fromInfo").value,currency:el("currency").value}));
+      localStorage.setItem("sd_invoice_from",JSON.stringify({name:el("fromName").value,info:el("fromInfo").value,currency:el("currency").value,
+        logo:logoData,paymethod:el("paymethod").value,paydetails:el("paydetails").value}));
       this.textContent="Saved on this device"; var b=this; setTimeout(function(){b.textContent="Remember my details";},1500);
     }catch(e){alert("Tidak bisa menyimpan. Browser Anda mungkin memblokir penyimpanan lokal.");}
   });
   function loadRemembered(){
     try{var s=JSON.parse(localStorage.getItem("sd_invoice_from")||"null");
-      if(s){el("fromName").value=s.name||"";el("fromInfo").value=s.info||"";if(s.currency)el("currency").value=s.currency;}
+      if(s){el("fromName").value=s.name||"";el("fromInfo").value=s.info||"";if(s.currency)el("currency").value=s.currency;
+        el("paymethod").value=s.paymethod||"";el("paydetails").value=s.paydetails||"";logoData=s.logo||"";showLogo();}
     }catch(e){}
   }
   // init
