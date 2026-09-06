@@ -114,6 +114,16 @@ main{padding:8px 0 64px}
 .row.c3{grid-template-columns:1fr 1fr 1fr}
 @media (max-width:640px){.row.c2,.row.c3{grid-template-columns:1fr}}
 
+/* Document generators: the form beside the plain-text preview that becomes the printed page */
+.docwrap{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+.docwrap .tool{margin-top:0}
+@media (max-width:860px){.docwrap{grid-template-columns:1fr}}
+/* The preview is paper, so it keeps its own ink scope in both themes. */
+.docpaper{--paper:#fff;--paper-ink:#151b26;background:var(--paper);color:var(--paper-ink);
+  border:1px solid var(--border);border-radius:var(--r-panel);padding:clamp(16px,3vw,var(--pad-panel-lg));
+  white-space:pre-wrap;font-size:var(--fs-base);line-height:1.6;min-height:300px}
+@media print{.docwrap{display:block}.docpaper{border:0;padding:0}}
+
 /* Forms */
 .field{margin:12px 0 16px}
 .field label,.lbl{display:block;font-weight:500;font-size:var(--fs-base);margin-bottom:6px;color:var(--text)}
@@ -156,6 +166,7 @@ input[aria-invalid="true"],select[aria-invalid="true"],textarea[aria-invalid="tr
 .btn.ghost.danger:hover{background:var(--surface-2);border-color:var(--danger)}
 .btn.small{min-height:32px;padding:4px 12px;font-size:var(--fs-base)}
 .copybtn{min-width:6.5em;justify-content:center}
+.controls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px}
 .controls .danger{margin-left:auto}
 
 /* Repeating-row remove control: a real button that looks like the old glyph */

@@ -17,12 +17,8 @@
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"SoloDesk Scope of Work Generator","applicationCategory":"BusinessApplication","operatingSystem":"Any (web)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
 <style>
-.sow-wrap{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
-@media (max-width:860px){.sow-wrap{grid-template-columns:1fr}}
-#doc{--paper:#fff;--paper-ink:#151b26;background:var(--paper);color:var(--paper-ink);border:1px solid var(--border);border-radius:8px;
-  padding:clamp(16px,3vw,var(--pad-panel-lg));white-space:pre-wrap;font-size:var(--fs-base);line-height:1.6;min-height:300px}
 @media print{body{background:#fff}.site-header,.site-footer,.controls,.crumb,.prose,.no-print,.adslot,.form-col{display:none!important}
-main{padding:0}.sow-wrap{display:block}#doc{border:0;box-shadow:none;padding:0}.container{max-width:none;padding:0}}
+main{padding:0}.container{max-width:none;padding:0}}
 </style>
 </head>
 <body>
@@ -42,9 +38,9 @@ main{padding:0}.sow-wrap{display:block}#doc{border:0;box-shadow:none;padding:0}.
 
   <div class="adslot" data-ad="top" aria-hidden="true"></div>
 
-  <div class="sow-wrap">
-    <div class="tool form-col" style="margin-top:0">
-      <div class="controls" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px">
+  <div class="docwrap">
+    <div class="tool form-col">
+      <div class="controls">
         <button class="btn ghost small copybtn" id="copy" type="button">Copy</button>
         <button class="btn ghost small" id="print" type="button">Print / PDF</button>
       </div>
@@ -67,7 +63,7 @@ main{padding:0}.sow-wrap{display:block}#doc{border:0;box-shadow:none;padding:0}.
       <div class="field"><label for="changes">Change requests</label><span class="hint" id="changes-hint">how out-of-scope work is handled</span><input type="text" id="changes" placeholder="Billed at $85/hour by written agreement" aria-describedby="changes-hint"></div>
     </div>
 
-    <div id="doc" aria-label="Scope of work preview"></div>
+    <div id="doc" class="docpaper" aria-label="Scope of work preview"></div>
   </div>
 
   <div class="adslot" data-ad="mid" aria-hidden="true"></div>
@@ -86,7 +82,7 @@ main{padding:0}.sow-wrap{display:block}#doc{border:0;box-shadow:none;padding:0}.
     <h3>Exclusions are the most valuable lines</h3>
     <p>Freelancers instinctively list what they'll do and forget to say what they won't. The exclusions section is where you protect yourself. If copywriting, photography, maintenance, or extra revisions are named as out of scope, adding them later becomes a paid change order instead of an awkward argument. When a client asks for something on the exclusions list, you can reply "Happy to, that would be a change request." Over a year of projects, that one reply keeps a lot of work paid that would otherwise have been done for free.</p>
     <h3>Attach it to the quote</h3>
-    <p>Send the SOW alongside your <a href="/tools/project-quote-builder.html">project quote</a> so the price and the scope arrive together. If the client has not agreed to the work yet, start with the <a href="/tools/freelance-proposal-generator.html">proposal generator</a> and keep the SOW for the moment they say yes. Take a deposit before you start, and invoice each milestone with the <a href="/tools/invoice-generator.html">invoice generator</a>.</p>
+    <p>Send the SOW alongside your <a href="/tools/project-quote-builder.html">project quote</a> so the price and the scope arrive together. If the client has not agreed to the work yet, start with the <a href="/tools/freelance-proposal-generator.html">proposal generator</a> and keep the SOW for the moment they say yes. Take a deposit before you start, and invoice each milestone with the <a href="/tools/invoice-generator.html">invoice generator</a>. Once the SOW is signed, work through the <a href="/tools/client-onboarding-checklist.html">client onboarding checklist</a> so the deposit clears and the files and logins arrive before your first day on the job.</p>
     <div class="rec-box"><div class="tag">Recommended</div>
       <p style="margin:.3em 0 0">If you want signed proposals with e-signatures and a built-in SOW, proposal software speeds this up. <a href="#" rel="sponsored nofollow" data-aff="proposals">See our recommended proposal tools →</a></p>
     </div>

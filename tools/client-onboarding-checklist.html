@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free Client Onboarding Checklist Generator for Freelancers | SoloDesk</title>
+<meta name="description" content="Free client onboarding checklist for freelancers. Set the project type, deposit and payment terms and get a checklist to work through, plus a welcome email that asks for every file and login in one go. No signup needed.">
+<link rel="canonical" href="https://solodesk.work/tools/client-onboarding-checklist.html">
+<meta property="og:title" content="Free Client Onboarding Checklist Generator">
+<meta property="og:description" content="Everything to sign, collect and agree between the client saying yes and your first hour of work, with a welcome email you can copy.">
+<meta property="og:url" content="https://solodesk.work/tools/client-onboarding-checklist.html">
+<meta name="theme-color" content="#1f4fd1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f4fd1'/%3E%3Cpath d='M9 11h14M9 16h9M9 21h14' stroke='white' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/style.css">
+<script src="/assets/site.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"SoloDesk Client Onboarding Checklist Generator","applicationCategory":"BusinessApplication","operatingSystem":"Any (web)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<style>
+@media print{body{background:#fff}.site-header,.site-footer,.controls,.crumb,.prose,.no-print,.adslot,.form-col{display:none!important}
+main{padding:0}.container{max-width:none;padding:0}}
+</style>
+</head>
+<body>
+<header class="site-header"><div class="container"><nav class="nav" aria-label="Primary">
+  <a class="brand" href="/"><svg class="logo" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M9 11h14M9 16h9M9 21h14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>SoloDesk</a>
+  <span class="spacer"></span>
+  <a class="navlink" aria-current="true" href="/#tools">Tools</a>
+  <a class="navlink" href="/guides/">Guides</a>
+</nav></div></header>
+
+<main><div class="container">
+  <p class="crumb"><a href="/">Home</a> › Client Onboarding Checklist</p>
+  <h1>Client onboarding checklist</h1>
+  <p class="lede">The days between a client saying yes and your first hour of work decide how the rest of the project goes. This builds the checklist for those days: what to have signed, what to collect, what to agree in writing, and a welcome message that asks for every file and login in one go.</p>
+
+  <div class="note">Everything you type stays in your browser. Nothing is uploaded. Copy the checklist into your task app, or print it and tick it off. Pair it with the <a href="/tools/scope-of-work-generator.html">scope of work generator</a> so the document you are asking the client to sign already exists.</div>
+
+  <div class="adslot" data-ad="top" aria-hidden="true"></div>
+
+  <div class="docwrap">
+    <div class="tool form-col">
+      <div class="controls">
+        <button class="btn ghost small copybtn" id="copy" type="button">Copy</button>
+        <button class="btn ghost small" id="print" type="button">Print / PDF</button>
+      </div>
+      <div class="row c2">
+        <div class="field"><label for="from">Your name or business</label><input type="text" id="from" placeholder="Jane Doe Design"></div>
+        <div class="field"><label for="client">Client</label><input type="text" id="client" placeholder="Acme Inc."></div>
+      </div>
+      <div class="row c2">
+        <div class="field"><label for="project">Project title</label><input type="text" id="project" placeholder="Marketing website"></div>
+        <div class="field"><label for="start">Start date</label><input type="date" id="start"></div>
+      </div>
+      <div class="field"><label for="type">Type of work</label>
+        <span class="hint" id="type-hint">this sets the list of files and logins to ask for</span>
+        <select id="type" aria-describedby="type-hint">
+          <option value="design">Design and branding</option>
+          <option value="web">Web or app build</option>
+          <option value="writing">Writing and content</option>
+          <option value="video">Video and audio</option>
+          <option value="marketing">Marketing and SEO</option>
+          <option value="consulting">Consulting and strategy</option>
+          <option value="photo">Photography</option>
+          <option value="other">Something else</option>
+        </select></div>
+      <div class="row c2">
+        <div class="field"><label for="deposit">Deposit before you start</label>
+          <select id="deposit">
+            <option value="50">50 percent</option>
+            <option value="30">30 percent</option>
+            <option value="25">25 percent</option>
+            <option value="100">The full fee up front</option>
+            <option value="0">No deposit</option>
+          </select></div>
+        <div class="field"><label for="terms">Payment terms</label>
+          <select id="terms">
+            <option value="on delivery">Due on delivery</option>
+            <option value="Net 7">Net 7</option>
+            <option value="Net 14">Net 14</option>
+            <option value="Net 30">Net 30</option>
+            <option value="per milestone">Invoiced per milestone</option>
+            <option value="monthly">Invoiced monthly</option>
+          </select></div>
+      </div>
+      <div class="row c2">
+        <div class="field"><label for="channel">Main channel</label>
+          <select id="channel">
+            <option value="Email">Email</option>
+            <option value="Slack">Slack</option>
+            <option value="WhatsApp">WhatsApp</option>
+            <option value="Microsoft Teams">Microsoft Teams</option>
+            <option value="The client's project tool">The client's project tool</option>
+          </select></div>
+        <div class="field"><label for="checkin">Progress updates</label>
+          <select id="checkin">
+            <option value="weekly">Weekly</option>
+            <option value="fortnightly">Every two weeks</option>
+            <option value="milestone">At each milestone</option>
+            <option value="none">Nothing fixed yet</option>
+          </select></div>
+      </div>
+      <div class="row c2">
+        <div class="field"><label for="revisions">Revision rounds included</label>
+          <select id="revisions">
+            <option value="2">2 rounds</option>
+            <option value="1">1 round</option>
+            <option value="3">3 rounds</option>
+            <option value="0">Not agreed yet</option>
+          </select></div>
+        <div class="field"><label for="kickoff">Kickoff call</label>
+          <select id="kickoff">
+            <option value="yes">Book one</option>
+            <option value="no">Skip it</option>
+          </select></div>
+      </div>
+      <div class="field"><label for="extras">Anything else you need from them</label>
+        <span class="hint" id="extras-hint">one per line, added to the list you send</span>
+        <textarea id="extras" placeholder="Purchase order number&#10;Access to the shared drive&#10;Handover notes from the last supplier" aria-describedby="extras-hint"></textarea></div>
+    </div>
+
+    <div>
+      <div id="doc" class="docpaper" aria-label="Onboarding checklist preview"></div>
+      <div class="field no-print">
+        <div class="field-head"><span id="mail-lbl">Welcome message to send today</span><button class="btn ghost small copybtn" id="copyMail" type="button">Copy</button></div>
+        <textarea id="mail" readonly aria-labelledby="mail-lbl"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="adslot" data-ad="mid" aria-hidden="true"></div>
+
+  <section class="prose">
+    <h2>What onboarding is for</h2>
+    <p>Onboarding sounds like an agency word for sending a welcome pack. For a freelancer it does something narrower and more useful. It closes the gap between a client agreeing to the work and the work actually being possible, and it does it while you still have leverage. The client has decided they want you and nothing has gone wrong yet. This is the one moment where asking for a signature, a deposit and a folder of logins reads as professional rather than awkward.</p>
+    <p>Skip it and the same problems turn up in the same order. You start on goodwill and the contract never gets signed. You wait two weeks for brand files and the deadline you promised becomes your problem. Feedback arrives from four people who each want something different, and none of them is the person who approves the invoice. Every one of those is cheap to prevent in the first week and expensive to fix in the last.</p>
+
+    <h3>Settle the money before the first hour of work</h3>
+    <p>A deposit is not a sign that you distrust the client. It is the normal way project work is paid for, and it does two jobs at once. It covers the time you are about to spend, and it tells you whether the budget is real. A client who agreed a price but cannot release a deposit has a problem you want to find out about now rather than after you have delivered.</p>
+    <p>Ask for the deposit as a proper invoice with a due date, and wait for it to clear rather than for the client to say it has been sent. Set the terms for the rest at the same time, so the final invoice is a formality instead of a negotiation. If you are not sure what to ask for, 50 percent up front on a fixed-price project is common, and shorter terms on the balance are often worth more to you than a slightly higher price. The <a href="/tools/invoice-generator.html">invoice generator</a> will produce the deposit invoice, and the <a href="/tools/late-payment-calculator.html">late payment calculator</a> shows what a slow payer costs you.</p>
+
+    <h3>Ask for everything in one message</h3>
+    <p>Most freelancers collect assets by drip. You start work, hit a missing logo, email about it, wait two days, hit a missing login, email again. Each round trip costs you a day and makes you look disorganised to a client who is forming their first impression. One list, sent once, with a date on it, gets a much better response than five polite reminders.</p>
+    <p>The list this tool builds changes with the type of work, because the things people forget are different. A web build stalls on hosting logins and analytics access. A video project stalls on a music track nobody cleared. Writing stalls on nobody being available to interview. Send the whole list on the day the contract comes back, give a date for it, and chase once. If the date passes, the delivery date moves with it, and you say so at the time rather than at the end.</p>
+
+    <h3>Agree how you will talk before you need to</h3>
+    <p>Two lines in a welcome message prevent most of the friction later. One channel that decisions live in, so nothing important is buried in a call nobody wrote up. One person who signs work off, so you are not merging contradictory feedback from a committee for free. Add a response time you can both live with, and say what happens to the deadline when feedback arrives late. Two working days each way is a fair default.</p>
+    <p>The same message is the place to repeat what is out of scope. You already wrote it in the scope of work, and the client may not have read it closely. Saying it once more, in plain terms, in a friendly message, is much easier than raising it for the first time when someone asks for a favour in week three. If you need wording for any of this, the <a href="/tools/contract-clause-library.html">contract clause library</a> has clauses for revisions, kill fees and change requests you can paste in.</p>
+
+    <h3>Set up your own side on day one</h3>
+    <p>The last section of the checklist is the one people skip, and it is the one that pays you later. Start time tracking even on a fixed price, because that is the only way you will ever know whether your quote was right. Put the invoice dates in your diary now, while you still remember the terms. Put every deadline in a calendar with a reminder before it, not on it. Ten minutes of setup gives you the numbers you need to price the next project properly with the <a href="/tools/freelance-rate-calculator.html">rate calculator</a>.</p>
+
+    <div class="rec-box"><div class="tag">Recommended</div>
+      <p>If you onboard several clients a month, a proposal and contract tool that collects a signature and a deposit in the same flow removes most of this admin. <a href="#" rel="sponsored nofollow" data-aff="proposals">See our recommended proposal tools →</a></p>
+    </div>
+
+    <h2>Frequently asked questions</h2>
+    <details><summary>What should a client onboarding checklist include?</summary><p>Four things, in order: the paperwork that has to be signed, the money that has to clear, the files and access you need from the client, and the working agreement covering channel, sign-off and revisions. A fifth section for your own admin, such as time tracking and diarised invoice dates, makes the difference between a project you can price accurately next time and one you cannot.</p></details>
+    <details><summary>Should I take a deposit from every client?</summary><p>On project work, yes. It covers the time you commit up front and it confirms the budget exists. Retainers are usually billed in advance each month instead, which does the same job. The exception is a long-standing client who has paid every invoice on time for years, and even then a deposit is reasonable to ask for on a project larger than usual.</p></details>
+    <details><summary>What if the client will not sign a contract?</summary><p>An email exchange where you set out the scope, price and terms and they reply with a clear yes is a written agreement in most places. It is weaker than a signed document and much better than nothing. If a client refuses to put any agreement in writing at all, treat that as information about how the rest of the project will go, and ask for a larger deposit.</p></details>
+    <details><summary>How long should onboarding take?</summary><p>Your part takes under an hour: send the message, raise the deposit invoice, set up the folder and the calendar. The client's part is what takes time, usually between two days and two weeks depending on how many logins they have to track down. Build that gap into the start date you promise rather than discovering it afterwards.</p></details>
+    <details><summary>Do I need to do this for a repeat client?</summary><p>A short version. The contract and the working agreement can refer back to the previous project, so what is left is the new scope, the new deposit, the assets specific to this job, and the dates. Skipping it altogether is how a good client relationship drifts into unpaid extras.</p></details>
+  </section>
+</div></main>
+
+<footer class="site-footer"><div class="container">
+  <p><a href="/">← All SoloDesk tools</a></p>
+  <p class="disc">© <span data-year>2026</span> SoloDesk. Working document, not legal advice.</p>
+</div></footer>
+
+<script>
+(function(){
+  "use strict";
+  var el=function(id){return document.getElementById(id);};
+  var ASSETS={
+    design:["Logo files, vector plus a PNG for the web",
+      "Brand guidelines, fonts, and the licences that cover them",
+      "Photography or illustration with the rights cleared for this use",
+      "Two or three examples of work to aim at, and one to avoid",
+      "A comment account on the design tool, if reviews happen in place"],
+    web:["Hosting and domain registrar logins",
+      "A CMS or admin account with the permissions the work needs",
+      "Repository access, or an agreed place to push the build",
+      "Analytics and Search Console access",
+      "The staging URL, plus any VPN or IP allowlist",
+      "API keys for anything the build has to talk to"],
+    writing:["The style guide, or three published pieces that set the tone",
+      "The brief: the question the piece answers and who it is for",
+      "A subject matter expert to interview, and the times they are free",
+      "CMS access for publishing, or the document template if publishing stays in house",
+      "A product or demo account, so the writing comes from the real thing"],
+    video:["The raw footage or audio, and where it will be shared from",
+      "Brand assets: logo animation, lower thirds, fonts",
+      "A cleared music track, or the budget for a licence",
+      "Script or transcript sign-off, and the person who gives it",
+      "Delivery specs: aspect ratio, length, and where it will run"],
+    marketing:["Ad account and channel access at the right permission level",
+      "Analytics, Search Console and tag manager access",
+      "The current tracking setup and what counts as a conversion",
+      "Brand assets, and the claims that are already approved",
+      "The budget, and who approves a change to it"],
+    consulting:["The reports and data the work is based on",
+      "Introductions to the people to interview",
+      "Read access to the internal tools under review",
+      "Decisions already made that are not up for discussion"],
+    photo:["The shot list, and the images the project cannot do without",
+      "Location details, access times and permissions",
+      "Model or property releases, signed",
+      "Usage terms: where the images run, for how long, and in which markets",
+      "Delivery format, resolution, and the turnaround expected"],
+    other:["Every file, login and account the work depends on",
+      "The one person who signs work off",
+      "Anything already decided that is not up for discussion"]
+  };
+  function txt(id,fallback){var v=(el(id).value||"").trim();return v||fallback;}
+  function extraLines(){
+    return (el("extras").value||"").split("\n").map(function(s){return s.trim();}).filter(Boolean);
+  }
+  function fmtDate(iso,shift){
+    if(!iso) return "";
+    var p=iso.split("-");
+    if(p.length!==3) return "";
+    var d=new Date(Number(p[0]),Number(p[1])-1,Number(p[2]));
+    if(isNaN(d.getTime())) return "";
+    if(shift) d.setDate(d.getDate()+shift);
+    try{return d.toLocaleDateString(SD.locale(),{day:"numeric",month:"long",year:"numeric"});}
+    catch(e){return iso;}
+  }
+  function fit(id){var t=el(id);if(!t)return;t.style.height="auto";t.style.height=t.scrollHeight+"px";}
+  function depositWords(pct){return pct===100?"the full fee up front":pct+" percent of the fee";}
+  function termsWords(v){
+    if(v==="on delivery") return "due on delivery";
+    if(v==="per milestone") return "invoiced at each milestone";
+    if(v==="monthly") return "invoiced monthly";
+    return v+" from the invoice date";
+  }
+  function updateLine(v){
+    if(v==="weekly") return "A weekly progress update, the same day each week";
+    if(v==="fortnightly") return "A progress update every two weeks";
+    if(v==="milestone") return "A progress update at each milestone";
+    return "Agree when progress updates land, so nobody has to ask for one";
+  }
+  function updateLineForMail(v){
+    if(v==="weekly") return "You will get a progress update every week, on the same day.";
+    if(v==="fortnightly") return "You will get a progress update every two weeks.";
+    if(v==="milestone") return "You will get a progress update at each milestone.";
+    return "Tell me how often you want progress updates and I will keep to it.";
+  }
+  function build(){
+    var from=txt("from","[your name]"), client=txt("client","[client]"), project=txt("project","[project]");
+    var type=el("type").value, dep=parseInt(el("deposit").value,10)||0, terms=el("terms").value;
+    var channel=el("channel").value, checkin=el("checkin").value;
+    var rev=parseInt(el("revisions").value,10)||0, kick=el("kickoff").value==="yes";
+    var startIso=el("start").value, start=fmtDate(startIso,0), sendBy=fmtDate(startIso,-2);
+    var assets=(ASSETS[type]||ASSETS.other).slice();
+    var extras=extraLines();
+    var count=0;
+    function box(s){count++;return "[ ] "+s+"\n";}
+
+    var d="CLIENT ONBOARDING CHECKLIST\n";
+    d+="Client: "+client+"\n";
+    d+="Project: "+project+"\n";
+    if(start) d+="Start date: "+start+"\n";
+    d+="Prepared by: "+from+"\n";
+
+    d+="\n1. BEFORE ANY WORK STARTS\n";
+    d+=box("Contract or letter of agreement signed by both sides");
+    d+=box("Scope of work attached to it, including the list of what is not included");
+    d+=rev>0?box(rev+(rev===1?" round":" rounds")+" of revisions written into the agreement")
+            :box("Agree how many rounds of revisions are included, and put the number in writing");
+    if(dep>0){
+      d+=box("Deposit invoice for "+depositWords(dep)+" sent, with its own due date");
+      d+=box("Deposit cleared in your account, not just marked as sent");
+    }else{
+      d+=box("No deposit agreed, so set the first invoice date now and keep the terms short");
+    }
+    d+=box("Payment terms confirmed in writing: "+termsWords(terms));
+    d+=box(start?("Start and delivery dates agreed in writing, starting "+start)
+                :"Start and delivery dates agreed in writing");
+
+    d+="\n2. WHAT YOU NEED FROM THE CLIENT\n";
+    d+=box("One named contact who can approve work and answer questions");
+    assets.forEach(function(a){d+=box(a);});
+    extras.forEach(function(a){d+=box(a);});
+
+    d+="\n3. HOW YOU WILL WORK TOGETHER\n";
+    d+=box("Main channel agreed: "+channel+". Anything decided elsewhere gets confirmed there");
+    d+=box("A response time you can both live with. Two working days each way is fair");
+    d+=box(updateLine(checkin));
+    if(kick) d+=box("Kickoff call booked, with the agenda sent the day before");
+    d+=box("What happens to the delivery date when feedback arrives late, agreed in writing");
+    d+=box("How anything outside the scope gets priced, agreed in writing");
+    d+=box("Who else has to see the work before it is signed off");
+
+    d+="\n4. SET UP YOUR SIDE\n";
+    d+=box("Project folder, a file naming rule, and a backup that is not your laptop");
+    d+=box("Time tracking running, even on a fixed price");
+    d+=box("Invoice dates in your diary, "+termsWords(terms));
+    d+=box("Client, project and agreed fee in your income record");
+    d+=box("Every deadline in your calendar with a reminder before it, not on it");
+
+    d+="\n5. THE FIRST WEEK\n";
+    d+=box("Welcome message sent, with the full list of what you need"+(sendBy?" and a date of "+sendBy:""));
+    d+=box("Assets received and opened, anything missing chased once");
+    d+=box("First deliverable date confirmed once you have seen the assets");
+    d+=box("Anything that changed since the quote raised now, not at the end");
+
+    d+="\n"+count+" items. Tick them off here, or paste the list into your task app.\n";
+    el("doc").textContent=d;
+
+    var m=[];
+    m.push("Subject: Getting started on "+project);
+    m.push("");
+    m.push("Hi [first name],");
+    m.push("");
+    m.push("Good to have this confirmed. Here is what happens next and what I need from you.");
+    m.push("");
+    m.push(start?("I am starting on "+start+". To hold that date I need:"):"To get started I need:");
+    assets.concat(extras).forEach(function(a){m.push("- "+a);});
+    m.push("");
+    m.push(sendBy?("If you can send those by "+sendBy+" we are on track. If something is going to be late, tell me early so we can move the dates instead of squeezing the work at the end.")
+                :"If something is going to be late, tell me early so we can move the dates instead of squeezing the work at the end.");
+    m.push("");
+    m.push("A few practical points:");
+    if(dep>0) m.push("- The deposit invoice for "+depositWords(dep)+" is attached. Work starts once it clears.");
+    m.push("- Payment is "+termsWords(terms)+".");
+    m.push("- "+channel+" is the main channel. If we agree something on a call, I will confirm it there.");
+    m.push(rev>0?("- "+rev+(rev===1?" round":" rounds")+" of revisions are included. Anything outside the agreed scope gets quoted before I start it.")
+                :"- Let me know how many rounds of revisions you expect, so I can put the number in the agreement.");
+    m.push("- "+updateLineForMail(checkin));
+    m.push("");
+    m.push(kick?"I would like a short kickoff call before I start. Thirty minutes covers the goal, who signs work off, and anything useful that is not in the brief."
+               :"No call needed unless you want one. If anything is easier to explain out loud, send me two times that suit you.");
+    m.push("");
+    m.push("Any questions, just reply here.");
+    m.push("");
+    m.push(from);
+    el("mail").value=m.join("\n");
+    fit("mail");
+    SD.sayLater("Checklist rebuilt with "+count+" items.");
+  }
+  ["from","client","project","start","type","deposit","terms","channel","checkin","revisions","kickoff","extras"]
+    .forEach(function(id){el(id).addEventListener("input",build);el(id).addEventListener("change",build);});
+  el("copy").addEventListener("click",function(){SD.copy(el("doc").textContent,this);});
+  el("copyMail").addEventListener("click",function(){SD.copy(el("mail").value,this);});
+  el("print").addEventListener("click",function(){build();window.print();});
+  build();
+})();
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "7ada08fc6da845c08250bb707a3abf3d"}'></script>
+</body>
+</html>

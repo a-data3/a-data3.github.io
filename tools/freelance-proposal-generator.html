@@ -17,12 +17,8 @@
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"SoloDesk Freelance Proposal Generator","applicationCategory":"BusinessApplication","operatingSystem":"Any (web)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
 </script>
 <style>
-.sow-wrap{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
-@media (max-width:860px){.sow-wrap{grid-template-columns:1fr}}
-#doc{--paper:#fff;--paper-ink:#151b26;background:var(--paper);color:var(--paper-ink);border:1px solid var(--border);border-radius:8px;
-  padding:clamp(16px,3vw,var(--pad-panel-lg));white-space:pre-wrap;font-size:var(--fs-base);line-height:1.6;min-height:300px}
 @media print{body{background:#fff}.site-header,.site-footer,.controls,.crumb,.prose,.no-print,.adslot,.form-col{display:none!important}
-main{padding:0}.sow-wrap{display:block}#doc{border:0;box-shadow:none;padding:0}.container{max-width:none;padding:0}}
+main{padding:0}.container{max-width:none;padding:0}}
 </style>
 </head>
 <body>
@@ -38,13 +34,13 @@ main{padding:0}.sow-wrap{display:block}#doc{border:0;box-shadow:none;padding:0}.
   <h1>Freelance proposal generator</h1>
   <p class="lede">A proposal is the document that turns an enquiry into paid work. Fill in what the client asked for, how you plan to handle it, and what it costs. You get a short proposal you can copy into an email, print to PDF, or attach to a quote. Everything stays in your browser.</p>
 
-  <div class="note">This produces a plain-English business document, not a contract. Once the client says yes, pin the detail down with the <a href="/tools/scope-of-work-generator.html">scope of work generator</a> and terms from the <a href="/tools/contract-clause-library.html">contract clause library</a>.</div>
+  <div class="note">This produces a plain-English business document, not a contract. Once the client says yes, pin the detail down with the <a href="/tools/scope-of-work-generator.html">scope of work generator</a> and terms from the <a href="/tools/contract-clause-library.html">contract clause library</a>, then start the job with the <a href="/tools/client-onboarding-checklist.html">client onboarding checklist</a>.</div>
 
   <div class="adslot" data-ad="top" aria-hidden="true"></div>
 
-  <div class="sow-wrap">
-    <div class="tool form-col" style="margin-top:0">
-      <div class="controls" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px">
+  <div class="docwrap">
+    <div class="tool form-col">
+      <div class="controls">
         <button class="btn ghost small copybtn" id="copy" type="button">Copy</button>
         <button class="btn ghost small" id="print" type="button">Print / PDF</button>
       </div>
@@ -81,7 +77,7 @@ main{padding:0}.sow-wrap{display:block}#doc{border:0;box-shadow:none;padding:0}.
       </div>
     </div>
 
-    <div id="doc" aria-label="Proposal preview"></div>
+    <div id="doc" class="docpaper" aria-label="Proposal preview"></div>
   </div>
 
   <div class="adslot" data-ad="mid" aria-hidden="true"></div>
