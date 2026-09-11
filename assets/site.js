@@ -1,4 +1,4 @@
-/* SoloDesk shared helpers — tiny, dependency-free. */
+/* KettleHour shared helpers — tiny, dependency-free. */
 (function () {
   "use strict";
   // Number + currency formatting

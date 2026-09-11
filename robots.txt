@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://solodesk.work/sitemap.xml
+Sitemap: https://kettlehour.com/sitemap.xml
