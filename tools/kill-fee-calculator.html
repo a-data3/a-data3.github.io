@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kill Fee Calculator: What to Invoice When a Project Is Cancelled | KettleHour</title>
+<meta name="description" content="Free kill fee calculator for freelancers. Work out what to invoice when a client cancels mid-project: the work you already did, the kill fee on what's left, and what the deposit already covers. No signup needed.">
+<link rel="canonical" href="https://kettlehour.com/tools/kill-fee-calculator.html">
+<meta property="og:title" content="Kill Fee Calculator">
+<meta property="og:description" content="What to invoice when a client cancels a project partway through, deposit included.">
+<meta property="og:url" content="https://kettlehour.com/tools/kill-fee-calculator.html">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://kettlehour.com/assets/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Free calculators and generators for freelancers and solo consultants.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1f4fd1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f4fd1'/%3E%3Cpath d='M9 11h14M9 16h9M9 21h14' stroke='white' stroke-width='2.6' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/assets/style.css">
+<script src="/assets/site.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"SoftwareApplication","name":"KettleHour Kill Fee Calculator","applicationCategory":"BusinessApplication","operatingSystem":"Any (web)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+</head>
+<body>
+<header class="site-header"><div class="container"><nav class="nav" aria-label="Primary">
+  <a class="brand" href="/"><svg class="logo" width="24" height="24" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" rx="7" fill="currentColor"/><path d="M9 11h14M9 16h9M9 21h14" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/></svg>KettleHour</a>
+  <span class="spacer"></span>
+  <a class="navlink" aria-current="true" href="/tools/">Tools</a>
+  <a class="navlink" href="/guides/">Guides</a>
+</nav></div></header>
+
+<main><div class="container">
+  <p class="crumb"><a href="/">Home</a> › Kill Fee Calculator</p>
+  <h1>Kill fee calculator</h1>
+  <p class="lede">A client cancels partway through the work. This works out what to invoice: the value of the work you already did, a kill fee on the part you have not billed yet, and what a deposit already paid covers.</p>
+
+  <div class="adslot" data-ad="top" aria-hidden="true"></div>
+
+  <div class="row c2" style="gap:22px;align-items:start">
+    <div class="tool" style="margin-top:0">
+      <div class="field"><label for="currency">Currency</label>
+        <select id="currency">
+          <option value="USD">USD $</option><option value="EUR">EUR €</option><option value="GBP">GBP £</option>
+          <option value="CAD">CAD $</option><option value="AUD">AUD $</option><option value="SGD">SGD $</option>
+          <option value="INR">INR ₹</option><option value="IDR">IDR Rp</option><option value="PHP">PHP ₱</option><option value="PKR">PKR ₨</option><option value="BDT">BDT ৳</option><option value="NGN">NGN ₦</option><option value="NZD">NZD $</option>
+        </select></div>
+      <div class="field"><label for="total">Total project fee</label>
+        <input type="text" inputmode="decimal" spellcheck="false" id="total" value="6000"></div>
+      <div class="row c2">
+        <div class="field"><label for="pctdone">Work completed so far (%)</label>
+          <span class="hint" id="pctdone-hint">your honest estimate of hours or deliverables done</span><input type="text" inputmode="decimal" spellcheck="false" id="pctdone" value="40" aria-describedby="pctdone-hint pctdone-err"><p class="err" id="pctdone-err" role="alert" hidden>Enter a percentage between 0 and 100.</p></div>
+        <div class="field"><label for="killpct">Kill fee on the rest (%)</label>
+          <span class="hint" id="killpct-hint">from your cancellation clause; 25% is a common default</span><input type="text" inputmode="decimal" spellcheck="false" id="killpct" value="25" aria-describedby="killpct-hint killpct-err"><p class="err" id="killpct-err" role="alert" hidden>Enter a percentage between 0 and 100.</p></div>
+      </div>
+      <div class="field"><label for="deposit">Deposit already paid</label>
+        <span class="hint" id="deposit-hint">credited against the amount owed</span><input type="text" inputmode="decimal" spellcheck="false" id="deposit" value="1000" aria-describedby="deposit-hint"></div>
+      <div class="note">A kill fee compensates you for the time you set aside and the work you turned down to hold this slot. It applies to the part of the fee you have not billed yet, not the whole project, so it sits on top of the work already done rather than replacing it.</div>
+    </div>
+
+    <div>
+      <div class="result">
+        <div class="lbl">Amount to invoice now</div>
+        <div class="big" id="invoicenow">—</div>
+        <div class="note" id="creditnote" hidden style="margin-top:10px"></div>
+        <div style="margin-top:10px">
+          <div class="kv"><span>Work completed, value</span><span class="v" id="workval">—</span></div>
+          <div class="kv"><span>Kill fee on the remaining fee</span><span class="v" id="killval">—</span></div>
+          <div class="kv"><span>Total owed before the deposit</span><span class="v" id="owed">—</span></div>
+          <div class="kv"><span>Deposit already credited</span><span class="v" id="depcredit">—</span></div>
+          <div class="kv"><span>Share of the full fee you keep</span><span class="v" id="sharepct">—</span></div>
+        </div>
+      </div>
+      <div class="field" style="margin-top:14px">
+        <div class="field-head"><span id="reply-lbl">A cancellation notice you can send with the invoice</span><button class="btn ghost small copybtn" id="copyReply" type="button">Copy</button></div>
+        <textarea id="reply" readonly aria-labelledby="reply-lbl"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="tool">
+    <h3>What you would be owed at each stage of the project</h3>
+    <table><thead><tr><th>Stage cancelled</th><th class="r">Owed before deposit</th><th class="r">Amount to invoice</th></tr></thead>
+      <tbody id="stages"></tbody></table>
+    <small>These rows use the kill fee percentage and deposit above, held fixed, and vary only how much of the project was done when the client cancelled.</small>
+  </div>
+
+  <div class="adslot" data-ad="mid" aria-hidden="true"></div>
+
+  <section class="prose">
+    <h2>Why a kill fee is not the same as billing for hours worked</h2>
+    <p>Billing for the hours you logged only covers work already delivered. A kill fee covers something else: the slot you held on your calendar and the other work you turned down to keep it clear. When a client cancels with no notice, that time is gone and cannot be resold on short notice, so the fee compensates for the lost opportunity, not just the finished deliverables.</p>
+    <p>Take a 6,000 project cancelled 40 percent through, with a 25 percent kill fee and a 1,000 deposit already paid. The work completed is worth 2,400. The remaining 3,600 has not been billed, and a 25 percent kill fee on that is 900. Together that is 3,300 owed, and with the 1,000 deposit credited, 2,300 is due on the final invoice. Without the kill fee clause, the freelancer would only be able to bill the 2,400 for work done and would absorb the rest of the lost booking.</p>
+    <h3>Setting the kill fee percentage before you need it</h3>
+    <p>The percentage belongs in the contract, agreed before the project starts, not negotiated after a cancellation email arrives. A flat 25 percent on the unbilled balance is a reasonable default for most solo freelance work. Higher figures, up to 50 or even 100 percent, suit short-notice cancellations close to a fixed delivery date, when there is no realistic way to fill the gap with other work. Use the stage table above while you draft the clause: if a client cancelling early would still leave you short, the percentage needs to go up.</p>
+    <h3>The deposit is not the kill fee</h3>
+    <p>A deposit is money paid up front against the project total. A kill fee is a separate charge for cancelling. They interact, because most contracts credit the deposit against whatever is owed on cancellation, but they answer different questions: the deposit protects your cash flow at the start, the kill fee protects the value of the slot if the project ends early. If your contract already says deposits are non-refundable, a cancellation that lands below the deposit amount usually means you keep the deposit and invoice nothing further, which the note above states plainly rather than showing a negative figure.</p>
+    <p>Write both terms into the same clause so there is nothing to argue about later. The <a href="/tools/contract-clause-library.html">contract clause library</a> has a ready-to-paste kill fee and cancellation clause, and the <a href="/tools/project-quote-builder.html">quote builder</a> and <a href="/tools/scope-of-work-generator.html">scope of work generator</a> both have a line for the deposit so it is on the paperwork from day one.</p>
+    <div class="rec-box"><div class="tag">Recommended</div>
+      <p style="margin:.3em 0 0">For complex or high-value work, a lawyer-drafted contract template or a quick review is worth the cost. <a href="#" rel="sponsored nofollow" data-aff="contract-templates">See our recommended contract templates &amp; review services →</a></p>
+    </div>
+    <h2>Frequently asked questions</h2>
+    <details><summary>Is a kill fee legally enforceable?</summary><p>In most places, yes, provided it is written into the contract before the work starts and is a reasonable estimate of your loss rather than a punitive number designed to scare the client. A court asked to look at an unreasonably high fee with no relation to actual loss may reduce it. Keep the percentage defensible and put it in writing.</p></details>
+    <details><summary>What if the contract has no cancellation clause?</summary><p>Then you can usually only bill for the work actually completed, at your agreed rate, and you have no automatic right to compensation for the lost booking. This is the case for adding a kill fee clause to every contract before the work starts, not after a client asks to stop.</p></details>
+    <details><summary>Does the kill fee apply if I am the one who ends the project?</summary><p>Not normally. Kill fees compensate the freelancer for a client-initiated cancellation. If you are the one stepping away, most contracts only entitle you to payment for work completed, and a good one also sets out what you hand over.</p></details>
+    <details><summary>Should the deposit be refundable?</summary><p>Most freelance contracts make the deposit non-refundable once work has started, since it is what let you turn down other work to take the booking. Some freelancers refund it in full only if the client cancels before any work begins. Decide the rule in advance and state it in the same clause as the kill fee.</p></details>
+    <details><summary>How is this different from late payment interest?</summary><p>Late payment interest charges a client who is slow to pay an invoice that is otherwise due. A kill fee applies when the project itself ends early, on work that was never going to be invoiced under the original schedule. Use the <a href="/tools/late-payment-calculator.html">late payment calculator</a> once an agreed invoice, including a cancellation invoice, goes overdue.</p></details>
+  </section>
+</div></main>
+
+<footer class="site-footer"><div class="container">
+  <p><a href="/">← All KettleHour tools</a></p>
+  <p class="disc">© <span data-year>2026</span> KettleHour. Information only, not professional advice.</p>
+</div></footer>
+
+<script>
+(function(){
+  "use strict";
+  var el=function(id){return document.getElementById(id);};
+  function fit(id){var t=document.getElementById(id);if(!t)return;t.style.height="auto";t.style.height=t.scrollHeight+"px";}
+
+  function bound(id,lo,hi){
+    var inp=el(id), msg=el(id+"-err"), v=SD.parse(inp.value), bad=v<lo||v>hi;
+    if(msg) msg.hidden=!bad;
+    inp.setAttribute("aria-invalid",bad?"true":"false");
+    return Math.min(hi,Math.max(lo,v));
+  }
+  function owedAt(total,pct,kp){
+    var workVal=total*pct/100, remaining=total-workVal, killVal=remaining*kp/100;
+    return {workVal:workVal, remaining:remaining, killVal:killVal, owed:workVal+killVal};
+  }
+  function calc(){
+    var cur=el("currency").value, f=function(n){return SD.fmt(n,cur);};
+    var total=SD.val("total"), deposit=SD.val("deposit");
+    var pct=bound("pctdone",0,100), kp=bound("killpct",0,100);
+    var r=owedAt(total,pct,kp);
+    var netDue=r.owed-deposit;
+    var invoiceNow=Math.max(netDue,0);
+    var share=total>0?r.owed/total*100:0;
+
+    SD.setText("invoicenow",f(invoiceNow));
+    SD.setText("workval",f(r.workVal));
+    SD.setText("killval",f(r.killVal));
+    SD.setText("owed",f(r.owed));
+    SD.setText("depcredit",f(deposit));
+    SD.setText("sharepct",total>0?SD.num(share,1)+"%":"—");
+
+    var note=el("creditnote");
+    if(netDue<0 && deposit>0){
+      note.hidden=false;
+      note.textContent="The deposit already covers the amount owed, by "+f(-netDue)+". Whether that balance is refunded depends on your contract; most kill fee clauses make deposits non-refundable, so many freelancers keep it and invoice nothing further.";
+    } else {
+      note.hidden=true;
+    }
+
+    var body="";
+    [[0,"Before work starts"],[25,"Early stage"],[50,"Mid-project"],[75,"Most of the work done"],[100,"Fully delivered"]].forEach(function(s){
+      var rr=owedAt(total,s[0],kp);
+      var net=Math.max(rr.owed-deposit,0);
+      body+="<tr><td>"+s[1]+" ("+s[0]+"%)</td><td class='r'>"+f(rr.owed)+"</td><td class='r'>"+f(net)+"</td></tr>";
+    });
+    el("stages").innerHTML=body;
+
+    var lines=["Hi [client name],","","I'm sorry to see this project end here. Per our agreement, cancellation is billed as the work completed plus a kill fee on the remaining balance.","","Work completed to date: "+f(r.workVal)+" ("+SD.num(pct,0)+"% of the project)","Kill fee on the remaining "+f(r.remaining)+": "+f(r.killVal)+" ("+SD.num(kp,0)+"%)","Total owed: "+f(r.owed)];
+    if(deposit>0) lines.push("Deposit already paid: "+f(deposit));
+    lines.push("");
+    lines.push(invoiceNow>0 ? "Amount due on the attached invoice: "+f(invoiceNow) : "The deposit already covers this. No further invoice is needed.");
+    lines.push("");
+    lines.push("I'll hand over everything completed and paid for once this is settled. Let me know if you have questions.");
+    lines.push("");
+    lines.push("[your name]");
+    el("reply").value=lines.join("\n");
+    fit("reply");
+
+    SD.sayLater("Amount to invoice now is "+f(invoiceNow)+", "+SD.num(share,1)+"% of the full project fee.");
+    SD.flashResult(document.querySelector(".result"));
+  }
+  ["currency","total","pctdone","killpct","deposit"].forEach(function(id){el(id).addEventListener("input",calc);el(id).addEventListener("change",calc);});
+  el("copyReply").addEventListener("click",function(){SD.copy(el("reply").value,this);});
+  calc();
+})();
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "7ada08fc6da845c08250bb707a3abf3d"}'></script>
+</body>
+</html>
