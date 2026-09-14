@@ -2,7 +2,9 @@
    One accent, cool-biased neutrals, 8pt spacing, hairlines instead of shadows, three type weights,
    sentence-case labels, no one-side accent bars, no decorative pills, visible focus, reduced motion respected. */
 
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600&display=swap');
+/* Source Sans 3 is loaded from the page head with preconnect hints (B-14), not here:
+   an @import cannot start until this file is downloaded and parsed, chaining a
+   render-blocking third-party request behind another. */
 
 :root{
   /* tell the user agent both themes exist so native controls follow */
