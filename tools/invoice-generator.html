@@ -29,10 +29,7 @@
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"KettleHour Invoice Generator","applicationCategory":"BusinessApplication","operatingSystem":"Any (web)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free browser-based invoice generator for freelancers with PDF download and no signup."}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"Is this invoice generator really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every tool on KettleHour is free with no signup, no watermark, and no email required."}},
-{"@type":"Question","name":"Where is my invoice data stored?","acceptedAnswer":{"@type":"Answer","text":"Only in your own browser. The tool runs locally and your figures are never uploaded. If you choose, your own business details can be remembered on your device and nowhere else."}},
-{"@type":"Question","name":"How do I download the invoice as a PDF?","acceptedAnswer":{"@type":"Answer","text":"Click Download PDF, then choose Save as PDF as the destination in your browser's print dialog. Everything except the invoice itself is hidden, so the saved file has no page title, links or branding from this site."}},{"@type":"Question","name":"Can I add my logo and bank details?","acceptedAnswer":{"@type":"Answer","text":"Yes. Upload a PNG, JPG or SVG in the Logo field and it appears at the top left of the invoice. Fill in the payment method and account details and they print in a Payment section above the notes. Both stay on your device."}}]}
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is this invoice generator really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every tool on KettleHour is free with no signup, no watermark, and no email required."}},{"@type":"Question","name":"Where is my invoice data stored?","acceptedAnswer":{"@type":"Answer","text":"Only in your own browser. The tool runs locally and your figures are never uploaded. Your draft is saved in this browser as you type, so a reload does not lose it, and saved clients are kept here too. If you click \"Remember my details,\" your business info is also kept on this device. Nothing leaves your device. Reset clears the draft, the Remove selected client button deletes a saved client, and clearing this site's data in your browser settings removes everything."}},{"@type":"Question","name":"How do I download the invoice as a PDF?","acceptedAnswer":{"@type":"Answer","text":"Click Download PDF, then choose Save as PDF as the destination in the print dialog. Everything except the invoice itself is hidden, so the saved file has no page title, no links and no branding from this site."}},{"@type":"Question","name":"Can I add my logo and bank details?","acceptedAnswer":{"@type":"Answer","text":"Yes. Upload a PNG, JPG or SVG in the Logo field and it appears at the top left of the invoice. Fill in the payment method and account details and they print in a Payment section above the notes. Both stay on your device; \"Remember my details\" keeps them for next time."}}]}
 </script>
 <style>
 /* Invoice preview + print */
@@ -70,6 +67,10 @@
   .lineitem>:nth-child(3){grid-area:rate}
   .lineitem>:nth-child(4){grid-area:x}
 }
+#preview .sig{margin-top:32px;width:min(240px,100%)}
+#preview .sig img{display:block;max-height:64px;max-width:100%;object-fit:contain;margin:0 0 6px}
+#preview .sig .rule{height:1px;background:var(--paper-ink-soft);margin-bottom:4px}
+.btn[hidden],.sig[hidden]{display:none}
 @media print{
   body{background:#fff}
   .site-header,.site-footer,.controls,.crumb,.prose,.no-print,.adslot,main h1,.lede,.li-head,.undo-bar{display:none !important}
@@ -128,8 +129,11 @@
       <div class="field"><label for="fromName">Your name / business</label><input type="text" id="fromName" placeholder="Jane Doe Design"></div>
       <div class="field"><label for="fromInfo">Your details</label><span class="hint" id="fromInfo-hint">address, email, tax ID (one per line)</span><textarea id="fromInfo" placeholder="hello@janedoe.design&#10;123 Main St&#10;VAT/Tax ID: ..." aria-describedby="fromInfo-hint"></textarea></div>
       <div class="field"><label for="logo">Logo</label><span class="hint" id="logo-hint">optional, PNG, JPG or SVG, stays on this device</span><input type="file" id="logo" accept="image/png,image/jpeg,image/svg+xml,image/webp" aria-describedby="logo-hint"><button class="btn ghost small" id="logoclear" type="button" style="margin-top:6px;display:none">Remove logo</button></div>
+      <div class="field"><label for="sig">Signature, optional</label><span class="hint" id="sig-hint">PNG, JPG or SVG. Stays on this device and is not remembered, so add it again next visit.</span><input type="file" id="sig" accept="image/png,image/jpeg,image/svg+xml,image/webp" aria-describedby="sig-hint"><button class="btn ghost small" id="sigclear" type="button" hidden>Remove signature</button></div>
 
       <h2>Bill to (client)</h2>
+      <div class="field"><label for="clientsel">Saved clients</label><span class="hint" id="clientsel-hint">Saved in this browser only. Up to 50 clients.</span><select id="clientsel" aria-describedby="clientsel-hint"><option value="">Choose a saved client</option></select>
+        <div class="controls"><button class="btn ghost small" id="clientsave" type="button">Save client</button><button class="btn ghost small" id="clientdel" type="button" disabled>Remove selected client</button></div></div>
       <div class="field"><label for="toName">Client name / company</label><input type="text" id="toName" placeholder="Acme Inc."></div>
       <div class="field"><label for="toInfo">Client details</label><textarea id="toInfo" placeholder="billing@acme.com&#10;456 Market St"></textarea></div>
 
@@ -173,6 +177,7 @@
         <div id="p-paydetails" style="white-space:pre-line"></div>
       </div>
       <div class="notes" id="p-notes"></div>
+      <div class="sig" id="p-sigbox" hidden><img id="p-sig" alt=""><div class="rule"></div><div class="cap">Signature</div></div>
     </div>
   </div>
 
@@ -203,10 +208,9 @@
 
     <h2>Frequently asked questions</h2>
     <details><summary>Is this invoice generator really free?</summary><p>Yes. Every tool on KettleHour is free with no signup, no watermark, and no email required.</p></details>
-    <details><summary>Where is my invoice data stored?</summary><p>Only in your own browser. The tool runs locally and your figures are never uploaded. If you click "Remember my details," only your own business info (name, address) is saved on your device using local storage. The client details and amounts are never saved.</p></details>
+    <details><summary>Where is my invoice data stored?</summary><p>Only in your own browser. The tool runs locally and your figures are never uploaded. Your draft is saved in this browser as you type, so a reload does not lose it, and saved clients are kept here too. If you click "Remember my details," your business info is also kept on this device. Nothing leaves your device. Reset clears the draft, the Remove selected client button deletes a saved client, and clearing this site's data in your browser settings removes everything.</p></details>
     <details><summary>How do I download the invoice as a PDF?</summary><p>Click <strong>Download PDF</strong>, then choose <em>Save as PDF</em> as the destination in the print dialog. Everything except the invoice itself is hidden, so the saved file has no page title, no links and no branding from this site.</p></details>
     <details><summary>Can I add my logo and bank details?</summary><p>Yes. Upload a PNG, JPG or SVG in the Logo field and it appears at the top left of the invoice. Fill in the payment method and account details and they print in a Payment section above the notes. Both stay on your device; "Remember my details" keeps them for next time.</p></details>
-    <details><summary>Can I add my logo?</summary><p>Not in this version. It keeps things text-only for speed and privacy. Your business name is shown prominently at the top, which is enough for a professional freelance invoice.</p></details>
   </section>
 </div></main>
 
@@ -312,10 +316,11 @@
     var rows=el("items").querySelectorAll(".lineitem");
     if(rows.length) rows[rows.length-1].querySelector("input").focus();
   });
-  el("download").addEventListener("click",function(){render();var t=document.title;document.title="Invoice "+(el("invno").value||"");window.print();setTimeout(function(){document.title=t;},2000);});
+  el("download").addEventListener("click",function(){pendingInc=true;render();var t=document.title;document.title="Invoice "+(el("invno").value||"");window.print();setTimeout(function(){document.title=t;},2000);});
   el("reset").addEventListener("click",function(){
     if(!confirm("Clear the invoice and forget the details saved on this device?"))return;
-    forget(); SD.undoHide(el("undoslot"));
+    forget(); clearTimeout(saveT); dirty=false; pendingInc=false; try{localStorage.removeItem("sd_invoice_draft");}catch(e){}
+    sigData=""; el("sig").value=""; showSig(); SD.undoHide(el("undoslot"));
     items=[]; ["invno","fromName","fromInfo","toName","toInfo","notes","paymethod","paydetails"].forEach(function(id){el(id).value="";});
     el("invno").value="INV-0001"; el("tax").value=0; el("disc").value=0;
     logoData=""; el("logo").value=""; showLogo();
@@ -344,12 +349,87 @@
         el("paymethod").value=s.paymethod||"";el("paydetails").value=s.paydetails||"";logoData=s.logo||"";showLogo();}
     }catch(e){}
   }
+  // ---- autosave draft, saved clients, signature, number bump (all on-device) ----
+  var DRAFT="sd_invoice_draft", CLIENTS="sd_invoice_clients", sigData="", pendingInc=false, saveT=0, dirty=false;
+  var FIELDS=["currency","invno","idate","ddate","fromName","fromInfo","toName","toInfo","tax","disc","notes","paymethod","paydetails"];
+  function lsGet(key){try{return JSON.parse(localStorage.getItem(key)||"null");}catch(e){return null;}}
+  function lsSet(key,v){try{localStorage.setItem(key,JSON.stringify(v));return true;}catch(e){return false;}}
+  function saveDraft(){
+    clearTimeout(saveT); dirty=false;
+    var d={items:items.map(function(it){return{desc:it.desc,qty:it.qty,rate:it.rate};})};
+    FIELDS.forEach(function(id){d[id]=el(id).value;});
+    lsSet(DRAFT,d);
+  }
+  function schedSave(){dirty=true;clearTimeout(saveT);saveT=setTimeout(saveDraft,400);}
+  function loadDraft(){
+    var d=lsGet(DRAFT); if(!d||typeof d!=="object") return false;
+    FIELDS.forEach(function(id){
+      if(typeof d[id]!=="string") return;
+      var e=el(id); e.value=d[id]; if(e.tagName==="SELECT"&&e.selectedIndex<0) e.selectedIndex=0;
+    });
+    if(Array.isArray(d.items)) items=d.items.map(function(it){return{desc:String((it&&it.desc)||""),qty:+(it&&it.qty)||0,rate:+(it&&it.rate)||0};});
+    return true;
+  }
+  var formBox=document.querySelector(".tool.no-print");
+  formBox.addEventListener("input",schedSave);
+  formBox.addEventListener("change",schedSave);
+  formBox.addEventListener("click",function(e){if(e.target.closest(".x,#additem,.undo-bar button"))schedSave();});
+  window.addEventListener("pagehide",function(){if(dirty)saveDraft();});
+  // saved clients
+  function clientList(){var c=lsGet(CLIENTS);return Array.isArray(c)?c.filter(function(x){return x&&typeof x.name==="string";}):[];}
+  function fillClients(pick){
+    var s=el("clientsel"); s.length=1;
+    clientList().forEach(function(x){var o=document.createElement("option");o.value=x.name;o.textContent=x.name;s.appendChild(o);});
+    s.value=pick||""; if(s.selectedIndex<0) s.selectedIndex=0;
+    el("clientdel").disabled=!s.value;
+  }
+  el("clientsave").addEventListener("click",function(){
+    var name=el("toName").value.trim();
+    if(!name){SD.say("Enter the client name first.");return;}
+    var c=clientList().filter(function(x){return x.name.toLowerCase()!==name.toLowerCase();});
+    c.push({name:name,details:el("toInfo").value});
+    if(c.length>50) c=c.slice(-50);
+    if(!lsSet(CLIENTS,c)){alert("Could not save. Your browser may be blocking local storage.");return;}
+    fillClients(name); SD._flash(this,"Client saved"); SD.say("Client saved.");
+  });
+  el("clientsel").addEventListener("change",function(){
+    var n=this.value, c=clientList().filter(function(x){return x.name===n;})[0];
+    el("clientdel").disabled=!n;
+    if(!c) return;
+    el("toName").value=c.name; el("toInfo").value=c.details||""; render(); schedSave();
+  });
+  el("clientdel").addEventListener("click",function(){
+    var n=el("clientsel").value; if(!n) return;
+    lsSet(CLIENTS,clientList().filter(function(x){return x.name!==n;}));
+    fillClients(""); SD.say("Client removed.");
+  });
+  // signature: read on-device, never uploaded, not stored
+  function showSig(){
+    var img=el("p-sig");
+    if(sigData) img.src=sigData; else img.removeAttribute("src");
+    el("p-sigbox").hidden=!sigData; el("sigclear").hidden=!sigData;
+  }
+  el("sig").addEventListener("change",function(){
+    var f=this.files&&this.files[0]; if(!f) return;
+    if(f.size>1500000){alert("Please use a signature image under 1.5 MB.");this.value="";return;}
+    var r=new FileReader(); r.onload=function(){sigData=String(r.result);showSig();}; r.readAsDataURL(f);
+  });
+  el("sigclear").addEventListener("click",function(){sigData="";el("sig").value="";showSig();});
+  // after the print dialog closes, get the next invoice number ready
+  window.addEventListener("afterprint",function(){
+    if(!pendingInc) return; pendingInc=false;
+    var m=/^(.*?)(\d{1,15})$/.exec(el("invno").value.trim());
+    if(m){el("invno").value=m[1]+String(+m[2]+1).padStart(m[2].length,"0");render();}
+    saveDraft();
+  });
   // init
   var now=new Date(), due=new Date(now.getTime()+14*864e5);
   el("idate").value=todayISO(now); el("ddate").value=todayISO(due);
   loadRemembered();
   showSaved();
-  addItem("Design work — 10 hours",10,60);
+  var hadDraft=loadDraft();
+  fillClients("");
+  if(hadDraft) renderItems(); else addItem("Design work — 10 hours",10,60);
   render();
 })();
 </script>
